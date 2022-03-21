@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Home - Ferienwohnungen Borkum</title>
     <meta name="description" content="Meeresrauschen, Sommerflirren . . . Sturmgetöse . . . Mövenmeckern, Kinderlachen . . . Winterklirren . . . Hochseeklima, am Puls der Gezeiten . . . Demut, Freiheit . . . Insel">
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic">
-    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/css/gallery.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='fonts/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/gallery.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 </head>
 
@@ -30,7 +30,7 @@
             </div>
         </div>
     </nav>
-    <header class="text-center text-white d-flex masthead" style="background-image:url('assets/img/Gallery/Thumbnail/beach-drone.jpg');">
+    <header class="text-center text-white d-flex masthead" style="background-image:url({{ url_for('static', filename='img/Gallery/Thumbnail/beach-drone.jpg') }});">
         <div class="container my-auto">
             <div class="row">
                 <div class="col-lg-10 mx-auto">
@@ -44,23 +44,26 @@
         </div>
     </header>
     <div>
-        <div class="row" data-masonry="{&quot;percentPosition&quot;: true }">
-            <div class="col-sm-6 col-lg-4 mb-4">
-                <div class="card">
-                    <picture type="" srcset=""><img class="card-img-top p-3" src="assets/img/Gallery/Bahn.png" alt="" style="border-radius: 24px; object-fit: cover"></picture>
-                    <div class="card-body">
-                        <h5 class="card-title">Titulo<br></h5>
-                        <p class="card-text text-muted">Parrafo<br></p><a href="">Link</a>
+        <div class="row" data-masonry="{&quot;percentPosition&quot;: true }"> 
+            {% for filename in images%}
+                <div class="col-sm-6 col-lg-4 mb-4">
+                    <div class="card">
+                        <picture type="" srcset=""><img class="card-img-top p-3" src="{{ filename }}" alt="" style="border-radius: 24px; object-fit: cover"></picture>
+                        <div class="card-body">
+                            <h5 class="card-title">Titulo<br></h5>
+                            <p class="card-text text-muted">Parrafo<br></p><a href="">Link</a>
+                        </div>
                     </div>
                 </div>
-            </div>
+            {% endfor%}
+
         </div><script async="" src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous"></script>
     </div>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/bs-init.js"></script>
+    <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bs-init.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
-    <script src="assets/js/Lightbox-Gallery.js"></script>
+    <script src="{{ url_for('static', filename='js/Lightbox-Gallery.js') }}"></script>
 </body>
 
 </html>

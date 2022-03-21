@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Home - Ferienwohnungen Borkum</title>
     <meta name="description" content="Meeresrauschen, Sommerflirren . . . Sturmgetöse . . . Mövenmeckern, Kinderlachen . . . Winterklirren . . . Hochseeklima, am Puls der Gezeiten . . . Demut, Freiheit . . . Insel">
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic">
-    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='fonts/font-awesome.min.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 </head>
 
@@ -29,7 +29,7 @@
             </div>
         </div>
     </nav>
-    <header class="text-center text-white d-flex masthead" style="background-image:url('assets/img/header.png');">
+    <header class="text-center text-white d-flex masthead" style="background-image:url({{ url_for('static', filename='img/header.png') }});">
         <div class="container my-auto">
             <div class="row">
                 <div class="col-lg-10 mx-auto">
@@ -94,7 +94,7 @@
     <section id="preview" class="p-0">
         <div class="container-fluid p-0">
             <div class="row g-0 popup-gallery">
-                <div class="col-sm-6 col-lg-4"><a class="portfolio-box" href="Apartments/fullsize/Baltrum.jpeg"><img class="img-fluid" src="Apartments/thumbnail/Balturm.jpeg">
+                <div class="col-sm-6 col-lg-4"><a class="portfolio-box" href=""><img class="img-fluid" src="{{ url_for('static', filename='img/Apartments/Baltrum/Thumbnail/Balturm.jpeg') }}">
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
                                 <div class="project-category text-faded"><span>Ferienwohnung</span></div>
@@ -102,7 +102,7 @@
                             </div>
                         </div>
                     </a></div>
-                <div class="col-sm-6 col-lg-4"><a class="portfolio-box" href="Apartments/fullsize/Borkum.jpeg"><img class="img-fluid" src="Apartments/thumbnail/Borkum.jpeg">
+                <div class="col-sm-6 col-lg-4"><a class="portfolio-box" href=""><img class="img-fluid" src="{{ url_for('static', filename='img/Apartments/Borkum/Thumbnail/Borkum.jpeg') }}">
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
                                 <div class="project-category text-faded"><span>Ferienwohnung</span></div>
@@ -110,7 +110,7 @@
                             </div>
                         </div>
                     </a></div>
-                <div class="col-sm-6 col-lg-4"><a class="portfolio-box" href="assets/img/Apartments/Kajo/Rooms/Kajo.jpeg"><img class="img-fluid" src="assets/img/Apartments/Kajo/Thumbnail/Kajo.jpeg">
+                <div class="col-sm-6 col-lg-4"><a class="portfolio-box" href=""><img class="img-fluid" src="{{ url_for('static', filename='img/Apartments/Kajo/Thumbnail/Kajo.jpeg') }}">
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
                                 <div class="project-category text-faded"><span>Ferienwohnung</span></div>
@@ -118,7 +118,7 @@
                             </div>
                         </div>
                     </a></div>
-                <div class="col-sm-6 col-lg-4"><a class="portfolio-box" href="assets/img/Apartments/Langeoog/Rooms/Langeoog.jpeg"><img class="img-fluid" src="assets/img/Apartments/Langeoog/Thumbnail/Langeoog.jpeg">
+                <div class="col-sm-6 col-lg-4"><a class="portfolio-box" href=""><img class="img-fluid" src="{{ url_for('static', filename='img/Apartments/Langeoog/Thumbnail/Langeoog.jpeg') }}">
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
                                 <div class="project-category text-faded"><span>Ferienwohnung</span></div>
@@ -126,7 +126,7 @@
                             </div>
                         </div>
                     </a></div>
-                <div class="col-sm-6 col-lg-4"><a class="portfolio-box" href="Apartments/fullsize/Memmert.jpeg"><img class="img-fluid" src="Apartments/fullsize/Memert.jpeg">
+                <div class="col-sm-6 col-lg-4"><a class="portfolio-box" href=""><img class="img-fluid" src="{{ url_for('static', filename='img/Apartments/Memmert/Thumbnail/Memmert.jpeg') }}">
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
                                 <div class="project-category text-faded"><span>Ferienwohnung</span></div>
@@ -134,7 +134,7 @@
                             </div>
                         </div>
                     </a></div>
-                <div class="col-sm-6 col-lg-4"><a class="portfolio-box" href="assets/img/Apartments/Studio%201/Rooms/Studio-1.jpeg"><img class="img-fluid" src="assets/img/Apartments/Studio%201/Thumbnail/Studio-1.jpeg">
+                <div class="col-sm-6 col-lg-4"><a class="portfolio-box" href=""><img class="img-fluid" src="{{ url_for('static', filename='img/Apartments/Studio-1/Thumbnail/Studio-1.jpeg') }}">
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
                                 <div class="project-category text-faded"><span>Ferienwohnung</span></div>
@@ -142,7 +142,7 @@
                             </div>
                         </div>
                     </a></div>
-                <div class="col-sm-6 col-lg-4"><a class="portfolio-box" href="assets/img/Apartments/Studio%202/Rooms/Studio-2.jpeg"><img class="img-fluid" src="assets/img/Apartments/Studio%202/Thumbnail/Studio-2.jpeg">
+                <div class="col-sm-6 col-lg-4"><a class="portfolio-box" href=""><img class="img-fluid" src="{{ url_for('static', filename='img/Apartments/Studio-2/Thumbnail/Studio-2.jpeg') }}">
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
                                 <div class="project-category text-faded"><span>Ferienwohnung</span></div>
@@ -172,11 +172,11 @@
             </div>
         </div>
     </section>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/bs-init.js"></script>
+    <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bs-init.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
-    <script src="assets/js/Lightbox-Gallery.js"></script>
+    <script src="{{ url_for('static', filename='js/Lightbox-Gallery.js') }}"></script>
 </body>
 
 </html>
