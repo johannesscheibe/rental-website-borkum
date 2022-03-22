@@ -10,7 +10,7 @@ Hochseeklima, am Puls der Gezeiten . . . Demut, Freiheit . . . Insel {% endblock
 {% endblock %}
 
 {% block content%}
-<header class="text-center text-white d-flex masthead" style="background-image:url({{ url_for('static', filename='img/Gallery/Thumbnail/beach-drone.jpg') }});">
+<header class="text-center text-white d-flex masthead" style="background-image:url({{ thumbnail }});">
     <div class="container my-auto">
         <div class="row">
             <div class="col-lg-10 mx-auto">
@@ -23,21 +23,17 @@ Hochseeklima, am Puls der Gezeiten . . . Demut, Freiheit . . . Insel {% endblock
         </div>
     </div>
 </header>
-<div>
+<section class="bg-dark" style="padding: 1%">
     <div class="row" data-masonry="{&quot;percentPosition&quot;: true }"> 
         {% for filename in images%}
             <div class="col-sm-6 col-lg-4 mb-4">
-                <div class="card">
-                    <picture type="" srcset=""><img class="card-img-top p-3" src="{{ filename }}" alt="" style="border-radius: 24px; object-fit: cover"></picture>
-                    <div class="card-body">
-                        <h5 class="card-title">Titulo<br></h5>
-                        <p class="card-text text-muted">Parrafo<br></p><a href="">Link</a>
-                    </div>
-                </div>
+                <img class="card-img-top p-3" src="{{ filename }}" alt="" style="border-radius: 24px; object-fit: cover">
             </div>
-        {% endfor%}
-
-    </div><script async="" src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous"></script>
-</div>
+        {% endfor%}    
+    </div>
+    <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"
+        integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D"
+        crossorigin="anonymous"></script>
+</section>
 
 {% endblock %}
