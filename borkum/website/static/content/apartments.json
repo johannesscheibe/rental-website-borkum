@@ -1,0 +1,38 @@
+{
+    "baltrum": {
+        "name": "Baltrum",
+        "describtion": "Die Ferienwohnung Baltrum befindet sich im 1. Stock im Ferienhaus Hertha auf Borkum. Es erwarten Sie auf ca. 53 m² eine für 2 bis 3 Personen komfortabel ausgestattete Ferienwohnung mit Schlafzimmer, Wohn-/Schlafzimmer, Küche und Duschbad. \nDas Schlafsofa im Wohnraum bietet einer weiteren Person eine Übernachtungsmöglichkeit. Beide Räume verfügen über einen Ost- bzw. Westbalkon mit Blick in die Dünen.",
+        "properties": ["WiFi", "max. 3 Personen", "Nichtraucher", "Allergiker geeignet", "Parkplatz am Haus"," Balkon(ost und süd)", "Südlage", "Strandnähe"]
+    },
+    "borkum": {
+        "name": "Borkum",
+        "describtion": "Die Suite Borkum befindet sich im 1. Stock im Ferienhaus Hertha auf Borkum. Es erwarten Sie auf ca. 47 m² eine für 2 Personen komfortabel ausgestattetes Feriendomizil mit Schlafzimmer, Wohn-/Schlafzimmer, Küche und Duschbad. \nDas Schlafsofa im Wohnraum bietet weiteren 2 Personen eine Übernachtungsmöglichkeit. Beide Räume verfügen über einen Südbalkon mit Blick in die Dünen.",
+        "properties": ["WiFi", "max. 3 Personen", "Nichtraucher", "Allergiker geeignet", "Parkplatz am Haus","2 Südbalkone mit Dünenblick", "Südlage", "Strandnähe", "Dünenblick"]
+    },
+    "kajo": {
+        "name": "Kajo",
+        "describtion": "Die Ferienwohnung Kajo (Greune-Stee-Weg 87) bietet ihnen sonnige und gemütliche Ferienwohnung in kurzer Entfernung zum Borkumer Südstrand und unmittelbar an den Dünen der Greune Stee mit einem herrlichen Inselwald zum Wandern. Sie blicken von den Balkonen / Terrassen oder aus den Zimmern direkt auf die Dünenlandschaft. \nVon der Haltestelle Jakob-Van-Dieken-Weg ist das Haus Hertha ca. 5-10 Gehminuten entfernt, den Südstrand erreichen sie direkt gegenüber nach 800 m Fußweg durch die Dünenlandschaft.",
+        "properties": ["WiFi", "max. 6 Personen", "Nichtraucher", "Allergiker geeignet", "Parkplatz am Haus", "geräumige 74 m² Ferienwohnung", " Westbalkon", "Südlage", "Strandnähe"]
+    },
+    "langeoog": {
+        "name": "Langeoog",
+        "describtion": " Die Ferienwohnung Langeoog befindet sich im 2. Stock im Ferienhaus Hertha auf Borkum. Es erwarten Sie auf ca. 48 m² eine für 2 Personen komfortabel ausgestattete Ferienwohnung mit Schlafzimmer, Wohn-/Schlafzimmer, Küche und Duschbad. \nDas Schlafsofa im Wohnraum bietet einer weiteren Person eine Übernachtungsmöglichkeit. Beide Räume verfügen über einen Blick in die Dünen bzw. bis zum Meer.",
+        "properties": ["WiFi", "max. 3 Personen", "Nichtraucher", "Allergiker geeignet", "Parkplatz am Haus", "Strandnähe", "Dünenblick"]
+    },
+    "memmert": {
+        "name": "Memmert",
+        "describtion": "Die Ferienwohnung Baltrum befindet sich im Erdgeschoß im Ferienhaus Hertha auf Borkum. Es erwarten Sie auf ca. 53 m² eine für 2 bis 3 Personen komfortabel ausgestattete Ferienwohnung mit Schlafzimmer, Wohn-/Schlafzimmer, Küche und Duschbad. \nDas Schlafsofa im Wohnraum bietet einer weiteren Person eine Übernachtungsmöglichkeit. Beide Räume verfügen über einen Ost- bzw. Westbalkon mit Blick in die Dünen.",
+        "properties": ["WiFi", "max. 5 Personen", "Nichtraucher", "Allergiker geeignet", "Parkplatz am Haus"," Westbalkon", "Terasse mit kleinem Garten", "Strandnähe"]
+    },
+    "studio-1": {
+        "name": "Studio 1",
+        "describtion": " Die Ferienwohnung Studio 1 befindet sich im 1. Stock im Ferienhaus Hertha auf Borkum. Es erwarten Sie eine für 2-3 Personen komfortabel ausgestattete Ferienwohnung mit Wohn-/Schlafzimmer, Eß-/Schlafzimmer (Tagesliege), Küche und Duschbad. \nDie Wohnung verfügt über eine Süd-/West-Dachterrasse mit eigenem Strandkorb und Blick in die Dünen des Südstrandes.",
+        "properties": ["WiFi", "max. 3 Personen", "Nichtraucher", "Standkorb", "Parkplatz am Haus"," Westbalkon", "Südlage", "Strandnähe"]
+    }, 
+    "studio-2": {
+        "name": "Studio 2",
+        "describtion": "Die Ferienwohnung Studio 2 befindet sich im 1. Stock im Ferienhaus Hertha auf Borkum. Es erwarten Sie eine für 2 Personen komfortabel ausgestattete Ferienwohnung mit Wohn-/Schlafzimmer, Eß-/Schlafzimmer (Tagesliege), Küche und Duschbad. \nDie Wohnung verfügt über eine Süd-/West-Dachterrasse mit eigenem Strandkorb und Blick in die Dünen des Südstrandes.",
+        "properties": ["WiFi", "max.3 Personen", "Nichtraucher", "Standkorb", "Allergiker geeignet", "Parkplatz am Haus"," Westbalkon", "Südlage", "Strandnähe"]
+    }
+
+}
