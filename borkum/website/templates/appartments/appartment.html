@@ -1,96 +1,70 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
+{% block title %} Lage - Ferienwohnungen Borkum {% endblock %}
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Home - Ferienwohnungen Borkum</title>
-    <meta name="description" content="Meeresrauschen, Sommerflirren . . . Sturmgetöse . . . Mövenmeckern, Kinderlachen . . . Winterklirren . . . Hochseeklima, am Puls der Gezeiten . . . Demut, Freiheit . . . Insel">
-    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic">
-    <link rel="stylesheet" href="../../assets/fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="../../assets/css/apparment-gallery.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
-</head>
+{% block describtion %} Meeresrauschen, Sommerflirren . . . Sturmgetöse . . . Mövenmeckern, Kinderlachen . . .
+Winterklirren . . .
+Hochseeklima, am Puls der Gezeiten . . . Demut, Freiheit . . . Insel {% endblock %}
 
-<body id="page-top" data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="57">
-    <nav class="navbar navbar-light navbar-expand-lg fixed-top" id="mainNav">
-        <div class="container"><a class="navbar-brand" href="/index.html">Ferienwohnungen Borkum</a><button data-bs-toggle="collapse" data-bs-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-align-justify"></i></button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">Haus Hertha</a>
-                        <div class="dropdown-menu"><a class="dropdown-item" href="/baltrum.html">Baltrum</a><a class="dropdown-item" href="/borkum.html">Borkum</a><a class="dropdown-item" href="/langeoog.html">Langeoog</a><a class="dropdown-item" href="/memmert.html">Memmert</a><a class="dropdown-item" href="/studio-1.html">Studio 1</a><a class="dropdown-item" href="/studio-2.html">Studio 2</a></div>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="/kajo.html">KaJo</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#location">Lage</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/gallery.html">Galerie</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/#contact">Kontakt</a></li>
+{% block css %}
+<link rel="stylesheet" href="../../assets/css/apparment-gallery.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+{% endblock %}
+
+{% block content%}
+<section id="describtion" class="text-white bg-dark">
+    <div class="container my-auto">
+        <div class="row">
+            <div class="col-md-6"><img class="img-fluid border rounded" src="../assets/img/Apartments/Langeoog/Rooms/Langeoog.jpeg" style="height: 100%;width: 100%;"></div>
+            <div class="col-md-6 text-start">
+                <h1 class="text-uppercase text-center">Borkum</h1>
+                <p><br><br>Die Suite 'Borkum' befindet sich im 1. Stock im Ferienhaus Hertha auf Borkum. Es erwarten Sie auf ca. 47 m² eine für 2 Personen komfortabel ausgestattetes Feriendomizil mit Schlafzimmer, Wohn-/Schlafzimmer, Küche und Duschbad.<br><br>Das Schlafsofa im Wohnraum bietet weiteren 2 Personen eine Übernachtungsmöglichkeit. Beide Räume verfügen über einen Südbalkon mit Blick in die Dünen.<br><br></p><strong>Besondere Merkmale:</strong>
+                <ul>
+                    <li>WiFi</li>
+                    <li>max. 3 Personen</li>
+                    <li>Nichtraucher</li>
+                    <li>Allergiker geeignet</li>
+                    <li>Parkplatz am Haus</li>
+                    <li>Balk0n mit Dünenblick</li>
+                    <li>Strandnähe</li>
                 </ul>
             </div>
         </div>
-    </nav>
-    <section id="describtion" class="text-white bg-dark">
-        <div class="container my-auto">
-            <div class="row">
-                <div class="col-md-6"><img class="img-fluid border rounded" src="../assets/img/Apartments/Langeoog/Rooms/Langeoog.jpeg" style="height: 100%;width: 100%;"></div>
-                <div class="col-md-6 text-start">
-                    <h1 class="text-uppercase text-center">Borkum</h1>
-                    <p><br><br>Die Suite 'Borkum' befindet sich im 1. Stock im Ferienhaus Hertha auf Borkum. Es erwarten Sie auf ca. 47 m² eine für 2 Personen komfortabel ausgestattetes Feriendomizil mit Schlafzimmer, Wohn-/Schlafzimmer, Küche und Duschbad.<br><br>Das Schlafsofa im Wohnraum bietet weiteren 2 Personen eine Übernachtungsmöglichkeit. Beide Räume verfügen über einen Südbalkon mit Blick in die Dünen.<br><br></p><strong>Besondere Merkmale:</strong>
-                    <ul>
-                        <li>WiFi</li>
-                        <li>max. 3 Personen</li>
-                        <li>Nichtraucher</li>
-                        <li>Allergiker geeignet</li>
-                        <li>Parkplatz am Haus</li>
-                        <li>Balk0n mit Dünenblick</li>
-                        <li>Strandnähe</li>
-                    </ul>
-                </div>
+    </div>
+</section>
+<section class="photo-gallery">
+    <div class="container">
+        <div class="intro">
+            <h2 class="text-center">Bilder</h2>
+            <p class="text-center">Nunc luctus in metus eget fringilla. Aliquam sed justo ligula. Vestibulum nibh erat, pellentesque ut laoreet vitae. </p>
+        </div>
+        <div class="row photos" data-bss-baguettebox="">
+            <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="../assets/img/desk.jpg"><img class="img-fluid" src="../assets/img/desk.jpg"></a></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="../assets/img/building.jpg"><img class="img-fluid" src="../assets/img/building.jpg"></a></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="../assets/img/loft.jpg"><img class="img-fluid" src="../assets/img/loft.jpg"></a></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="../assets/img/building.jpg"><img class="img-fluid" src="../assets/img/building.jpg"></a></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="../assets/img/loft.jpg"><img class="img-fluid" src="../assets/img/loft.jpg"></a></div>
+            <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="../assets/img/desk.jpg"><img class="img-fluid" src="../assets/img/desk.jpg"></a></div>
+        </div>
+    </div>
+</section>
+<section id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 text-center mx-auto">
+                <h2 class="section-heading">Kontaktieren Sie uns gerne!</h2>
+                <hr class="my-4">
+                <p class="mb-5">Wollen Sie einen Urlaub auf Borkum verbringen oder haben Sie Fragen zu unseren Wohnungen? Melden Sie sich gerne per Mail oder rufen Sie durch.</p>
             </div>
         </div>
-    </section>
-    <section class="photo-gallery">
-        <div class="container">
-            <div class="intro">
-                <h2 class="text-center">Bilder</h2>
-                <p class="text-center">Nunc luctus in metus eget fringilla. Aliquam sed justo ligula. Vestibulum nibh erat, pellentesque ut laoreet vitae. </p>
+        <div class="row">
+            <div class="col-lg-4 text-center ms-auto"><i class="fa fa-phone fa-3x mb-3 sr-contact" data-aos="zoom-in" data-aos-duration="300" data-aos-once="true"></i>
+                <p>04486 / 920167</p>
             </div>
-            <div class="row photos" data-bss-baguettebox="">
-                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="../assets/img/desk.jpg"><img class="img-fluid" src="../assets/img/desk.jpg"></a></div>
-                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="../assets/img/building.jpg"><img class="img-fluid" src="../assets/img/building.jpg"></a></div>
-                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="../assets/img/loft.jpg"><img class="img-fluid" src="../assets/img/loft.jpg"></a></div>
-                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="../assets/img/building.jpg"><img class="img-fluid" src="../assets/img/building.jpg"></a></div>
-                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="../assets/img/loft.jpg"><img class="img-fluid" src="../assets/img/loft.jpg"></a></div>
-                <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="../assets/img/desk.jpg"><img class="img-fluid" src="../assets/img/desk.jpg"></a></div>
+            <div class="col-lg-4 text-center me-auto"><i class="fa fa-envelope-o fa-3x mb-3 sr-contact" data-aos="zoom-in" data-aos-duration="300" data-aos-delay="300" data-aos-once="true"></i>
+                <p><a href="mailto:your-email@your-domain.com">scheibe-angela@t-online.de</a></p>
             </div>
         </div>
-    </section>
-    <section id="contact">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 text-center mx-auto">
-                    <h2 class="section-heading">Kontaktieren Sie uns gerne!</h2>
-                    <hr class="my-4">
-                    <p class="mb-5">Wollen Sie einen Urlaub auf Borkum verbringen oder haben Sie Fragen zu unseren Wohnungen? Melden Sie sich gerne per Mail oder rufen Sie durch.</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 text-center ms-auto"><i class="fa fa-phone fa-3x mb-3 sr-contact" data-aos="zoom-in" data-aos-duration="300" data-aos-once="true"></i>
-                    <p>04486 / 920167</p>
-                </div>
-                <div class="col-lg-4 text-center me-auto"><i class="fa fa-envelope-o fa-3x mb-3 sr-contact" data-aos="zoom-in" data-aos-duration="300" data-aos-delay="300" data-aos-once="true"></i>
-                    <p><a href="mailto:your-email@your-domain.com">scheibe-angela@t-online.de</a></p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <script src="../../assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../../assets/js/bs-init.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
-    <script src="../../assets/js/Lightbox-Gallery.js"></script>
-</body>
-
-</html>
+    </div>
+</section>
+{% endblock %}
+    

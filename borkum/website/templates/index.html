@@ -1,182 +1,153 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %} 
+{% block title %} Home - Ferienwohnungen Borkum {% endblock %} 
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Home - Ferienwohnungen Borkum</title>
-    <meta name="description" content="Meeresrauschen, Sommerflirren . . . Sturmgetöse . . . Mövenmeckern, Kinderlachen . . . Winterklirren . . . Hochseeklima, am Puls der Gezeiten . . . Demut, Freiheit . . . Insel">
-    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic">
-    <link rel="stylesheet" href="{{ url_for('static', filename='fonts/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-</head>
+{% block describtion %} Meeresrauschen, Sommerflirren . . . Sturmgetöse . . . Mövenmeckern, Kinderlachen . . . Winterklirren . . .
+Hochseeklima, am Puls der Gezeiten . . . Demut, Freiheit . . . Insel {% endblock %}
 
-<body id="page-top" data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="57">
-    <nav class="navbar navbar-light navbar-expand-lg fixed-top" id="mainNav">
-        <div class="container"><a class="navbar-brand" href="/index.html">Ferienwohnungen Borkum</a><button data-bs-toggle="collapse" data-bs-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-align-justify"></i></button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">Haus Hertha</a>
-                        <div class="dropdown-menu"><a class="dropdown-item" href="/baltrum.html">Baltrum</a><a class="dropdown-item" href="/borkum.html">Borkum</a><a class="dropdown-item" href="/langeoog.html">Langeoog</a><a class="dropdown-item" href="/memmert.html">Memmert</a><a class="dropdown-item" href="/studio-1.html">Studio 1</a><a class="dropdown-item" href="/studio-2.html">Studio 2</a></div>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="/kajo.html">KaJo</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/location.html">Lage</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/gallery.html">Galerie</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/#contact">Kontakt</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <header class="text-center text-white d-flex masthead" style="background-image:url({{ url_for('static', filename='img/header.png') }});">
-        <div class="container my-auto">
-            <div class="row">
-                <div class="col-lg-10 mx-auto">
-                    <h1 class="text-uppercase"><strong>Ferienwohnungen Borkum</strong></h1>
-                    <hr>
-                </div>
-            </div>
-            <div class="col-lg-8 mx-auto">
-                <p class="text-faded mb-5"><br>Meeresrauschen, Sommerflirren . . . Sturmgetöse, <br>Kinderlachen . . . Winterklirren . . . Hochseeklima, am Puls der <br>Gezeiten . . . Demut, Freiheit . . . Insel<br><br></p><a class="btn btn-primary btn-xl" role="button" href="#contact">Kontaktieren Sie Uns</a>
-            </div>
-        </div>
-    </header>
-    <section id="about" class="bg-primary">
-        <div class="container">
-            <div class="row">
-                <div class="col offset-lg-8 text-center mx-auto">
-                    <h2 class="text-white section-heading">Willkommen auf der Nordseeinsel Borkum</h2>
-                    <hr class="light my-4">
-                    <p class="text-faded mb-4"><br>Wir bieten Ihnen Privat-Suiten und Wohnungen für 2 bis 6 <br>Personen und das in guter Lage auf der Insel Borkum. <br>Stöbern sie gerne auf diesen Seiten. <br><br></p><a class="btn btn-light btn-xl" role="button" href="/gallery.html">Zur Galerie</a>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section id="services">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Unsere Ferienwohnungen</h2>
-                    <hr class="my-4">
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-lg-3 text-center">
-                    <div class="mx-auto service-box mt-5"><i class="fa fa-diamond fa-4x text-primary mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-once="true"></i>
-                        <h3 class="mb-3">Ruhige Lage</h3>
-                        <p class="text-muted mb-0">Our templates are updated regularly so they don't break.</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 text-center">
-                    <div class="mx-auto service-box mt-5"><i class="fa fa-paper-plane fa-4x text-primary mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-delay="200" data-aos-once="true"></i>
-                        <h3 class="mb-3">Geräumig</h3>
-                        <p class="text-muted mb-0">You can use this theme as is, or you can make changes!</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 text-center">
-                    <div class="mx-auto service-box mt-5"><i class="fa fa-newspaper-o fa-4x text-primary mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-delay="400" data-aos-once="true"></i>
-                        <h3 class="mb-3">Gemütlich</h3>
-                        <p class="text-muted mb-0">We update dependencies to keep things fresh.</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 text-center">
-                    <div class="mx-auto service-box mt-5"><i class="fa fa-heart fa-4x text-primary mb-3 sr-icons" data-aos="fade" data-aos-duration="200" data-aos-delay="600" data-aos-once="true"></i>
-                        <h3 class="mb-3">Made with Love</h3>
-                        <p class="text-muted mb-0">You have to make your websites with love these days!</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section id="preview" class="p-0">
-        <div class="container-fluid p-0">
-            <div class="row g-0 popup-gallery">
-                <div class="col-sm-6 col-lg-4"><a class="portfolio-box" href=""><img class="img-fluid" src="{{ url_for('static', filename='img/Apartments/Baltrum/Thumbnail/Balturm.jpeg') }}">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded"><span>Ferienwohnung</span></div>
-                                <div class="project-name"><span>Baltrum</span></div>
-                            </div>
-                        </div>
-                    </a></div>
-                <div class="col-sm-6 col-lg-4"><a class="portfolio-box" href=""><img class="img-fluid" src="{{ url_for('static', filename='img/Apartments/Borkum/Thumbnail/Borkum.jpeg') }}">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded"><span>Ferienwohnung</span></div>
-                                <div class="project-name"><span>Borkum</span></div>
-                            </div>
-                        </div>
-                    </a></div>
-                <div class="col-sm-6 col-lg-4"><a class="portfolio-box" href=""><img class="img-fluid" src="{{ url_for('static', filename='img/Apartments/Kajo/Thumbnail/Kajo.jpeg') }}">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded"><span>Ferienwohnung</span></div>
-                                <div class="project-name"><span>Kajo</span></div>
-                            </div>
-                        </div>
-                    </a></div>
-                <div class="col-sm-6 col-lg-4"><a class="portfolio-box" href=""><img class="img-fluid" src="{{ url_for('static', filename='img/Apartments/Langeoog/Thumbnail/Langeoog.jpeg') }}">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded"><span>Ferienwohnung</span></div>
-                                <div class="project-name"><span>Langeoog</span></div>
-                            </div>
-                        </div>
-                    </a></div>
-                <div class="col-sm-6 col-lg-4"><a class="portfolio-box" href=""><img class="img-fluid" src="{{ url_for('static', filename='img/Apartments/Memmert/Thumbnail/Memmert.jpeg') }}">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded"><span>Ferienwohnung</span></div>
-                                <div class="project-name"><span>Memmert</span></div>
-                            </div>
-                        </div>
-                    </a></div>
-                <div class="col-sm-6 col-lg-4"><a class="portfolio-box" href=""><img class="img-fluid" src="{{ url_for('static', filename='img/Apartments/Studio-1/Thumbnail/Studio-1.jpeg') }}">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded"><span>Ferienwohnung</span></div>
-                                <div class="project-name"><span>Studio 1</span></div>
-                            </div>
-                        </div>
-                    </a></div>
-                <div class="col-sm-6 col-lg-4"><a class="portfolio-box" href=""><img class="img-fluid" src="{{ url_for('static', filename='img/Apartments/Studio-2/Thumbnail/Studio-2.jpeg') }}">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded"><span>Ferienwohnung</span></div>
-                                <div class="project-name"><span>Studio 2</span></div>
-                            </div>
-                        </div>
-                    </a></div>
-            </div>
-        </div>
-    </section>
-    <section id="contact">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 text-center mx-auto">
-                    <h2 class="section-heading">Kontaktieren Sie uns gerne!</h2>
-                    <hr class="my-4">
-                    <p class="mb-5">Sie wollen einen Urlaub auf Borkum verbringen oder haben Fragen zu unseren Wohnungen? Melden Sie sich gerne per Mail oder rufen Sie durch.</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 text-center ms-auto"><i class="fa fa-phone fa-3x mb-3 sr-contact" data-aos="zoom-in" data-aos-duration="300" data-aos-once="true"></i>
-                    <p>04486 / 920167</p>
-                </div>
-                <div class="col-lg-4 text-center me-auto"><i class="fa fa-envelope-o fa-3x mb-3 sr-contact" data-aos="zoom-in" data-aos-duration="300" data-aos-delay="300" data-aos-once="true"></i>
-                    <p><a href="mailto:scheibe-angela@t-online.de">scheibe-angela@t-online.de</a></p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/bs-init.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
-    <script src="{{ url_for('static', filename='js/Lightbox-Gallery.js') }}"></script>
-</body>
+{% block css %}{% endblock %}
 
-</html>
+{% block content%}
+<header class="text-center text-white d-flex masthead" style="background-image:url({{ url_for('static', filename='img/header.png') }});">
+    <div class="container my-auto">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <h1 class="text-uppercase"><strong>Ferienwohnungen Borkum</strong></h1>
+                <hr>
+            </div>
+        </div>
+        <div class="col-lg-8 mx-auto">
+            <p class="text-faded mb-5"><br>Meeresrauschen, Sommerflirren . . . Sturmgetöse, <br>Kinderlachen . . . Winterklirren . . . Hochseeklima, am Puls der <br>Gezeiten . . . Demut, Freiheit . . . Insel<br><br></p><a class="btn btn-primary btn-xl" role="button" href="#contact">Kontaktieren Sie Uns</a>
+        </div>
+    </div>
+</header>
+<section id="about" class="bg-primary">
+    <div class="container">
+        <div class="row">
+            <div class="col offset-lg-8 text-center mx-auto">
+                <h2 class="text-white section-heading">Willkommen auf der Nordseeinsel Borkum</h2>
+                <hr class="light my-4">
+                <p class="text-faded mb-4"><br>Wir bieten Ihnen Privat-Suiten und Wohnungen für 2 bis 6 <br>Personen und das in guter Lage auf der Insel Borkum. <br>Stöbern sie gerne auf diesen Seiten. <br><br></p><a class="btn btn-light btn-xl" role="button" href="/gallery.html">Zur Galerie</a>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="services">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Unsere Ferienwohnungen</h2>
+                <hr class="my-4">
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-lg-3 text-center">
+                <div class="mx-auto service-box mt-5"><i class="fa fa-diamond fa-4x text-primary mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-once="true"></i>
+                    <h3 class="mb-3">Ruhige Lage</h3>
+                    <p class="text-muted mb-0">Our templates are updated regularly so they don't break.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 text-center">
+                <div class="mx-auto service-box mt-5"><i class="fa fa-paper-plane fa-4x text-primary mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-delay="200" data-aos-once="true"></i>
+                    <h3 class="mb-3">Geräumig</h3>
+                    <p class="text-muted mb-0">You can use this theme as is, or you can make changes!</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 text-center">
+                <div class="mx-auto service-box mt-5"><i class="fa fa-newspaper-o fa-4x text-primary mb-3 sr-icons" data-aos="zoom-in" data-aos-duration="200" data-aos-delay="400" data-aos-once="true"></i>
+                    <h3 class="mb-3">Gemütlich</h3>
+                    <p class="text-muted mb-0">We update dependencies to keep things fresh.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 text-center">
+                <div class="mx-auto service-box mt-5"><i class="fa fa-heart fa-4x text-primary mb-3 sr-icons" data-aos="fade" data-aos-duration="200" data-aos-delay="600" data-aos-once="true"></i>
+                    <h3 class="mb-3">Made with Love</h3>
+                    <p class="text-muted mb-0">You have to make your websites with love these days!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="preview" class="p-0">
+    <div class="container-fluid p-0">
+        <div class="row g-0 popup-gallery">
+            <div class="col-sm-6 col-lg-4"><a class="portfolio-box" href=""><img class="img-fluid" src="{{ url_for('static', filename='img/Apartments/Baltrum/Thumbnail/Balturm.jpeg') }}">
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-category text-faded"><span>Ferienwohnung</span></div>
+                            <div class="project-name"><span>Baltrum</span></div>
+                        </div>
+                    </div>
+                </a></div>
+            <div class="col-sm-6 col-lg-4"><a class="portfolio-box" href=""><img class="img-fluid" src="{{ url_for('static', filename='img/Apartments/Borkum/Thumbnail/Borkum.jpeg') }}">
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-category text-faded"><span>Ferienwohnung</span></div>
+                            <div class="project-name"><span>Borkum</span></div>
+                        </div>
+                    </div>
+                </a></div>
+            <div class="col-sm-6 col-lg-4"><a class="portfolio-box" href=""><img class="img-fluid" src="{{ url_for('static', filename='img/Apartments/Kajo/Thumbnail/Kajo.jpeg') }}">
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-category text-faded"><span>Ferienwohnung</span></div>
+                            <div class="project-name"><span>Kajo</span></div>
+                        </div>
+                    </div>
+                </a></div>
+            <div class="col-sm-6 col-lg-4"><a class="portfolio-box" href=""><img class="img-fluid" src="{{ url_for('static', filename='img/Apartments/Langeoog/Thumbnail/Langeoog.jpeg') }}">
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-category text-faded"><span>Ferienwohnung</span></div>
+                            <div class="project-name"><span>Langeoog</span></div>
+                        </div>
+                    </div>
+                </a></div>
+            <div class="col-sm-6 col-lg-4"><a class="portfolio-box" href=""><img class="img-fluid" src="{{ url_for('static', filename='img/Apartments/Memmert/Thumbnail/Memmert.jpeg') }}">
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-category text-faded"><span>Ferienwohnung</span></div>
+                            <div class="project-name"><span>Memmert</span></div>
+                        </div>
+                    </div>
+                </a></div>
+            <div class="col-sm-6 col-lg-4"><a class="portfolio-box" href=""><img class="img-fluid" src="{{ url_for('static', filename='img/Apartments/Studio-1/Thumbnail/Studio-1.jpeg') }}">
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-category text-faded"><span>Ferienwohnung</span></div>
+                            <div class="project-name"><span>Studio 1</span></div>
+                        </div>
+                    </div>
+                </a></div>
+            <div class="col-sm-6 col-lg-4"><a class="portfolio-box" href=""><img class="img-fluid" src="{{ url_for('static', filename='img/Apartments/Studio-2/Thumbnail/Studio-2.jpeg') }}">
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-category text-faded"><span>Ferienwohnung</span></div>
+                            <div class="project-name"><span>Studio 2</span></div>
+                        </div>
+                    </div>
+                </a></div>
+        </div>
+    </div>
+</section>
+<section id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 text-center mx-auto">
+                <h2 class="section-heading">Kontaktieren Sie uns gerne!</h2>
+                <hr class="my-4">
+                <p class="mb-5">Sie wollen einen Urlaub auf Borkum verbringen oder haben Fragen zu unseren Wohnungen? Melden Sie sich gerne per Mail oder rufen Sie durch.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 text-center ms-auto"><i class="fa fa-phone fa-3x mb-3 sr-contact" data-aos="zoom-in" data-aos-duration="300" data-aos-once="true"></i>
+                <p>04486 / 920167</p>
+            </div>
+            <div class="col-lg-4 text-center me-auto"><i class="fa fa-envelope-o fa-3x mb-3 sr-contact" data-aos="zoom-in" data-aos-duration="300" data-aos-delay="300" data-aos-once="true"></i>
+                <p><a href="mailto:scheibe-angela@t-online.de">scheibe-angela@t-online.de</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
