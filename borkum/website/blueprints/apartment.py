@@ -5,7 +5,7 @@ from flask import Blueprint, render_template
 apartment = Blueprint('apartment', __name__)
 
 @apartment.route('/apartment/<string:fewo>')
-def init(fewo):
+def init(fewo):z
     data = json.load(open('borkum/website/static/content/apartments.json', encoding='utf-8'))
     images = []
     for filename in os.listdir('borkum/website/static/img/Apartments/' + fewo + '/rooms'):
