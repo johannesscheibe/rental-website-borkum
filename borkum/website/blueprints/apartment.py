@@ -13,7 +13,7 @@ def init(fewo):
     images = []
 
     for filename in os.listdir(os.path.join(res_path, 'img/apartments/' + fewo + '/rooms')):
-        if filename.split(".")[-1] in ["png", "jpg", "jpeg"]:
+        if filename.split(".")[-1].lower() in ["png", "jpg", "jpeg"]:
             images.append(os.path.join('/static/img/apartments/' + fewo + '/rooms', filename))
         else:
             continue
