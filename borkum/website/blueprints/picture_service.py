@@ -1,7 +1,7 @@
 import json
 import os
-from flask import request, Blueprint, send_from_directory, current_app as app
-
+from flask import request, Blueprint, send_from_directory, current_app as app, render_template
+from PIL import Image
 
 
 picture_service = Blueprint('picture_service', __name__)
@@ -22,14 +22,11 @@ def sendImage(path):
         scaleX = round(float(scaleX))
     
     pathToGeneratedImage = generateImage(path, scaleX, scaleY, encoding)
-    print(CACHE_DIR)
-    print(pathToGeneratedImage)
     response = send_from_directory(CACHE_DIR, pathToGeneratedImage)
-    
+
     return response
 
 
-import PIL.Image
 def generateImage(pathToOrig, scaleX, scaleY, encoding):
     '''Generate an image with the requested scales and encoding if it doesn't already exist'''
     CACHE_DIR = os.path.join(app.config['STORAGE_PATH'], 'img', 'cache')
@@ -63,7 +60,7 @@ def generateImage(pathToOrig, scaleX, scaleY, encoding):
         os.mkdir(CACHE_DIR)
 
     # open image #
-    image = PIL.Image.open(os.path.join(PICTURES_DIR, pathToOrig))
+    image = Image.open(os.path.join(PICTURES_DIR, pathToOrig))
     # ensure sizes are valid #
     x, y = image.size
     if not scaleY:
@@ -76,7 +73,7 @@ def generateImage(pathToOrig, scaleX, scaleY, encoding):
     
 
     # save image with new size and encoding #
-    image.thumbnail((scaleX, scaleY), PIL.Image.ANTIALIAS)
+    image.thumbnail((scaleX, scaleY), Image.ANTIALIAS)
     image.save(newPath, encoding)
 
     # return the new path # 
