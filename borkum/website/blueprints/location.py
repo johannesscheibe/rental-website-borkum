@@ -5,5 +5,5 @@ location = Blueprint('location', __name__)
 
 @location.route('/location')
 def init():
-    return render_template("location.html",  contact=app.config['CONTACT'],)
+    return render_template("location.html",  contact=app.config['CONTACT'])
 

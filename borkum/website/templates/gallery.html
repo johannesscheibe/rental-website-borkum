@@ -24,16 +24,18 @@ Hochseeklima, am Puls der Gezeiten . . . Demut, Freiheit . . . Insel {% endblock
     </div>
 </header>
 <section class="bg-dark" style="padding: 1%">
-    <div class="row" data-masonry="{&quot;percentPosition&quot;: true }"> 
-        {% for filename in images%}
-            <div class="col-sm-6 col-lg-4 mb-4">
-                <img class="card-img-top p-3" src="{{ filename }}" alt="" style="border-radius: 24px; object-fit: cover">
-            </div>
-        {% endfor%}    
+    <div class="gallery">
+        <div class="row" data-masonry="{&quot;percentPosition&quot;: true }"> 
+            {% for filename in images%}
+                <div class="col-sm-6 col-lg-4 mb-4">
+                    <img class="card-img-top p-3" src="{{ filename }}" alt="" style="border-radius: 24px; object-fit: cover">
+                </div>
+            {% endfor%}    
+        </div>
+        <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"
+            integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D"
+            crossorigin="anonymous"></script>
     </div>
-    <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"
-        integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D"
-        crossorigin="anonymous"></script>
 </section>
 
 {% endblock %}

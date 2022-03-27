@@ -33,6 +33,7 @@ def generateImage(pathToOrig, scaleX, scaleY, encoding):
     PICTURES_DIR = os.path.join(app.config['STORAGE_PATH'], 'img')
 
     filename, extension = os.path.splitext(os.path.basename(pathToOrig))
+    apartment= os.path.basename(os.path.dirname(os.path.dirname(pathToOrig)))
 
     # use same encoding if none is given # 
     if not encoding:
@@ -43,15 +44,15 @@ def generateImage(pathToOrig, scaleX, scaleY, encoding):
         encoding = "jpeg"
         
     # generate new paths 
-    FILE_FORMAT = "x-{x}-y-{y}-{fname}.{ext}"
-    newFile = FILE_FORMAT.format(x=scaleX, y=scaleY, fname=filename, ext=encoding)
+    
+    
+    FILE_FORMAT = "x-{x}-y-{y}-{apartment}-{fname}.{ext}"
+    newFile = FILE_FORMAT.format(x=scaleX, y=scaleY, apartment=apartment, fname=filename, ext=encoding)
     newPath = os.path.join(CACHE_DIR, newFile)
     
     # check if already cache
     if os.path.exists(newPath):
         return newFile
-    print("start")
-
  
     # create a cache dir if it doesn't already exist #    
     if os.path.isfile(CACHE_DIR):
@@ -77,5 +78,4 @@ def generateImage(pathToOrig, scaleX, scaleY, encoding):
     image.save(newPath, encoding)
 
     # return the new path # 
-    print("end")
     return newFile

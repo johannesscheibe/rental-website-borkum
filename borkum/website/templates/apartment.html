@@ -14,7 +14,8 @@ Hochseeklima, am Puls der Gezeiten . . . Demut, Freiheit . . . Insel {% endblock
 <section id="describtion" class="text-white bg-dark">
     <div class="container my-auto">
         <div class="row">
-            <div class="col-md-6"><img class="img-fluid border rounded" realsrc="/picture/{{ thumbnail }}" style="object-fit: cover; height: 100%; width: 100%;"></div>
+            <div class="col-md-6"><img class="img-fluid border rounded" realsrc="/picture/{{ thumbnail }}" style="object-fit: cover; height: 100%; width: 100%;" data-aos="zoom-out-right"
+                    data-aos-duration="400" data-aos-delay="200" data-aos-once="true"></div>
             <div class="col-md-6 text-start">
                 <h1 class="text-uppercase text-center">{{ info['name'] }}</h1>
                 <p><br><br>{{ info['describtion'] }}<br><br></p>
@@ -34,17 +35,16 @@ Hochseeklima, am Puls der Gezeiten . . . Demut, Freiheit . . . Insel {% endblock
             <div class="col-lg-8 text-center mx-auto">
                 <h2 class="section-heading">Zimmer und Ausstattung</h2>
                 <hr class="my-4">
-                <p class="mb-5">Norso lecti amano de compaso ala esta de flamingo.</p>
             </div>
         </div>
     </div>
     <!-- Carousel -->
-    <div id="demo" class="carousel slide" data-bs-ride="carousel">
+    <div id="room-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000">
     
         <!-- Indicators/dots -->
         <div class="carousel-indicators">
             {% for i in range(images|length)%}
-                <button type="button" data-bs-target="#demo" data-bs-slide-to="{{i}}" class="{% if i==0 %} active {% endif %}"></button>  
+                <button type="button" data-bs-target="#room-carousel" data-bs-slide-to="{{i}}" class="{% if i==0 %} active {% endif %}"></button>  
             {% endfor %}
         </div>
     
@@ -62,10 +62,10 @@ Hochseeklima, am Puls der Gezeiten . . . Demut, Freiheit . . . Insel {% endblock
         </div>
     
         <!-- Left and right controls/icons -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#room-carousel" data-bs-slide="prev">
             <span class="carousel-control-prev-icon"></span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#room-carousel" data-bs-slide="next">
             <span class="carousel-control-next-icon"></span>
         </button>
     </div>
