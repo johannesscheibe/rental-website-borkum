@@ -96,7 +96,7 @@ function changeSrc(offset){
 
                 /* load webP if supported */
                 if(webP){
-                    newSrc = newSrc  + '.webp'
+                    newSrc = newSrc  + '&encoding=webp'
                 }
                 
                 elements[i].setAttribute("src", newSrc);
