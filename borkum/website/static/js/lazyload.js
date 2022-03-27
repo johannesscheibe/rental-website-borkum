@@ -1,12 +1,29 @@
 /* determine which size of image to load */
-function getSize(){
-    var trueRes = screen.width/window.devicePixelRatio
-    if(trueRes > 1920)
-        return '?scalex=640&scaley=480'
-    else if(trueRes <= 1920 && trueRes >= 1200)
-        return '?scalex=640&scaley=480'
+function getSize(scaling = 1) {
+    var trueRes
+    
+    var orientation = (screen.orientation || {}).type || screen.mozOrientation || screen.msOrientation;
+    if (orientation === "portrait-secondary" || orientation === "portrait-primary")
+        trueRes = screen.height / window.devicePixelRatio
     else
-        return '?scalex=320&scaley=240'
+        trueRes = screen.width / window.devicePixelRatio
+    
+    if (scaling != null)
+        trueRes = trueRes * scaling
+    
+    if (trueRes < 640)
+        return '?scalex=640&scaley=480'
+    if (trueRes < 1024)
+        return '?scalex=1024&scaley=768'
+    if (trueRes < 1280)
+        return '?scalex=1280&scaley=960'
+    if (trueRes < 1400)
+        return '?scalex=1400&scaley=1050'
+    if (trueRes < 1600)
+        return '?scalex=1600&scaley=1200'
+    else
+        return '?scalex=1920&scaley=1440'
+    
 }
 
 /* check if browser is capable of webp */
@@ -28,6 +45,7 @@ var counter = 0
 var viewbox_y = -Infinity
 
 IDENT = "realsrc"
+SCALING = "realscaling"
 WIDTH_LOCK = "LAZYLOAD_WIDTH"
 HEIGHT_LOCK = "LAZYLOAD_HEIGHT"
 
@@ -71,8 +89,9 @@ function changeSrc(offset){
                     }else{
                             newSrc += "?y=" + yHeight
                     }
-                }else{
-                    newSrc += getSize(newSrc)
+                } else {
+                    scaling = elements[i].getAttribute(SCALING)
+                    newSrc += getSize(scaling)
                 }
 
                 /* load webP if supported */
