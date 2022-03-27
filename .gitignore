@@ -130,4 +130,4 @@ dmypy.json
 
 
 *.pid
-rooms/
+cache/
