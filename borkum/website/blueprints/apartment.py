@@ -1,7 +1,6 @@
 import json
 import os
-from flask import Blueprint, render_template
-
+from flask import Blueprint, render_template, current_app as app
 apartment = Blueprint('apartment', __name__)
 
 @apartment.route('/apartment/<string:fewo>')
@@ -20,5 +19,5 @@ def init(fewo):
     filename = os.listdir(os.path.join(res_path, 'img', 'apartments', fewo, 'thumbnail'))[0]
     thumbnail = os.path.join('/', 'static', 'img', 'apartments',  fewo, 'thumbnail', filename)
     
-    return render_template("apartment.html", info=data[fewo], images=images, thumbnail=thumbnail)
+    return render_template("apartment.html", contact=app.config['CONTACT'], info=data[fewo], images=images, thumbnail=thumbnail)
 

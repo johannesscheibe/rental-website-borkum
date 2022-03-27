@@ -142,12 +142,14 @@ Hochseeklima, am Puls der Gezeiten . . . Demut, Freiheit . . . Insel {% endblock
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-4 text-center ms-auto"><i class="fa fa-phone fa-3x mb-3 sr-contact" data-aos="zoom-in" data-aos-duration="300" data-aos-delay="150" data-aos-once="true"></i>
-                <p>04486 / 920167</p>
+            <div class="col-lg-4 text-center ms-auto"><i class="fa fa-envelope-o fa-3x mb-3 sr-contact" data-aos="zoom-in"
+                    data-aos-duration="300" data-aos-delay="150" data-aos-once="true"></i>
+                <p><a href="mailto:{{ contact.email }}">{{ contact.email }}</a></p>
             </div>
-            <div class="col-lg-4 text-center me-auto"><i class="fa fa-envelope-o fa-3x mb-3 sr-contact" data-aos="zoom-in" data-aos-duration="300" data-aos-delay="150" data-aos-once="true"></i>
-                <p><a href="mailto:scheibe-angela@t-online.de">scheibe-angela@t-online.de</a></p>
-            </div>
+            <div class="col-lg-4 text-center me-auto"><i class="fa fa-phone fa-3x mb-3 sr-contact" data-aos="zoom-in"
+                    data-aos-duration="300" data-aos-delay="150" data-aos-once="true"></i>
+                <p>{{ contact.phone }}</p>
+            </div> 
         </div>
     </div>
 </section>

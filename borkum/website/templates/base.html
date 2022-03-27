@@ -100,7 +100,7 @@
                     <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                         <!-- Content -->
                         <h6 class="text-uppercase fw-bold mb-4">
-                            Ferienwohnungen Scheibe
+                            {{ contact.name }}
                         </h6>
                         <p>
                             Vermietunung aus Leidenschaft seit über 15 Jahren. <br> Weitere Informationen finden Sie auf: <a href="https://www.traum-ferienwohnungen.de/objektuebersicht/scheibe/"> traum-ferienwohnungen.de</a>
@@ -132,12 +132,9 @@
                         <h6 class="text-uppercase fw-bold mb-4">
                             Kontakt
                         </h6>
-                        <p><i class="fa fa-home me-3"></i> Rüschenweg 46, 26188 Edewecht</p>
-                        <p>
-                            <i class="fa fa-envelope me-3"></i>
-                            scheibe-angela@t-online.de
-                        </p>
-                        <p><i class="fa fa-phone me-3"></i> 04486 / 920167</p>
+                        <p><i class="fa fa-home me-3"></i> {{ contact.street }}, {{ contact.city }}</p>
+                        <p><i class="fa fa-envelope me-3"></i>{{ contact.email }}</p>
+                        <p><i class="fa fa-phone me-3"></i>{{ contact.phone }}</p>
                     </div>
                     <!-- Grid column -->
                 </div>
@@ -149,7 +146,7 @@
         <!-- Copyright -->
         <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
             © 2022 Copyright:
-            <a class="text-reset fw-bold" href="https://www.ferienwohnungen-insel-borkum.de/"  style="text-decoration: none;">ferienwohnungen-insel-borkum.de</a>
+            <a class="text-reset fw-bold" href="{{ contact.traumfewo_link }}"  style="text-decoration: none;">{{contact.traumfewo_name}}</a>
         </div>
         <!-- Copyright -->
     </footer>

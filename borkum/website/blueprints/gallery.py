@@ -1,6 +1,6 @@
 from pathlib import Path
 import random
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, current_app as app
 import os
 
 gallery = Blueprint('gallery', __name__)
@@ -21,5 +21,5 @@ def init():
         else:
             continue
 
-    return render_template("gallery.html", images= images, thumbnail= thumbnails[random.randint(0, len(thumbnails)-1)])
+    return render_template("gallery.html", contact=app.config['CONTACT'], images= images, thumbnail= thumbnails[random.randint(0, len(thumbnails)-1)])
 

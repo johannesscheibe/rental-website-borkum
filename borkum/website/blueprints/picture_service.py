@@ -1,6 +1,6 @@
 import json
 import os
-from flask import request, Blueprint, send_from_directory, current_app as app, render_template
+from flask import request, Blueprint, send_from_directory, current_app as app
 from PIL import Image
 
 
