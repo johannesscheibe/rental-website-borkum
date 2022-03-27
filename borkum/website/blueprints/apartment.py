@@ -13,11 +13,11 @@ def init(fewo):
 
     for filename in os.listdir(os.path.join(res_path, 'img', 'apartments', fewo ,'rooms')):
         if filename.split(".")[-1].lower() in ["png", "jpg", "jpeg"]:
-            images.append(os.path.join('apartments',  fewo, 'rooms', filename))
+            images.append('apartments/' + fewo + '/rooms/' + filename)
         else:
             continue
     filename = os.listdir(os.path.join(res_path, 'img', 'apartments', fewo, 'thumbnail'))[0]
-    thumbnail = os.path.join('apartments',  fewo, 'thumbnail', filename)
+    thumbnail = 'apartments/' + fewo + '/thumbnail/' + filename
     
     return render_template("apartment.html", contact=app.config['CONTACT'], info=data[fewo], images=images, thumbnail=thumbnail)
 
