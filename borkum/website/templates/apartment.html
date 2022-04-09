@@ -38,19 +38,21 @@ Hochseeklima, am Puls der Gezeiten . . . Demut, Freiheit . . . Insel {% endblock
             </div>
         </div>
     </div>
-    <!-- Carousel -->
-    <div id="room-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000">
-    
-        <!-- Indicators/dots -->
-        <div class="carousel-indicators">
-            {% for i in range(images|length)%}
-                <button type="button" data-bs-target="#room-carousel" data-bs-slide-to="{{i}}" class="{% if i==0 %} active {% endif %}"></button>  
-            {% endfor %}
-        </div>
-    
-        <!-- The slideshow/carousel -->
-        <div class="carousel-inner">
-            {% for i in range(images|length)%}
+    <div style="max-width:1500px; margin:auto; ">
+        <!-- Carousel -->
+        <div id="room-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000">
+        
+            <!-- Indicators/dots -->
+            <div class="carousel-indicators">
+                {% for i in range(images|length)%}
+                <button type="button" data-bs-target="#room-carousel" data-bs-slide-to="{{i}}"
+                    class="{% if i==0 %} active {% endif %}"></button>
+                {% endfor %}
+            </div>
+        
+            <!-- The slideshow/carousel -->
+            <div class="carousel-inner">
+                {% for i in range(images|length)%}
                 <div class={% if i==0 %} "carousel-item active" {% else %} "carousel-item" {% endif %}>
                     <img class="d-block w-100" realsrc="/picture/{{ images[i] }}">
                     <div class="carousel-caption d-none d-md-block">
@@ -58,17 +60,19 @@ Hochseeklima, am Puls der Gezeiten . . . Demut, Freiheit . . . Insel {% endblock
                         <p>Some representative placeholder content for the slide.</p>
                     </div>
                 </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
+        
+            <!-- Left and right controls/icons -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#room-carousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#room-carousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
         </div>
-    
-        <!-- Left and right controls/icons -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#room-carousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#room-carousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon"></span>
-        </button>
     </div>
+    
 </section>
 <section id="contact", class="bg-light">
     <div class="container">

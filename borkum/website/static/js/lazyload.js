@@ -21,9 +21,10 @@ function getSize(scaling = 1) {
         return '?scalex=1400&scaley=1050'
     if (trueRes < 1600)
         return '?scalex=1600&scaley=1200'
-    else
+    if (trueRes < 1920)
         return '?scalex=1920&scaley=1440'
-    
+    else
+        return '?scalex=4000&scaley=3000'
 }
 
 /* check if browser is capable of webp */
