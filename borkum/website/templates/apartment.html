@@ -55,10 +55,12 @@ Hochseeklima, am Puls der Gezeiten . . . Demut, Freiheit . . . Insel {% endblock
                 {% for i in range(images|length)%}
                 <div class={% if i==0 %} "carousel-item active" {% else %} "carousel-item" {% endif %}>
                     <img class="d-block w-100" realsrc="/picture/{{ images[i] }}">
+                    <!--
                     <div class="carousel-caption d-none d-md-block">
                         <h5>Slide label</h5>
                         <p>Some representative placeholder content for the slide.</p>
                     </div>
+                    -->
                 </div>
                 {% endfor %}
             </div>
