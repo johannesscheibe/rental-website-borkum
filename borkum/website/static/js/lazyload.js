@@ -1,12 +1,8 @@
 /* determine which size of image to load */
 function getSize(scaling = 1) {
-    var trueRes
+
     
-    var orientation = (screen.orientation || {}).type || screen.mozOrientation || screen.msOrientation;
-    if (orientation === "portrait-secondary" || orientation === "portrait-primary")
-        trueRes = screen.height / window.devicePixelRatio
-    else
-        trueRes = screen.width / window.devicePixelRatio
+    var trueRes = screen.width /* * window.devicePixelRatio */
     
     if (scaling != null)
         trueRes = trueRes * scaling
