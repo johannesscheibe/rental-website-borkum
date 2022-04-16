@@ -5,7 +5,6 @@ apartment = Blueprint('apartment', __name__)
 
 @apartment.route('/apartment/<string:fewo>')
 def init(fewo):
-    import os
     res_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'static')
 
     data = json.load(open(os.path.join(res_path, 'content', 'apartments.json'), encoding='utf-8'))
