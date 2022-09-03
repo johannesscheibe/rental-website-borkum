@@ -1,4 +1,9 @@
 {
+    "haus-hertha": {
+        "name": "Haus Hertha",
+        "describtion": "Das Haus auf der Insel Borkum beinhaltet insgesamt 5 Ferienwohnungen. ",
+        "properties": ["Gemeinschaftsraum", "Fitnessraum", "Waschmaschine", "Allergiker geeignet", "Parkplatz am Haus", "Strandnähe"]
+    },
     "baltrum": {
         "name": "Baltrum",
         "describtion": "Die Ferienwohnung Baltrum befindet sich im 1. Stock im Ferienhaus Hertha auf Borkum. Es erwarten Sie auf ca. 53 m² eine komfortabel ausgestattete Ferienwohnung mit Schlafzimmer, Wohnzimmer, Küche und Duschbad. \nDas Schlafsofa im Wohnraum bietet einer dritten Person eine Übernachtungsmöglichkeit. Beide Räume verfügen über einen Ost- bzw. Westbalkon mit Blick in die Dünen.",
