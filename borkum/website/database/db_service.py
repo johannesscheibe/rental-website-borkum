@@ -1,32 +1,25 @@
+from typing import List
 from .models import *
 
 
 
 
-def add_flat(name, description, properties) -> Flat:
+def add_apartment(name:str, description:str, tags: List, house: House, thumbnail: Image, images: list[Image]) -> Apartment:
 
-    flat = Flat.query.filter_by(name=name).first()
-    if flat:
+    apartment = Apartment.query.filter_by(name=name).first()
+    if apartment:
         return None
     
-    new_flat = Flat(name=name, description=description, properties=properties)
-    db.session.add(new_flat)
+    new_apartment = Apartment(name=name, description=description, house_id=house.id, thumbnail_id=thumbnail.id)
+    db.session.add(new_apartment)
+
+    for image in images:
+        new_apartment.images.append(image)
+    
+    for tag in tags:
+        new_apartment.tags.append(tag)
+
     db.session.commit()
 
-    return new_flat
+    return new_apartment
 
-def add_flat_image(filename, title, description, type, flatname) -> FlatImage:
-
-    flat_img = FlatImage.query.filter_by(filename=filename).first()
-    if flat_img:
-        return None
-    
-    flat = Flat.query.filter_by(name=flatname).first()
-    if not flat:
-        return None
-    
-    new_flat_img = FlatImage(filename=filename, title=title, description=description, type=type, flat_id=flat.id)
-    db.session.add(new_flat_img)
-    db.session.commit()
-
-    return new_flat_img

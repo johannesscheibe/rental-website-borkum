@@ -9,6 +9,7 @@ def create_app():
     app.config.from_object("config.Config")
     db.init_app(app)
     
+    from borkum.website.blueprints import admin
     from borkum.website.blueprints import home
     from borkum.website.blueprints import location
     from borkum.website.blueprints import gallery
@@ -16,6 +17,7 @@ def create_app():
     from borkum.website.blueprints import picture_service
     from borkum.website.blueprints import legal_information
 
+    app.register_blueprint(admin, url_prefix='/')
     app.register_blueprint(home, url_prefix='/')
     app.register_blueprint(location, url_prefix='/')
     app.register_blueprint(gallery, url_prefix='/')

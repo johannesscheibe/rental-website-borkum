@@ -1,0 +1,25 @@
+{% extends "./base.html" %}
+{% block title %} Wohnung bearbeiten {% endblock %}
+
+{% block description %} {% endblock %}
+
+{% block content%}
+<header class="text-center text-white d-flex masthead bg-dark">
+    <div class="container my-auto">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <h1 class="text-uppercase"><strong>ADMIN</strong></h1>
+                <hr>
+            </div>
+        </div>
+        <div class="col-lg-8 mx-auto">
+            <a class="btn btn-primary btn-xl" role="button" href="/admin/apartments">Wohnungen bearbeiten</a>
+        </div>
+        <br />
+        <div class="col-lg-8 mx-auto">
+            <a class="btn btn-primary btn-xl" role="button" href="/admin/images">Bilder bearbeiten</a>
+        </div>
+    </div>
+</header>
+
+{% endblock %}

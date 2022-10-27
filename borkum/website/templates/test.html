@@ -1,0 +1,19 @@
+<form class="centered" action="" method="post" role="form" autocomplete=off>
+    {{ form.hidden_tag() }}
+    <p>{{ form.toppings(type="text", list="topps", placeholder="| e.g. cheese, tomato, etc.",
+        **{"onchange":"addTag(tag,tags)"}) }}
+        <datalist id="topps">
+            {% for top in topps %}
+            <option value={{ top }}>
+                {% endfor %}
+        </datalist>
+        <span>{{ form.add(**{"onchange":"addTag(tag,tags)"}) }}</span>
+    </p><br>
+    <p>
+        {% for tag in tags %}
+        <span>{{ tag }} {{ form.remove(value="x",**{"onchange":"tags.pop(0)"}) }}</span>
+        {% endfor %}
+    </p><br>
+    <p>{{ form.submit(type="submit", value="Submit") }}</p>
+    <p>{{ form.reset(type="reset", value="Reset", **{"onchange":"tags=[]"}) }}</p>
+</form>

@@ -1,9 +1,7 @@
-{
-    "haus-hertha": {
-        "name": "Haus Hertha",
-        "description": "Das Haus auf der Insel Borkum beinhaltet insgesamt 5 Ferienwohnungen. ",
-        "properties": ["Gemeinschaftsraum", "Fitnessraum", "Waschmaschine", "Allergiker geeignet", "Parkplatz am Haus", "Strandnähe"]
-    },
+from borkum.website.database import db_service
+
+
+flats = {
     "baltrum": {
         "name": "Baltrum",
         "description": "Die Ferienwohnung Baltrum befindet sich im 1. Stock im Ferienhaus Hertha auf Borkum. Es erwarten Sie auf ca. 53 m² eine komfortabel ausgestattete Ferienwohnung mit Schlafzimmer, Wohnzimmer, Küche und Duschbad. \nDas Schlafsofa im Wohnraum bietet einer dritten Person eine Übernachtungsmöglichkeit. Beide Räume verfügen über einen Ost- bzw. Westbalkon mit Blick in die Dünen.",
@@ -39,5 +37,8 @@
         "description": "Die Ferienwohnung Studio 2 befindet sich im 1. Stock im Ferienhaus Hertha auf Borkum. Es erwarten Sie eine für 2 Personen komfortabel ausgestattete Ferienwohnung mit Wohnzimmer, Schlafzimmer, Pantryküche und Duschbad. \nDie Wohnung verfügt über eine West-Dachterrasse mit eigenem Strandkorb und Blick in die Dünen des Südstrandes.",
         "properties": ["WiFi", "max.3 Personen", "Nichtraucher", "Standkorb", "Hunde erlaubt","Parkplatz am Haus"," Westbalkon", "Südlage", "Strandnähe"]
     }
-
 }
+
+for _, values in flats.items():
+    db_service.add_flat(name=values['name'], description=values['description'], properties=values['properties'])
+
