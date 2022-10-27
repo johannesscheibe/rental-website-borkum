@@ -1,5 +1,0 @@
-flask
-flask_sqlalchemy
-pathlib
-Pillow
-flask_wtf
