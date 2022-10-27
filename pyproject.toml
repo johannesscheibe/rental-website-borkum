@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "borkum-website"
+version = "0.1.0"
+description = ""
+authors = ["Johannes Scheibe <>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+flask = "^2.2.2"
+pillow = "^9.2.0"
+pathlib = "^1.0.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
