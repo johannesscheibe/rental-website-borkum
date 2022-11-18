@@ -1,6 +1,8 @@
+import json
 import os
 from flask import Flask
-from .database import db
+from flask.cli import with_appcontext
+from .database import db, db_service
 
 def create_app():
     app = Flask(__name__)
@@ -25,10 +27,12 @@ def create_app():
     app.register_blueprint(picture_service, url_prefix='/')
     app.register_blueprint(legal_information, url_prefix='/')
 
+    create_database(app)
+
     return app
 
 def create_database(app):
-    if not os.path.exists(app.config['DB_PATH'] + app.config['DB_NAME'] + '.db'):
-        with app.app_context():
-            db.create_all(app=app)
-            print('Created Database!')
+    with app.app_context():
+        db.create_all()
+        print('Created Database!')
+
