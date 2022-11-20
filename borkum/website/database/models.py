@@ -69,7 +69,7 @@ class House(db.Model, BaseModel):
     description = Column(String())
 
     address = Column(String(15))
-    visible = Column(Boolean())
+    is_visible = Column(Boolean())
 
     # One to Many House <-> Image
     images = relationship("HouseImageMapping", back_populates="house")

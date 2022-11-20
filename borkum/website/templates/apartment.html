@@ -19,12 +19,14 @@ Hochseeklima, am Puls der Gezeiten . . . Demut, Freiheit . . . Insel {% endblock
             <div class="col-md-6 text-start">
                 <h1 class="text-uppercase text-center">{{ apartment.displayname }}</h1>
                 <p><br><br>{{ apartment.description }}<br><br></p>
+                {% if tags is not none %}
                 <strong>Besondere Merkmale:</strong>
                 <ul>
                     {% for item in tags %}
                         <li>{{ item.name }}</li>
                     {% endfor %}
                 </ul>
+                {% endif %}
             </div>
         </div>
     </div>

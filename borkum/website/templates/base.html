@@ -5,12 +5,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>{% block title %} Title {% endblock %}</title>
-    <meta name="description"
-        content={% block description %} description {% endblock %}>
+    <meta name="description" content={% block description %} description {% endblock %}>
     <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic">
-    
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic">
+
     <link rel="stylesheet" href="{{ url_for('static', filename='fonts/font-awesome.min.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 
@@ -25,30 +26,37 @@
     <nav class="navbar navbar-light navbar-expand-lg fixed-top" id="mainNav">
         <div class="container">
             <a class="navbar-brand" href="/">Ferienwohnungen Borkum</a>
-            <button
-                data-bs-toggle="collapse" data-bs-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right"
-                type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i
-                    class="fa fa-align-justify"></i>
+            <button data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+                class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-align-justify"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
-                    
+
                     {% for house in base_data.rental_objects %}
-                        {% if house.apartments|length == 1 %}
-                        <li class="nav-item"><a class="nav-link" href="/apartment/{{ house.apartments[0].name }}">{{ house.apartments[0].displayname }}</a></li>
-                        {% else %}
-                        <li class="nav-item dropdown">
-                            <a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">{{ house.displayname}}</a>
-                            
-                            <div class="dropdown-menu">
-                                {% for apartment in house.apartments %}
-                                    <a class="dropdown-item" href="/apartment/{{ apartment.name }}">{{ apartment.displayname }}</a>
-                                {% endfor %}
-                            </div>
-                        </li>
-                        {% endif %}
+
+                    {% if house.apartments|length == 1 %}
+                    <li class="nav-item"><a class="nav-link" href="/apartment/{{ house.apartments[0].name }}">{{
+                            house.apartments[0].displayname }}</a></li>
+                    {% else %}
+                    <li class="nav-item dropdown">
+                        <a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">{{
+                            house.displayname}}</a>
+
+                        <div class="dropdown-menu">
+                            {% if house.is_visible %}
+                            <a class="dropdown-item" href="/house/{{ house.name }}">{{ house.displayname }}</a>
+                            <div class="dropdown-divider"></div>
+                            {% endif %}
+                            {% for apartment in house.apartments %}
+                            <a class="dropdown-item" href="/apartment/{{ apartment.name }}">{{ apartment.displayname
+                                }}</a>
+                            {% endfor %}
+                        </div>
+                    </li>
+                    {% endif %}
                     {% endfor %}
-                    
+
                     <li class="nav-item"><a class="nav-link" href="/location">Lage</a></li>
                     <li class="nav-item"><a class="nav-link" href="/gallery">Galerie</a></li>
                     <li class="nav-item"><a class="nav-link" href="/#contact">Kontakt</a></li>
@@ -57,11 +65,11 @@
             </div>
         </div>
     </nav>
-    {% block content %} 
-    
-    {% endblock %}  
-    
-    
+    {% block content %}
+
+    {% endblock %}
+
+
     <!-- Footer -->
     <footer class="text-center text-lg-start bg-light text-muted">
         <!-- Section: Social media -->
@@ -71,32 +79,32 @@
                 <span>Get connected with us on social networks:</span>
             </div>
             <!-- Left -->
-    
+
             <!-- Right -->
             <div>
                 <a href="" class="me-4 text-reset" style="text-decoration: none;">
                     <i class="fa fa-facebook"></i>
                 </a>
-                <a href="" class="me-4 text-reset"  style="text-decoration: none;">
+                <a href="" class="me-4 text-reset" style="text-decoration: none;">
                     <i class="fa fa-twitter"></i>
                 </a>
-                <a href="" class="me-4 text-reset"  style="text-decoration: none;">
+                <a href="" class="me-4 text-reset" style="text-decoration: none;">
                     <i class="fa fa-google"></i>
                 </a>
-                <a href="" class="me-4 text-reset"  style="text-decoration: none;">
+                <a href="" class="me-4 text-reset" style="text-decoration: none;">
                     <i class="fa fa-instagram"></i>
                 </a>
-                <a href="" class="me-4 text-reset"  style="text-decoration: none;">
+                <a href="" class="me-4 text-reset" style="text-decoration: none;">
                     <i class="fa fa-linkedin"></i>
                 </a>
-                <a href="" class="me-4 text-reset"  style="text-decoration: none;">
+                <a href="" class="me-4 text-reset" style="text-decoration: none;">
                     <i class="fa fa-github"></i>
                 </a>
             </div>
             <!-- Right -->
         </section>
         <!-- Section: Social media -->
-    
+
         <!-- Section: Links  -->
         <section class="">
             <div class="container text-center text-md-start mt-5">
@@ -109,11 +117,13 @@
                             {{ base_data.contact.name }}
                         </h6>
                         <p>
-                            Vermietunung aus Leidenschaft seit über 15 Jahren. <br> Weitere Informationen finden Sie auf: <a href="{{ base_data.contact.traumfewo_link }}"> {{base_data.contact.traumfewo_name }}</a>
+                            Vermietunung aus Leidenschaft seit über 15 Jahren. <br> Weitere Informationen finden Sie
+                            auf: <a href="{{ base_data.contact.traumfewo_link }}"> {{base_data.contact.traumfewo_name
+                                }}</a>
                         </p>
                     </div>
                     <!-- Grid column -->
-    
+
                     <!-- Grid column -->
                     <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-4">
                         <!-- Links -->
@@ -121,24 +131,26 @@
                             Links
                         </h6>
                         <p>
-                            <a href="/privacy" class="text-reset"  style="text-decoration: none;">Datenschutz</a>
+                            <a href="/privacy" class="text-reset" style="text-decoration: none;">Datenschutz</a>
                         </p>
                         <p>
-                            <a href="/terms_of_use" class="text-reset"  style="text-decoration: none;">Nutzungsbedingungen</a>
+                            <a href="/terms_of_use" class="text-reset"
+                                style="text-decoration: none;">Nutzungsbedingungen</a>
                         </p>
                         <p>
-                            <a href="/impressum" class="text-reset"  style="text-decoration: none;">Impressum</a>
+                            <a href="/impressum" class="text-reset" style="text-decoration: none;">Impressum</a>
                         </p>
                     </div>
                     <!-- Grid column -->
-    
+
                     <!-- Grid column -->
                     <div class="col-md-4 col-lg-4 col-xl-4 mx-auto mb-md-0 mb-4">
                         <!-- Links -->
                         <h6 class="text-uppercase fw-bold mb-4">
                             Kontakt
                         </h6>
-                        <p><i class="fa fa-home me-3"></i> {{ base_data.contact.street }}, {{ base_data.contact.city }}</p>
+                        <p><i class="fa fa-home me-3"></i> {{ base_data.contact.street }}, {{ base_data.contact.city }}
+                        </p>
                         <p><i class="fa fa-envelope me-3"></i>{{ base_data.contact.email }}</p>
                         <p><i class="fa fa-phone me-3"></i>{{ base_data.contact.phone }}</p>
                     </div>
@@ -148,11 +160,12 @@
             </div>
         </section>
         <!-- Section: Links  -->
-    
+
         <!-- Copyright -->
         <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
             © 2022 Copyright:
-            <a class="text-reset fw-bold" href="www.ferienwohnungen-insel-borkum.de"  style="text-decoration: none;">ferienwohnungen-insel-borkum.de</a>
+            <a class="text-reset fw-bold" href="www.ferienwohnungen-insel-borkum.de"
+                style="text-decoration: none;">ferienwohnungen-insel-borkum.de</a>
         </div>
         <!-- Copyright -->
     </footer>
@@ -161,5 +174,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="{{ url_for('static', filename='js/lazyload.js') }}"></script>
 </body>
-    
+
 </html>

@@ -88,14 +88,14 @@
             "displayname": "Haus Hertha",
             "description": "",
             "address": "Greune-Stee-Weg 43, 26757 Borkum",
-            "visible": true
+            "is_visible": true
         },
         {
             "name": "kajo",
             "displayname": "Kajo",
             "description": "",
             "address": "Greune-Stee-Weg 87, 26757 Borkum",
-            "visible": false
+            "is_visible": false
         }
     ],
 
