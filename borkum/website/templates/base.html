@@ -32,19 +32,23 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item dropdown">
-                        <a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">Haus Hertha</a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="/apartment/haus-hertha">Haus Hertha</a>
-                            <a class="dropdown-item" href="/apartment/baltrum"> - Baltrum</a>
-                            <a class="dropdown-item" href="/apartment/borkum"> - Borkum</a>
-                            <a class="dropdown-item" href="/apartment/langeoog"> - Langeoog</a>
-                            <a class="dropdown-item" href="/apartment/memmert"> - Memmert</a>
-                            <a class="dropdown-item" href="/apartment/studio-1"> - Studio 1</a>
-                            <a class="dropdown-item" href="/apartment/studio-2"> - Studio 2</a>
-                        </div>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="/apartment/kajo">Kajo</a></li>
+                    
+                    {% for house in base_data.rental_objects %}
+                        {% if house.apartments|length == 1 %}
+                        <li class="nav-item"><a class="nav-link" href="/apartment/{{ house.apartments[0].name }}">{{ house.apartments[0].displayname }}</a></li>
+                        {% else %}
+                        <li class="nav-item dropdown">
+                            <a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">{{ house.displayname}}</a>
+                            
+                            <div class="dropdown-menu">
+                                {% for apartment in house.apartments %}
+                                    <a class="dropdown-item" href="/apartment/{{ apartment.name }}">{{ apartment.displayname }}</a>
+                                {% endfor %}
+                            </div>
+                        </li>
+                        {% endif %}
+                    {% endfor %}
+                    
                     <li class="nav-item"><a class="nav-link" href="/location">Lage</a></li>
                     <li class="nav-item"><a class="nav-link" href="/gallery">Galerie</a></li>
                     <li class="nav-item"><a class="nav-link" href="/#contact">Kontakt</a></li>
@@ -102,10 +106,10 @@
                     <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                         <!-- Content -->
                         <h6 class="text-uppercase fw-bold mb-4">
-                            {{ contact.name }}
+                            {{ base_data.contact.name }}
                         </h6>
                         <p>
-                            Vermietunung aus Leidenschaft seit über 15 Jahren. <br> Weitere Informationen finden Sie auf: <a href="{{ contact.traumfewo_link }}"> {{contact.traumfewo_name }}</a>
+                            Vermietunung aus Leidenschaft seit über 15 Jahren. <br> Weitere Informationen finden Sie auf: <a href="{{ base_data.contact.traumfewo_link }}"> {{base_data.contact.traumfewo_name }}</a>
                         </p>
                     </div>
                     <!-- Grid column -->
@@ -134,9 +138,9 @@
                         <h6 class="text-uppercase fw-bold mb-4">
                             Kontakt
                         </h6>
-                        <p><i class="fa fa-home me-3"></i> {{ contact.street }}, {{ contact.city }}</p>
-                        <p><i class="fa fa-envelope me-3"></i>{{ contact.email }}</p>
-                        <p><i class="fa fa-phone me-3"></i>{{ contact.phone }}</p>
+                        <p><i class="fa fa-home me-3"></i> {{ base_data.contact.street }}, {{ base_data.contact.city }}</p>
+                        <p><i class="fa fa-envelope me-3"></i>{{ base_data.contact.email }}</p>
+                        <p><i class="fa fa-phone me-3"></i>{{ base_data.contact.phone }}</p>
                     </div>
                     <!-- Grid column -->
                 </div>

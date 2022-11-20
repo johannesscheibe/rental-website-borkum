@@ -15,18 +15,23 @@ from . import db
 
 db: SQLAlchemy
 
-class Base():
+class BaseModel():
     def as_dict(self):
         d = {}
         for c in self.__table__.columns:
             attr = getattr(self, c.name)
-            if isinstance(attr, Base):
+            if isinstance(attr, BaseModel):
                 attr = attr.as_dict()
             d[c.name] = attr
         return d
 
+    
+    @classmethod
+    def filter(cls, **kwargs):
+        return cls.query.filter_by(**kwargs)
 
-class TagCategory(db.Model, Base):
+
+class TagCategory(db.Model, BaseModel):
     __tablename__ = "tag_category"
 
     id = Column(Integer, primary_key=True)
@@ -34,7 +39,7 @@ class TagCategory(db.Model, Base):
 
     __table_args__ = (UniqueConstraint("name"),)
 
-class Tag(db.Model, Base):
+class Tag(db.Model, BaseModel):
     __tablename__ = "tag"
 
     id = Column(Integer, primary_key=True)
@@ -44,7 +49,7 @@ class Tag(db.Model, Base):
 
     __table_args__ = (UniqueConstraint("name"),)
 
-class Image(db.Model, Base):
+class Image(db.Model, BaseModel):
     __tablename__ = "image"
 
     id = Column(Integer, primary_key=True)
@@ -52,46 +57,50 @@ class Image(db.Model, Base):
     title = Column(String(20))
     description = Column(String(100))
 
-    #__table_args__ = (UniqueConstraint("filename"),)
+    __table_args__ = (UniqueConstraint("filename"),)
 
 
-class House(db.Model, Base):
+class House(db.Model, BaseModel):
     __tablename__ = "house"
 
     id = Column(Integer, primary_key=True)
     name = Column(String(30))
+    displayname = Column(String(30))
     description = Column(String())
 
     address = Column(String(15))
     visible = Column(Boolean())
 
     # One to Many House <-> Image
-    images = relationship("HouseImages", back_populates="house")
+    images = relationship("HouseImageMapping", back_populates="house")
 
     # One to Many House <-> Apartment
     apartments = relationship("Apartment", back_populates="house")
 
+    __table_args__ = (UniqueConstraint("name"),)
 
-class Apartment(db.Model, Base):
+class Apartment(db.Model, BaseModel):
     __tablename__ = "apartment"
     
     id = Column(Integer, primary_key=True)
     name = Column(String(30))
+    displayname = Column(String(30))
     description = Column(String())
 
     # Assosiation Apartment <-> Image
-    images = relationship("ApartmentImages", back_populates="apartment")
+    images = relationship("ApartmentImageMapping", back_populates="apartment")
 
     # Many to One Apartment <-> House
     house_id = Column(Integer, ForeignKey("house.id"))
     house = relationship("House", back_populates="apartments")
 
     # Many to Many Apartment <-> Tag
-    tags = relationship("Tag", secondary='association_table', backref="apartments")
+    tags = relationship("Tag", secondary='appartment_tag_mapping', backref="apartments")
 
+    __table_args__ = (UniqueConstraint("name"),)
 
-class ApartmentImages(db.Model, Base):
-    __tablename__ = "apartment_images"
+class ApartmentImageMapping(db.Model, BaseModel):
+    __tablename__ = "apartment_image_mapping"
     apartment_id = Column(ForeignKey("apartment.id"), primary_key=True)
     image_id = Column(ForeignKey("image.id"), primary_key=True)
     
@@ -101,8 +110,8 @@ class ApartmentImages(db.Model, Base):
     image = relationship("Image")
 
 
-class HouseImages(db.Model, Base):
-    __tablename__ = "house_images"
+class HouseImageMapping(db.Model, BaseModel):
+    __tablename__ = "house_image_mapping"
     apartment_id = Column(ForeignKey("house.id"), primary_key=True)
     image_id = Column(ForeignKey("image.id"), primary_key=True)
     
@@ -112,8 +121,8 @@ class HouseImages(db.Model, Base):
     image = relationship("Image")
 
 
-association_table = Table(
-    "association_table",
+appartment_tag_mapping = Table(
+    "appartment_tag_mapping",
     db.Model.metadata,
     Column("apartment_id", ForeignKey("apartment.id")),
     Column("tag_id", ForeignKey("tag.id")),

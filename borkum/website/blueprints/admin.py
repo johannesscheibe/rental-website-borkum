@@ -17,7 +17,7 @@ admin = Blueprint('admin', __name__)
 def admin_page(id=None):
     return render_template(
         "admin/index.html",
-        contact=app.config['CONTACT']
+        base_data=app.config['BASE_DATA']
     )
 
 @admin.route('/admin/apartments', methods=['GET', 'POST'])
@@ -25,7 +25,7 @@ def admin_page(id=None):
 def apartment_page():
     return render_template(
         "admin/apartments.html",
-        contact=app.config['CONTACT']
+        base_data=app.config['BASE_DATA']
     )
 
 @admin.route('/admin/apartments/form', methods=['GET', 'POST'], defaults={'id': None})
@@ -53,7 +53,7 @@ def apartment_form(id=None):
         apartment = db_service.add_apartment(**data)
             
         if apartment:  
-            return redirect(url_for('admin.admin_page', contact=app.config['CONTACT'])) 
+            return redirect(url_for('admin.admin_page', base_data=app.config['BASE_DATA'])) 
     
         
     if id:
@@ -65,7 +65,7 @@ def apartment_form(id=None):
         "admin/apartment_form.html",
         data=None,
         form=form,
-        contact=app.config['CONTACT']
+        base_data=app.config['BASE_DATA']
     )
 
 

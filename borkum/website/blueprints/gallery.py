@@ -21,5 +21,5 @@ def init():
         else:
             continue
 
-    return render_template("gallery.html", contact=app.config['CONTACT'], images= images, thumbnail= thumbnails[random.randint(0, len(thumbnails)-1)])
+    return render_template("gallery.html", base_data=app.config['BASE_DATA'], images= images, thumbnail= thumbnails[random.randint(0, len(thumbnails)-1)])
 

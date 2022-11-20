@@ -17,12 +17,12 @@ Hochseeklima, am Puls der Gezeiten . . . Demut, Freiheit . . . Insel {% endblock
             <div class="col-md-6"><img class="img-fluid border rounded" realsrc="/picture/{{ thumbnail }}" style="object-fit: cover; height: 100%; width: 100%;" data-aos="zoom-out-right"
                     data-aos-duration="400" data-aos-delay="200" data-aos-once="true"></div>
             <div class="col-md-6 text-start">
-                <h1 class="text-uppercase text-center">{{ info['name'] }}</h1>
-                <p><br><br>{{ info['description'] }}<br><br></p>
+                <h1 class="text-uppercase text-center">{{ apartment.displayname }}</h1>
+                <p><br><br>{{ apartment.description }}<br><br></p>
                 <strong>Besondere Merkmale:</strong>
                 <ul>
-                    {% for item in info['properties'] %}
-                        <li>{{ item }}</li>
+                    {% for item in tags %}
+                        <li>{{ item.name }}</li>
                     {% endfor %}
                 </ul>
             </div>
@@ -87,10 +87,10 @@ Hochseeklima, am Puls der Gezeiten . . . Demut, Freiheit . . . Insel {% endblock
         </div>
         <div class="row">
             <div class="col-lg-4 text-center ms-auto"><i class="fa fa-envelope-o fa-3x mb-3 sr-contact" data-aos="zoom-in" data-aos-duration="300" data-aos-delay="150" data-aos-once="true"></i>
-                <p><a href="mailto:{{ contact.email }}">{{ contact.email }}</a></p>
+                <p><a href="mailto:{{ base_data.contact.email }}">{{ base_data.contact.email }}</a></p>
             </div>
             <div class="col-lg-4 text-center me-auto"><i class="fa fa-phone fa-3x mb-3 sr-contact" data-aos="zoom-in" data-aos-duration="300" data-aos-delay="150"data-aos-once="true"></i>
-                <p>{{ contact.phone }}</p>
+                <p>{{ base_data.contact.phone }}</p>
             </div>
         </div>
     </div>

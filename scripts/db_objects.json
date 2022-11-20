@@ -84,13 +84,15 @@
 
     "houses": [
        {
-            "name": "Haus Hertha",
+            "name": "haus-hertha",
+            "displayname": "Haus Hertha",
             "description": "",
             "address": "Greune-Stee-Weg 43, 26757 Borkum",
             "visible": true
         },
         {
-            "name": "Kajo",
+            "name": "kajo",
+            "displayname": "Kajo",
             "description": "",
             "address": "Greune-Stee-Weg 87, 26757 Borkum",
             "visible": false
@@ -99,46 +101,53 @@
 
     "apartments": [
         {
-            "name": "Baltrum",
+            "name": "baltrum",
+            "displayname": "Baltrum",
             "description": "Die Ferienwohnung Baltrum befindet sich im 1. Stock im Ferienhaus Hertha auf Borkum. Es erwarten Sie auf ca. 53 m² eine komfortabel ausgestattete Ferienwohnung mit Schlafzimmer, Wohnzimmer, Küche und Duschbad. \nDas Schlafsofa im Wohnraum bietet einer dritten Person eine Übernachtungsmöglichkeit. Beide Räume verfügen über einen Ost- bzw. Westbalkon mit Blick in die Dünen.",
             "tags": ["WiFi",  "Nichtraucher", "Allergiker freundlich", "Parkplatz", "Balkon",  "Strandnah"],
-            "house": "Haus Hertha"
+            "house": "haus-hertha"
         },
         {
-            "name": "Borkum",
+            "name": "borkum",
+            "displayname": "Borkum",
             "description": "Die Suite Borkum befindet sich im 1. Stock im Ferienhaus Hertha auf Borkum. Es erwarten Sie auf ca. 47 m² ein für 2 Personen komfortabel ausgestattetes Feriendomizil mit Schlafzimmer, Wohnzimmer, Küche und Duschbad. \nDas Schlafsofa im Wohnraum bietet einer weiteren Person eine Übernachtungsmöglichkeit. Beide Räume verfügen über einen Südbalkon mit Blick in die Dünen.",
             "tags": ["WiFi",  "Nichtraucher", "Allergiker freundlich", "Parkplatz",  "Balkon", "Strandnah", "Dünenblick"],
-            "house": "Haus Hertha"
+            "house": "haus-hertha"
         },
         {
-            "name": "Kajo",
+            "name": "kajo",
+            "displayname": "Kajo",
             "description": "Die Ferienwohnung Kajo (Greune-Stee-Weg 87) bietet ihnen sonnige und gemütliche Ferienwohnung in kurzer Entfernung zum Borkumer Südstrand und unmittelbar an den Dünen der Greune Stee mit einem herrlichen Inselwald zum Wandern. Sie blicken von den Balkonen / Terrassen oder aus den Zimmern direkt auf die Dünenlandschaft. \nVon der Haltestelle Jakob-Van-Dieken-Weg ist das Haus Hertha ca. 5-10 Gehminuten entfernt, den Südstrand erreichen sie direkt gegenüber nach 800 m Fußweg durch die Dünenlandschaft.",
             "tags": ["WiFi", "Nichtraucher", "Allergiker freundlich", "Parkplatz", "Balkon", "Strandnah"],
-            "house": "Kajo"
+            "house": "kajo"
         },
         {
-            "name": "Langeoog",
+            "name": "langeoog",
+            "displayname": "Langeoog",
             "description": " Die Ferienwohnung Langeoog befindet sich im 2. Stock im Ferienhaus Hertha auf Borkum. Es erwarten Sie auf ca. 48 m² eine für 2 Personen komfortabel ausgestattete Ferienwohnung mit Schlafzimmer, Wohnzimmer, Küche und Duschbad. \nDas Wohnzimmer bietet einen jerrlichen Blick über die Dünen bishinzum Meer und verfügt über ein Schlafsofa für eine dritte Person.",
             "tags": ["WiFi",  "Nichtraucher", "Allergiker freundlich", "Parkplatz", "Strandnah", "Dünenblick"],
-            "house": "Haus Hertha"
+            "house": "haus-hertha"
         },
         {
-            "name": "Memmert",
+            "name": "memmert",
+            "displayname": "Memmert",
             "description": "Die Ferienwohnung Memmert befindet sich im Erdgeschoß im Ferienhaus Hertha auf Borkum. Es erwarten Sie eine für 4 bis 5 Personen komfortabel ausgestattete Ferienwohnung mit zwei Schlafzimmern, einem Wohnzimmer, sowie einer Küche und ein Duschbad. \nDas Schlafsofa im geräumigen Wohnraum bietet einer weiteren Person eine Übernachtungsmöglichkeit. Zusätzlich verfügt die Wohnung über eine eigene Terasse sowie einen kleinen Garten.",
             "tags": ["WiFi", "Nichtraucher", "Allergiker freundlich", "Parkplatz", "Terasse", "Strandnah"],
-            "house": "Haus Hertha"
+            "house": "haus-hertha"
         },
         {
-            "name": "Studio 1",
+            "name": "studio-1",
+            "displayname": "Studio 1",
             "description": " Die Ferienwohnung Studio 1 befindet sich im 1. Stock im Ferienhaus Hertha auf Borkum. Es erwarten Sie eine für 2 Personen komfortabel ausgestattete Ferienwohnung mit Wohnzimmer, Schalfzimmer, Küche und Duschbad. \nDie Wohnung verfügt über eine große West-Dachterrasse mit eigenem Strandkorb.",
             "tags": ["WiFi", "Nichtraucher", "Hunde erlaubt", "Strandkorb", "Parkplatz","Balkon", "Strandnah"],
-            "house": "Haus Hertha"
+            "house": "haus-hertha"
         }, 
         {
-            "name": "Studio 2",
+            "name": "studio-2",
+            "displayname": "Studio 2",
             "description": "Die Ferienwohnung Studio 2 befindet sich im 1. Stock im Ferienhaus Hertha auf Borkum. Es erwarten Sie eine für 2 Personen komfortabel ausgestattete Ferienwohnung mit Wohnzimmer, Schlafzimmer, Pantryküche und Duschbad. \nDie Wohnung verfügt über eine West-Dachterrasse mit eigenem Strandkorb und Blick in die Dünen des Südstrandes.",
             "tags": ["WiFi", "Nichtraucher", "Strandkorb", "Hunde erlaubt", "Parkplatz", "Balkon", "Strandnah"],
-            "house": "Haus Hertha"
+            "house": "haus-hertha"
         }
     ]
 }
