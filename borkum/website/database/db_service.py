@@ -4,7 +4,7 @@ from .db_utils import *
 from . import db
 
 def add_tag_category(**kwargs) -> Apartment:
-    category = TagCategory.query.filter_by(**kwargs).first()
+    category = TagCategory.filter(**kwargs).first()
     if category:
         return category
     
@@ -16,17 +16,17 @@ def add_tag_category(**kwargs) -> Apartment:
     return category 
     
 def filter_tag_category_by_name(**kwargs) -> Apartment:
-    return Tag.query.filter_by(**kwargs)
+    return Tag.filter(**kwargs)
 
 def add_tag(**kwargs) -> Apartment:
     # check if tag exists
-    tag = Tag.query.filter_by(**kwargs).first()
+    tag = Tag.filter(**kwargs).first()
     if tag:
         return tag
 
     # check if category exists
     category_id = kwargs.get('category_id', None)
-    category = TagCategory.query.filter_by(id=category_id).first()
+    category = TagCategory.filter(id=category_id).first()
     if not category:
         return None
 
@@ -37,7 +37,7 @@ def add_tag(**kwargs) -> Apartment:
     return new_tag
 
 def add_house(**kwargs):
-    house = House.query.filter_by(**kwargs).first()
+    house = House.filter(**kwargs).first()
     if house:
         return house
     
@@ -57,9 +57,31 @@ def add_house(**kwargs):
 
     return new_house
 
+def update_house(id, **kwargs):
+    house = House.filter(id=id).first()
+
+    displayname = kwargs.get('displayname', None)
+    if displayname:
+        kwargs['name'] = '-'.join(displayname.lower().strip().split(" "))
+   
+
+    thumbnail = kwargs.pop('thumbnail', None)
+    if thumbnail:
+        kwargs['thumbnail_id'] = cast_to_model(thumbnail, Image).id
+    
+    kwargs['images'] = [cast_to_model(img, Image) for img in kwargs.pop('images', [])]
+
+    kwargs.pop('house', None)
+    for key, value in kwargs.items():
+        setattr(house, key, value)
+    db.session.commit()
+
+    return house
 
 def add_apartment(**kwargs) -> Apartment:
-
+    displayname = kwargs.get('displayname')
+    kwargs['name'] = '-'.join(displayname.lower().strip().split(" "))
+   
     house = kwargs.pop('house')
     kwargs['house_id'] = cast_to_model(house, House).id
 
@@ -70,7 +92,7 @@ def add_apartment(**kwargs) -> Apartment:
     tags = kwargs.pop('tags', None)
     images = kwargs.pop('images', None)
 
-    apartment = Apartment.query.filter_by(**kwargs).first()
+    apartment = Apartment.filter(**kwargs).first()
     if apartment:
         return apartment
     
@@ -92,10 +114,33 @@ def add_apartment(**kwargs) -> Apartment:
 
     return new_apartment
 
+def update_apartment(id, **kwargs):
+    apartment = Apartment.filter(id=id).first()
 
+    displayname = kwargs.get('displayname', None)
+    if displayname:
+        kwargs['name'] = '-'.join(displayname.lower().strip().split(" "))
+   
+    house = kwargs.pop('house', None)
+    if house:
+        kwargs['house_id'] = cast_to_model(house, House).id
+
+    thumbnail = kwargs.pop('thumbnail', None)
+    if thumbnail:
+        kwargs['thumbnail_id'] = cast_to_model(thumbnail, Image).id
+    
+    kwargs['tags'] = [cast_to_model(tag, Tag) for tag in kwargs.pop('tags', [])]
+    kwargs['images'] = [cast_to_model(img, Image) for img in kwargs.pop('images', [])]
+
+    kwargs.pop('house', None)
+    for key, value in kwargs.items():
+        setattr(apartment, key, value)
+    db.session.commit()
+
+    return apartment
 
 def add_image(**kwargs):
-    img = Image.query.filter_by(**kwargs).first()
+    img = Image.filter(**kwargs).first()
     if img:
         return img
     

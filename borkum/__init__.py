@@ -10,12 +10,16 @@ import PIL
 
 app = create_app()
 
+# TODO is there a better place to store this data
+@app.before_request
+def get_rental_objects():
+    app.config['BASE_DATA']['rental_objects'] = [ { 'name': house.name, 'displayname': house.displayname, 'is_visible': house.is_visible, 'apartments':[ {'name': a.name, 'displayname': a.displayname} for a in house.apartments]} for  house in House.filter()]
+
 @app.before_first_request
 def before_first_request():
-    # TODO is there a better place to store this data
     app.config['BASE_DATA'] = {}
     app.config['BASE_DATA']['contact'] = {'name': 'Ferienwohnungen Scheibe', 'street': 'Rüschenweg 46', 'city': '26188 Edewecht', 'phone': '04486 / 920167', 'email': 'vermietung.scheibe@gmail.com', 'traumfewo_name': 'traum-ferienwohnungen.de', 'traumfewo_link': 'https://www.traum-ferienwohnungen.de/objektuebersicht/scheibe/'}
-    app.config['BASE_DATA']['rental_objects'] = [ { 'name': house.name, 'displayname': house.displayname, 'is_visible': house.is_visible, 'apartments':[ {'name': a.name, 'displayname': a.displayname} for a in house.apartments]} for  house in House.filter()]
+    
 
 @app.cli.command('seed')
 def seed():
@@ -30,7 +34,7 @@ def seed():
     # seed houses
     for obj in data["houses"]:
         house = db_service.add_house(**obj)
-        print(house.as_dict())
+        print(house.to_dict())
         
     # seed apartments
     for obj in data["apartments"]:

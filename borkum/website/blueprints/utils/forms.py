@@ -1,7 +1,13 @@
 from flask_wtf import FlaskForm
-from wtforms import (FileField, RadioField, SelectMultipleField, StringField,
-                     SubmitField, TextAreaField, widgets)
-from wtforms.validators import DataRequired
+from wtforms import (
+    RadioField,
+    SelectMultipleField,
+    StringField,
+    SubmitField,
+    TextAreaField,
+    widgets,
+)
+from wtforms.validators import InputRequired
 
 
 class MultiCheckboxField(SelectMultipleField):
@@ -11,20 +17,28 @@ class MultiCheckboxField(SelectMultipleField):
     Iterating the field will produce subfields, allowing custom rendering of
     the enclosed checkbox fields.
     """
+
     widget = widgets.ListWidget(prefix_label=False)
     option_widget = widgets.CheckboxInput()
 
-    
+
 class ApartmentForm(FlaskForm):
-    name = StringField("Name")
+
+    displayname = StringField("Wohnungsname", validators=[InputRequired()])
     description = TextAreaField("Beschreibung")
+    house = RadioField("Haus", choices=[], validators=[InputRequired()])
+    thumbnail = RadioField("Thumbnail", choices=[])
 
-    tags = MultiCheckboxField('Tags', choices=[])
+    tags = MultiCheckboxField("Tags", choices=[])
 
-    upload = FileField("Bilder")
-
-    thumbnail = RadioField('Thumbnail', choices=[])
-    images = MultiCheckboxField('Bilder', choices=[])
+    submit = SubmitField("Speichern")
 
 
-    submit = SubmitField('Speichern')
+class HouseForm(FlaskForm):
+
+    displayname = StringField("Hausname", validators=[InputRequired()])
+    description = TextAreaField("Beschreibung")
+    address = StringField("Adresse", validators=[InputRequired()])
+    thumbnail = RadioField("Thumbnail", choices=[])
+
+    submit = SubmitField("Speichern")

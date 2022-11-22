@@ -19,17 +19,11 @@
                 {{ form.description(class="form-control", placeholder="Beschreibung eingeben") }}
             </fieldset >
             <br />
-        
-            <fieldset class="form-group">
-                {{ form.house.label }}
-                <br />
-                {% for h in form.house %}
-                <div class="form-check-inline">
-                    {{ h(class="form-check-input") }}
-                    {{ h.label(class="form-check-label") }}
-                </div>
-                {% endfor %}
-            </fieldset>
+
+            <fieldset  class="form-group">
+                {{ form.address.label }}
+                {{ form.address(class="form-control", placeholder="Adresse eingeben") }}
+            </fieldset >
             <br />
 
             <fieldset class="form-group">
@@ -43,21 +37,7 @@
                 {% endfor %}
             </fieldset>
             <br />
-
-            <fieldset class="form-group">
-                {{ form.tags.label }}
-                <br/>
-                {% for tag in form.tags %}
-                    <div class="form-check-inline">
-                        {{ tag(class="form-check-input") }}
-                        {{ tag.label(class="form-check-label") }}
-                    </div>
-                {% endfor %}
-            </fieldset>
-            <br />
-            
-
-        
+                    
             {{ form.submit(class="btn btn-primary") }}
         </form>
     </div>

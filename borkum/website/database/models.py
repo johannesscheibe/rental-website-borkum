@@ -1,3 +1,4 @@
+import inspect
 from flask import current_app as app
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import (
@@ -11,17 +12,19 @@ from sqlalchemy import (
 )
 from sqlalchemy.orm import relationship
 
+from borkum.website.database.db_utils import cast_to_model
+
 from . import db
 
 db: SQLAlchemy
 
 class BaseModel():
-    def as_dict(self):
+    def to_dict(self):
         d = {}
         for c in self.__table__.columns:
             attr = getattr(self, c.name)
             if isinstance(attr, BaseModel):
-                attr = attr.as_dict()
+                attr = attr.to_dict()
             d[c.name] = attr
         return d
 
@@ -29,7 +32,6 @@ class BaseModel():
     @classmethod
     def filter(cls, **kwargs):
         return cls.query.filter_by(**kwargs)
-
 
 
 class TagCategory(db.Model, BaseModel):
