@@ -75,6 +75,7 @@ def add_apartment(**kwargs) -> Apartment:
         for img, is_thumbnail in images:
             img = cast_to_model(img, Image)
             assosiation = ApartmentImageMapping(is_thumbnail = is_thumbnail)
+            assosiation.image = img
             new_apartment.images.append(assosiation)  
 
     db.session.commit()

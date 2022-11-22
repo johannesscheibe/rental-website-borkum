@@ -27,8 +27,11 @@ class BaseModel():
 
     
     @classmethod
-    def filter(cls, **kwargs):
-        return cls.query.filter_by(**kwargs)
+    def filter(cls, first=True, **kwargs):
+        
+        obj =  cls.query.filter_by(**kwargs)
+        return obj.first() if first else obj
+
 
 
 class TagCategory(db.Model, BaseModel):
