@@ -6,7 +6,7 @@ Winterklirren . . .
 Hochseeklima, am Puls der Gezeiten . . . Demut, Freiheit . . . Insel {% endblock %}
 
 {% block css %}
-<link rel="stylesheet" href="../../assets/css/apparment-gallery.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/apartment-gallery.css') }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
 {% endblock %}
 
@@ -14,15 +14,15 @@ Hochseeklima, am Puls der Gezeiten . . . Demut, Freiheit . . . Insel {% endblock
 <section id="description" class="text-white bg-dark">
     <div class="container my-auto">
         <div class="row">
-            <div class="col-md-6"><img class="img-fluid border rounded" realsrc="/picture/{{ thumbnail }}" style="object-fit: cover; height: 100%; width: 100%;" data-aos="zoom-out-right"
+            <div class="col-md-6"><img class="img-fluid border rounded" realsrc="/picture/{{ rental_object.thumbnail.filepath }}" style="object-fit: cover; height: 100%; width: 100%;" data-aos="zoom-out-right"
                     data-aos-duration="400" data-aos-delay="200" data-aos-once="true"></div>
             <div class="col-md-6 text-start">
-                <h1 class="text-uppercase text-center">{{ apartment.displayname }}</h1>
-                <p><br><br>{{ apartment.description }}<br><br></p>
-                {% if tags is not none %}
+                <h1 class="text-uppercase text-center">{{ rental_object.displayname }}</h1>
+                <p><br><br>{{ rental_object.description }}<br><br></p>
+                {% if rental_object.tags|length > 0 %}
                 <strong>Besondere Merkmale:</strong>
                 <ul>
-                    {% for item in tags %}
+                    {% for item in rental_object.tags %}
                         <li>{{ item.name }}</li>
                     {% endfor %}
                 </ul>
@@ -46,7 +46,7 @@ Hochseeklima, am Puls der Gezeiten . . . Demut, Freiheit . . . Insel {% endblock
         
             <!-- Indicators/dots -->
             <div class="carousel-indicators">
-                {% for i in range(images|length)%}
+                {% for i in range(rental_object.images|length)%}
                 <button type="button" data-bs-target="#room-carousel" data-bs-slide-to="{{i}}"
                     class="{% if i==0 %} active {% endif %}"></button>
                 {% endfor %}
@@ -54,15 +54,13 @@ Hochseeklima, am Puls der Gezeiten . . . Demut, Freiheit . . . Insel {% endblock
         
             <!-- The slideshow/carousel -->
             <div class="carousel-inner">
-                {% for i in range(images|length)%}
+                {% for i in range(rental_object.images|length)%}
                 <div class={% if i==0 %} "carousel-item active" {% else %} "carousel-item" {% endif %}>
-                    <img class="d-block w-100" realsrc="/picture/{{ images[i] }}">
-                    <!--
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>Slide label</h5>
-                        <p>Some representative placeholder content for the slide.</p>
+                    <img class="d-block w-100" realsrc="/picture/{{ rental_object.images[i].filepath }}">
+                    <div class="carousel-caption d-none d-md-block foreground">
+                        <h5 class="overlay-text">{{ rental_object.images[i].title }}</h5>
+                        <p>{{ rental_object.images[i].description }}</p>
                     </div>
-                    -->
                 </div>
                 {% endfor %}
             </div>

@@ -27,10 +27,8 @@ class BaseModel():
 
     
     @classmethod
-    def filter(cls, first=True, **kwargs):
-        
-        obj =  cls.query.filter_by(**kwargs)
-        return obj.first() if first else obj
+    def filter(cls, **kwargs):
+        return cls.query.filter_by(**kwargs)
 
 
 
@@ -56,11 +54,11 @@ class Image(db.Model, BaseModel):
     __tablename__ = "image"
 
     id = Column(Integer, primary_key=True)
-    filename = Column(String(50))
+    filepath = Column(String(50))
     title = Column(String(20))
     description = Column(String(100))
 
-    __table_args__ = (UniqueConstraint("filename"),)
+    __table_args__ = (UniqueConstraint("filepath"),)
 
 
 class House(db.Model, BaseModel):
@@ -74,8 +72,12 @@ class House(db.Model, BaseModel):
     address = Column(String(15))
     is_visible = Column(Boolean())
 
-    # One to Many House <-> Image
-    images = relationship("HouseImageMapping", back_populates="house")
+    # Many to One House <-> Image
+    thumbnail_id = Column(Integer, ForeignKey("image.id"))
+    thumbnail = relationship("Image")
+
+   # Many to Many House <-> Image
+    images = relationship("Image", secondary='house_image_mapping')
 
     # One to Many House <-> Apartment
     apartments = relationship("Apartment", back_populates="house")
@@ -90,39 +92,35 @@ class Apartment(db.Model, BaseModel):
     displayname = Column(String(30))
     description = Column(String())
 
-    # Assosiation Apartment <-> Image
-    images = relationship("ApartmentImageMapping", back_populates="apartment")
+    # Many to One Apartment <-> House
+    thumbnail_id = Column(Integer, ForeignKey("image.id"))
+    thumbnail = relationship("Image")
+
+    # Many to Many Apartment <-> Image
+    images = relationship("Image", secondary='appartment_image_mapping')
 
     # Many to One Apartment <-> House
     house_id = Column(Integer, ForeignKey("house.id"))
     house = relationship("House", back_populates="apartments")
 
     # Many to Many Apartment <-> Tag
-    tags = relationship("Tag", secondary='appartment_tag_mapping', backref="apartments")
+    tags = relationship("Tag", secondary='appartment_tag_mapping')
 
     __table_args__ = (UniqueConstraint("name"),)
 
-class ApartmentImageMapping(db.Model, BaseModel):
-    __tablename__ = "apartment_image_mapping"
-    apartment_id = Column(ForeignKey("apartment.id"), primary_key=True)
-    image_id = Column(ForeignKey("image.id"), primary_key=True)
-    
-    is_thumbnail = Column(Boolean())
+appartment_image_mapping = Table(
+    "appartment_image_mapping",
+    db.Model.metadata,
+    Column("apartment_id", ForeignKey("apartment.id")),
+    Column("image_id", ForeignKey("image.id")),
+)
 
-    apartment = relationship("Apartment", back_populates="images")
-    image = relationship("Image")
-
-
-class HouseImageMapping(db.Model, BaseModel):
-    __tablename__ = "house_image_mapping"
-    apartment_id = Column(ForeignKey("house.id"), primary_key=True)
-    image_id = Column(ForeignKey("image.id"), primary_key=True)
-    
-    is_thumbnail = Column(Boolean())
-
-    house = relationship("House", back_populates="images")
-    image = relationship("Image")
-
+house_image_mapping = Table(
+    "house_image_mapping",
+    db.Model.metadata,
+    Column("house_id", ForeignKey("house.id")),
+    Column("image_id", ForeignKey("image.id")),
+)
 
 appartment_tag_mapping = Table(
     "appartment_tag_mapping",

@@ -5,7 +5,7 @@ from pathlib import Path
 import uuid
 from borkum.website import create_app
 from borkum.website.database import db_service, db
-from borkum.website.database.models import Apartment, ApartmentImageMapping, House, HouseImageMapping, Image
+from borkum.website.database.models import Apartment, House, Image
 import PIL
 
 app = create_app()
@@ -34,41 +34,32 @@ def seed():
         
     # seed apartments
     for obj in data["apartments"]:
-        print(obj)
         object_name = db_service.add_apartment(**obj)
-        print(object_name.as_dict())
-        print(object_name.tags)
-        print(object_name.images)
 
     # seed images
     for path in glob.glob("scripts/images/apartments/*/rooms/*.*"):
         object_name, _, file_name = path.split("/")[-3:]
-        dir = Path("borkum/website/static/img/apartments") 
-        os.makedirs(dir/ object_name, exist_ok=True)
+        dir = Path("borkum/website/static/img") 
+        os.makedirs(dir / ("apartments/" + object_name), exist_ok=True)
 
         img = PIL.Image.open(path)
         img = img.convert('RGB')
 
         id = uuid.uuid4()
-        fn = Path(object_name) / (str(id) + '.jpg')
+        fn = Path("apartments/" + object_name) / (str(id) + '.jpg')
         
 
         img.save(dir / fn)
 
-        image = db_service.add_image(filename=str(fn), title=" ".join(file_name.split(".")[0].split("-")[1:]), description="")
-        apartment = Apartment.filter(name=object_name)
+        image = db_service.add_image(filepath=str(fn), title=" ".join(file_name.split(".")[0].split("-")[1:]), description="")
+        apartment = Apartment.filter(name=object_name).first()
         if apartment:
-            assosiation = ApartmentImageMapping(is_thumbnail = False)
-            assosiation.image = image
-            apartment.images.append(assosiation)
+            apartment.images.append(image)
             db.session.commit()
         else:
-            house = House.filter(name=object_name)
+            house = House.filter(name=object_name).first()
             if house:
-            
-                assosiation = HouseImageMapping(is_thumbnail = False)
-                assosiation.image = image
-                house.images.append(assosiation)
+                house.images.append(image)
                 db.session.commit()
                 
 

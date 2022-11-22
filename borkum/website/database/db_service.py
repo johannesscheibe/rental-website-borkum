@@ -41,8 +41,17 @@ def add_house(**kwargs):
     if house:
         return house
     
+    thumbnail = kwargs.pop('thumbnail', None)
+    if thumbnail:
+        kwargs['thumbnail_id'] = cast_to_model(thumbnail, Image).id
+    
     new_house = House(**kwargs)
     db.session.add(new_house)
+    images = kwargs.pop('images', None)
+    if images:
+        for img in images:
+            img = cast_to_model(img, Image)
+            new_house.images.append(img)  
 
     db.session.commit()
 
@@ -53,7 +62,10 @@ def add_apartment(**kwargs) -> Apartment:
 
     house = kwargs.pop('house')
     kwargs['house_id'] = cast_to_model(house, House).id
-    
+
+    thumbnail = kwargs.pop('thumbnail', None)
+    if thumbnail:
+        kwargs['thumbnail_id'] = cast_to_model(thumbnail, Image).id
     
     tags = kwargs.pop('tags', None)
     images = kwargs.pop('images', None)
@@ -72,11 +84,9 @@ def add_apartment(**kwargs) -> Apartment:
             new_apartment.tags.append(tag)
 
     if images:
-        for img, is_thumbnail in images:
+        for img in images:
             img = cast_to_model(img, Image)
-            assosiation = ApartmentImageMapping(is_thumbnail = is_thumbnail)
-            assosiation.image = img
-            new_apartment.images.append(assosiation)  
+            new_apartment.images.append(img)  
 
     db.session.commit()
 

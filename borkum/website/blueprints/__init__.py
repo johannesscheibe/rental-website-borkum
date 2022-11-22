@@ -1,5 +1,5 @@
 from .admin import admin
-from .apartment import apartment
+from .rental_object import rental_object
 from .gallery import gallery
 from .home import home
 from .legal_information import legal_information
