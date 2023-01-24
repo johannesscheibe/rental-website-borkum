@@ -8,7 +8,7 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.10"
 flask = "^2.2.2"
-pillow = "^9.2.0"
+pillow = "^9.3.0"
 pathlib = "^1.0.1"
 flask-wtf = "^1.0.1"
 
