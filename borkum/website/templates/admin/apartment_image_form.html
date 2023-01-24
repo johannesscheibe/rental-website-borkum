@@ -1,0 +1,38 @@
+{% extends "./base.html" %}
+{% block title %} Wohnung bearbeiten {% endblock %}
+
+{% block description %} {% endblock %}
+
+{% block content%}
+<section class="text-white d-flex bg-dark">
+    <div class="container my-auto">
+        <div class="row">
+            <div class="col-lg-10 mx-auto text-center">
+                <h1 class="text-uppercase"><strong>Bilder</strong></h1>
+                <hr>
+            </div>
+        </div>
+        <form method="POST" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                {{ form.image_file.label }}
+                {{ form.image_file(class="form-control", placeholder="Datei hochladen") }}
+            </div>
+            <br />
+            <fieldset  class="form-group">
+                {{ form.title.label }}
+                {{ form.title(class="form-control", placeholder="Beschreibung eingeben") }}
+            </fieldset >
+            <br />
+            <fieldset  class="form-group">
+                {{ form.description.label }}
+                {{ form.description(class="form-control", placeholder="Beschreibung eingeben") }}
+            </fieldset >
+            <br />
+        
+            {{ form.submit(class="btn btn-primary") }}
+        </form>
+    </div>
+</section>
+
+{% endblock %}

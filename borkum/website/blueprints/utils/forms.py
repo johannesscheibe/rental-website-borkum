@@ -1,11 +1,12 @@
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileField, FileAllowed, FileRequired
 from wtforms import (
     RadioField,
     SelectMultipleField,
     StringField,
     SubmitField,
     TextAreaField,
-    widgets,
+    widgets
 )
 from wtforms.validators import InputRequired
 
@@ -40,5 +41,17 @@ class HouseForm(FlaskForm):
     description = TextAreaField("Beschreibung")
     address = StringField("Adresse", validators=[InputRequired()])
     thumbnail = RadioField("Thumbnail", choices=[])
+
+    submit = SubmitField("Speichern")
+
+
+class ImageForm(FlaskForm):
+
+    image_file = FileField('Bild', validators=[
+        FileRequired(),
+        FileAllowed(['jpg', 'jpeg', 'png'], 'Images only!')
+    ])
+    title = StringField("Titel", validators=[InputRequired()])
+    description = StringField("Beschreibung", validators=[InputRequired()])
 
     submit = SubmitField("Speichern")

@@ -1,13 +1,15 @@
 import json
 import os
 
-from borkum.website.database import db_service
-from borkum.website.database.models import Apartment, House, Image, Tag
 from flask import Blueprint
 from flask import current_app as app
 from flask import redirect, render_template, request, url_for
+from werkzeug.utils import secure_filename
 
-from .utils.forms import ApartmentForm, HouseForm
+from borkum.website.database import db_service
+from borkum.website.database.models import Apartment, House, Image, Tag
+
+from .utils.forms import ApartmentForm, HouseForm, ImageForm
 
 admin = Blueprint("admin", __name__)
 
@@ -127,4 +129,28 @@ def house_form(name=None):
 
     return render_template(
         "admin/house_form.html", form=form, base_data=app.config["BASE_DATA"]
+    )
+
+@admin.route("/admin/images", methods=["GET", "POST"])
+# @login_required
+def image_form():
+    form = ImageForm()
+    print("TEST")
+    if form.validate_on_submit():
+        print(form.image_file)
+        print(form.image_file.data)
+
+        file = form.image_file.data
+        filename = secure_filename(file.filename)
+        file.save(os.path.join(
+            app.root_path, 'static', 'img', 'uploads', filename
+        ))
+        # TODO save in db
+        return redirect(url_for("admin.admin_page", base_data=app.config["BASE_DATA"]))
+    else:
+        print("why")
+    return render_template(
+        "admin/apartment_image_form.html",
+        form=form,
+        base_data=app.config["BASE_DATA"],
     )
