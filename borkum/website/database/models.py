@@ -1,132 +1,94 @@
-import inspect
-from flask import current_app as app
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import (
-    Boolean,
-    Column,
-    ForeignKey,
-    Integer,
-    String,
-    Table,
-    UniqueConstraint,
-)
+from sqlalchemy import Boolean, Column, Integer, String, Text, ForeignKey, Table
 from sqlalchemy.orm import relationship
-
-from borkum.website.database.db_utils import cast_to_model
-
 from . import db
 
-db: SQLAlchemy
 
-class BaseModel():
-    def to_dict(self):
-        d = {}
-        for c in self.__table__.columns:
-            attr = getattr(self, c.name)
-            if isinstance(attr, BaseModel):
-                attr = attr.to_dict()
-            d[c.name] = attr
-        return d
+class House(db.Model):
+    __tablename__ = "houses"
 
-    
-    @classmethod
-    def filter(cls, **kwargs):
-        return cls.query.filter_by(**kwargs)
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String(100), nullable=False, unique=True)
+    address = Column(String(255), nullable=False, index=True)
+    description = Column(Text, nullable=True)
+    flats = relationship("Flat", back_populates="house")
+    images = relationship("Image", back_populates="house")
+
+    def __repr__(self):
+        return f"House('{self.name}', '{self.address}')"
 
 
-class TagCategory(db.Model, BaseModel):
-    __tablename__ = "tag_category"
+class Flat(db.Model):
+    __tablename__ = "flats"
 
-    id = Column(Integer, primary_key=True)
-    name = Column(String(50))
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String(100), nullable=False, unique=True)
+    description = Column(Text, nullable=True)
+    tags = db.relationship("Tag", secondary="flat_tag_association", backref="flats")
+    images = relationship("Image", back_populates="flat")
 
-    __table_args__ = (UniqueConstraint("name"),)
+    house_id = Column(
+        Integer, ForeignKey("houses.id", ondelete="CASCADE"), nullable=False, index=True
+    )
+    house = relationship("House", back_populates="flats")
 
-class Tag(db.Model, BaseModel):
-    __tablename__ = "tag"
-
-    id = Column(Integer, primary_key=True)
-    name = Column(String(50))
-    icon = Column(String(20))
-    category_id = Column(Integer, ForeignKey("tag_category.id"))
-
-    __table_args__ = (UniqueConstraint("name"),)
-
-class Image(db.Model, BaseModel):
-    __tablename__ = "image"
-
-    id = Column(Integer, primary_key=True)
-    filepath = Column(String(50))
-    title = Column(String(20))
-    description = Column(String(100))
-
-    __table_args__ = (UniqueConstraint("filepath"),)
+    def __repr__(self):
+        return f"Flat('{self.name}')"
 
 
-class House(db.Model, BaseModel):
-    __tablename__ = "house"
+class Image(db.Model):
+    __tablename__ = "images"
 
-    id = Column(Integer, primary_key=True)
-    name = Column(String(30))
-    displayname = Column(String(30))
-    description = Column(String())
+    id = Column(Integer, primary_key=True, index=True)
+    image_url = Column(String(255), nullable=False, unique=True)
+    title = Column(String(100), nullable=True)
+    description = Column(Text, nullable=True)
 
-    address = Column(String(15))
-    is_visible = Column(Boolean())
+    flat_id = Column(
+        Integer, ForeignKey("flats.id", ondelete="CASCADE"), nullable=True, index=True
+    )
+    flat = relationship("Flat", back_populates="images")
 
-    # Many to One House <-> Image
-    thumbnail_id = Column(Integer, ForeignKey("image.id"))
-    thumbnail = relationship("Image")
+    house_id = Column(
+        Integer, ForeignKey("houses.id", ondelete="CASCADE"), nullable=True, index=True
+    )
+    house = relationship("House", back_populates="images")
 
-   # Many to Many House <-> Image
-    images = relationship("Image", secondary='house_image_mapping')
+    def __repr__(self):
+        return f"Image('{self.image_url}')"
 
-    # One to Many House <-> Apartment
-    apartments = relationship("Apartment", back_populates="house")
 
-    __table_args__ = (UniqueConstraint("name"),)
+class Tag(db.Model):
+    __tablename__ = "tags"
 
-class Apartment(db.Model, BaseModel):
-    __tablename__ = "apartment"
-    
-    id = Column(Integer, primary_key=True)
-    name = Column(String(30))
-    displayname = Column(String(30))
-    description = Column(String())
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String(50), nullable=False, unique=True)
+    category_id = Column(
+        Integer,
+        ForeignKey("categories.id", ondelete="CASCADE"),
+        nullable=False,
+        index=True,
+    )
+    category = relationship("Category", back_populates="tags")
 
-    # Many to One Apartment <-> House
-    thumbnail_id = Column(Integer, ForeignKey("image.id"))
-    thumbnail = relationship("Image")
+    def __repr__(self):
+        return f"Tag('{self.name}')"
 
-    # Many to Many Apartment <-> Image
-    images = relationship("Image", secondary='appartment_image_mapping')
 
-    # Many to One Apartment <-> House
-    house_id = Column(Integer, ForeignKey("house.id"))
-    house = relationship("House", back_populates="apartments")
+class Category(db.Model):
+    __tablename__ = "categories"
 
-    # Many to Many Apartment <-> Tag
-    tags = relationship("Tag", secondary='appartment_tag_mapping')
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String(50), nullable=False, unique=True)
+    tags = relationship("Tag", back_populates="category")
 
-    __table_args__ = (UniqueConstraint("name"),)
+    def __repr__(self):
+        return f"Category('{self.name}')"
 
-appartment_image_mapping = Table(
-    "appartment_image_mapping",
-    db.Model.metadata,
-    Column("apartment_id", ForeignKey("apartment.id")),
-    Column("image_id", ForeignKey("image.id")),
-)
 
-house_image_mapping = Table(
-    "house_image_mapping",
-    db.Model.metadata,
-    Column("house_id", ForeignKey("house.id")),
-    Column("image_id", ForeignKey("image.id")),
-)
-
-appartment_tag_mapping = Table(
-    "appartment_tag_mapping",
-    db.Model.metadata,
-    Column("apartment_id", ForeignKey("apartment.id")),
-    Column("tag_id", ForeignKey("tag.id")),
+# many-to-many relationships
+flat_tag_association = Table(
+    "flat_tag_association",
+    db.metadata,
+    Column("flat_id", Integer, ForeignKey("flats.id", ondelete="CASCADE"), index=True),
+    Column("tag_id", Integer, ForeignKey("tags.id", ondelete="CASCADE"), index=True),
 )

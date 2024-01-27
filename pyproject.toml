@@ -2,16 +2,18 @@
 name = "borkum-website"
 version = "0.1.0"
 description = ""
-authors = ["Johannes Scheibe <>"]
+authors = ["Johannes Scheibe <scheibe.johannes@t-online.de>"]
 readme = "README.md"
+packages = [{ include = "borkum" }]
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.11"
 flask = "^2.2.2"
 pillow = "^9.3.0"
 pathlib = "^1.0.1"
 flask-wtf = "^1.0.1"
-
+Flask-SQLAlchemy = "^3.1.1"
+loguru = "^0.7.2"
 
 [tool.poetry.group.dev.dependencies]
 black = {version = "^22.10.0", allow-prereleases = true}

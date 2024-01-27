@@ -6,7 +6,7 @@ Winterklirren . . .
 Hochseeklima, am Puls der Gezeiten . . . Demut, Freiheit . . . Insel {% endblock %}
 
 {% block css %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/apartment-gallery.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/flat-gallery.css') }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
 {% endblock %}
 
@@ -14,16 +14,18 @@ Hochseeklima, am Puls der Gezeiten . . . Demut, Freiheit . . . Insel {% endblock
 <section id="description" class="text-white bg-dark">
     <div class="container my-auto">
         <div class="row">
-            <div class="col-md-6"><img class="img-fluid border rounded" realsrc="/picture/{{ rental_object.thumbnail.filepath }}" style="object-fit: cover; height: 100%; width: 100%;" data-aos="zoom-out-right"
+            <div class="col-md-6"><img class="img-fluid border rounded"
+                    realsrc="/picture/{{ rental_object.images[0].image_url if rental_object.images else None }}"
+                    style="object-fit: cover; height: 100%; width: 100%;" data-aos="zoom-out-right"
                     data-aos-duration="400" data-aos-delay="200" data-aos-once="true"></div>
             <div class="col-md-6 text-start">
-                <h1 class="text-uppercase text-center">{{ rental_object.displayname }}</h1>
+                <h1 class="text-uppercase text-center">{{ rental_object.name }}</h1>
                 <p><br><br>{{ rental_object.description }}<br><br></p>
                 {% if rental_object.tags|length > 0 %}
                 <strong>Besondere Merkmale:</strong>
                 <ul>
                     {% for item in rental_object.tags %}
-                        <li>{{ item.name }}</li>
+                    <li>{{ item.name }}</li>
                     {% endfor %}
                 </ul>
                 {% endif %}
@@ -43,7 +45,7 @@ Hochseeklima, am Puls der Gezeiten . . . Demut, Freiheit . . . Insel {% endblock
     <div style="max-width: calc((4/3 * 90vh)); margin:auto; ">
         <!-- Carousel -->
         <div id="room-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000">
-        
+
             <!-- Indicators/dots -->
             <div class="carousel-indicators">
                 {% for i in range(rental_object.images|length)%}
@@ -51,12 +53,12 @@ Hochseeklima, am Puls der Gezeiten . . . Demut, Freiheit . . . Insel {% endblock
                     class="{% if i==0 %} active {% endif %}"></button>
                 {% endfor %}
             </div>
-        
+
             <!-- The slideshow/carousel -->
             <div class="carousel-inner">
                 {% for i in range(rental_object.images|length)%}
                 <div class={% if i==0 %} "carousel-item active" {% else %} "carousel-item" {% endif %}>
-                    <img class="d-block w-100" realsrc="/picture/{{ rental_object.images[i].filepath }}">
+                    <img class="d-block w-100" realsrc="/picture/{{ rental_object.images[i].image_url }}">
                     <div class="carousel-caption d-none d-md-block foreground">
                         <h5 class="overlay-text">{{ rental_object.images[i].title }}</h5>
                         <p>{{ rental_object.images[i].description }}</p>
@@ -64,7 +66,7 @@ Hochseeklima, am Puls der Gezeiten . . . Demut, Freiheit . . . Insel {% endblock
                 </div>
                 {% endfor %}
             </div>
-        
+
             <!-- Left and right controls/icons -->
             <button class="carousel-control-prev" type="button" data-bs-target="#room-carousel" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon"></span>
@@ -74,9 +76,9 @@ Hochseeklima, am Puls der Gezeiten . . . Demut, Freiheit . . . Insel {% endblock
             </button>
         </div>
     </div>
-    
+
 </section>
-<section id="contact", class="bg-light">
+<section id="contact" , class="bg-light">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 text-center mx-auto">
@@ -86,14 +88,15 @@ Hochseeklima, am Puls der Gezeiten . . . Demut, Freiheit . . . Insel {% endblock
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-4 text-center ms-auto"><i class="fa fa-envelope-o fa-3x mb-3 sr-contact" data-aos="zoom-in" data-aos-duration="300" data-aos-delay="150" data-aos-once="true"></i>
+            <div class="col-lg-4 text-center ms-auto"><i class="fa fa-envelope-o fa-3x mb-3 sr-contact"
+                    data-aos="zoom-in" data-aos-duration="300" data-aos-delay="150" data-aos-once="true"></i>
                 <p><a href="mailto:{{ base_data.contact.email }}">{{ base_data.contact.email }}</a></p>
             </div>
-            <div class="col-lg-4 text-center me-auto"><i class="fa fa-phone fa-3x mb-3 sr-contact" data-aos="zoom-in" data-aos-duration="300" data-aos-delay="150"data-aos-once="true"></i>
+            <div class="col-lg-4 text-center me-auto"><i class="fa fa-phone fa-3x mb-3 sr-contact" data-aos="zoom-in"
+                    data-aos-duration="300" data-aos-delay="150" data-aos-once="true"></i>
                 <p>{{ base_data.contact.phone }}</p>
             </div>
         </div>
     </div>
 </section>
 {% endblock %}
-    

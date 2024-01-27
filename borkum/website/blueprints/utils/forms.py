@@ -6,7 +6,7 @@ from wtforms import (
     StringField,
     SubmitField,
     TextAreaField,
-    widgets
+    widgets,
 )
 from wtforms.validators import InputRequired
 
@@ -23,12 +23,10 @@ class MultiCheckboxField(SelectMultipleField):
     option_widget = widgets.CheckboxInput()
 
 
-class ApartmentForm(FlaskForm):
-
-    displayname = StringField("Wohnungsname", validators=[InputRequired()])
+class FlatForm(FlaskForm):
+    name = StringField("Wohnungsname", validators=[InputRequired()])
     description = TextAreaField("Beschreibung")
     house = RadioField("Haus", choices=[], validators=[InputRequired()])
-    thumbnail = RadioField("Thumbnail", choices=[])
 
     tags = MultiCheckboxField("Tags", choices=[])
 
@@ -36,21 +34,21 @@ class ApartmentForm(FlaskForm):
 
 
 class HouseForm(FlaskForm):
-
-    displayname = StringField("Hausname", validators=[InputRequired()])
+    name = StringField("Hausname", validators=[InputRequired()])
     description = TextAreaField("Beschreibung")
     address = StringField("Adresse", validators=[InputRequired()])
-    thumbnail = RadioField("Thumbnail", choices=[])
 
     submit = SubmitField("Speichern")
 
 
 class ImageForm(FlaskForm):
-
-    image_file = FileField('Bild', validators=[
-        FileRequired(),
-        FileAllowed(['jpg', 'jpeg', 'png'], 'Images only!')
-    ])
+    image_file = FileField(
+        "Bild",
+        validators=[
+            FileRequired(),
+            FileAllowed(["jpg", "jpeg", "png"], "Images only!"),
+        ],
+    )
     title = StringField("Titel", validators=[InputRequired()])
     description = StringField("Beschreibung", validators=[InputRequired()])
 

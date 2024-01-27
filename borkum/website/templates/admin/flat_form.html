@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %} Wohnung bearbeiten {% endblock %}
 
-{% block description %}  {% endblock %}
+{% block description %} {% endblock %}
 
 {% block content%}
 <header class="text-center text-white d-flex masthead bg-dark">
@@ -10,16 +10,16 @@
         <form method="POST">
             {{ form.hidden_tag() }}
             <div class="form-group">
-                {{ form.displayname.label }}
-                {{ form.displayname(class="form-control", placeholder="Wohnungsnamen eingeben") }}
+                {{ form.name.label }}
+                {{ form.name(class="form-control", placeholder="Wohnungsnamen eingeben") }}
             </div>
             <br />
-            <fieldset  class="form-group">
+            <fieldset class="form-group">
                 {{ form.description.label }}
                 {{ form.description(class="form-control", placeholder="Beschreibung eingeben") }}
-            </fieldset >
+            </fieldset>
             <br />
-        
+
             <fieldset class="form-group">
                 {{ form.house.label }}
                 <br />
@@ -32,32 +32,21 @@
             </fieldset>
             <br />
 
+
             <fieldset class="form-group">
-                {{ form.thumbnail.label }}
+                {{ form.tags.label }}
                 <br />
-                {% for img in form.thumbnail %}
-                <div class="form-check-label">
-                    {{ img(class="form-check-input") }}
-                    {{ img.label(class="form-check-label") }}
+                {% for tag in form.tags %}
+                <div class="form-check-inline">
+                    {{ tag(class="form-check-input") }}
+                    {{ tag.label(class="form-check-label") }}
                 </div>
                 {% endfor %}
             </fieldset>
             <br />
 
-            <fieldset class="form-group">
-                {{ form.tags.label }}
-                <br/>
-                {% for tag in form.tags %}
-                    <div class="form-check-inline">
-                        {{ tag(class="form-check-input") }}
-                        {{ tag.label(class="form-check-label") }}
-                    </div>
-                {% endfor %}
-            </fieldset>
-            <br />
-            
 
-        
+
             {{ form.submit(class="btn btn-primary") }}
         </form>
     </div>

@@ -35,26 +35,21 @@
 
                     {% for house in base_data.rental_objects %}
 
-                    {% if house.apartments|length == 1 %}
-                    <li class="nav-item"><a class="nav-link" href="/apartment/{{ house.apartments[0].name }}">{{
-                            house.apartments[0].displayname }}</a></li>
-                    {% else %}
+
                     <li class="nav-item dropdown">
                         <a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">{{
-                            house.displayname}}</a>
+                            house.name}}</a>
 
                         <div class="dropdown-menu">
-                            {% if house.is_visible %}
-                            <a class="dropdown-item" href="/house/{{ house.name }}">{{ house.displayname }}</a>
+                            <a class="dropdown-item" href="/house/{{ house.name }}">{{ house.name }}</a>
                             <div class="dropdown-divider"></div>
-                            {% endif %}
-                            {% for apartment in house.apartments %}
-                            <a class="dropdown-item" href="/apartment/{{ apartment.name }}">{{ apartment.displayname
+                            {% for flat in house.flats %}
+                            <a class="dropdown-item" href="/flat/{{ flat.name }}">{{ flat.name
                                 }}</a>
                             {% endfor %}
                         </div>
                     </li>
-                    {% endif %}
+
                     {% endfor %}
 
                     <li class="nav-item"><a class="nav-link" href="/location">Lage</a></li>

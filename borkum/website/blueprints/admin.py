@@ -1,5 +1,4 @@
-import json
-import os
+from pathlib import Path
 
 from flask import Blueprint
 from flask import current_app as app
@@ -7,9 +6,8 @@ from flask import redirect, render_template, request, url_for
 from werkzeug.utils import secure_filename
 
 from borkum.website.database import db_service
-from borkum.website.database.models import Apartment, House, Image, Tag
 
-from .utils.forms import ApartmentForm, HouseForm, ImageForm
+from .utils.forms import FlatForm, HouseForm, ImageForm
 
 admin = Blueprint("admin", __name__)
 
@@ -20,94 +18,95 @@ def admin_page():
     return render_template("admin/index.html", base_data=app.config["BASE_DATA"])
 
 
-@admin.route("/admin/apartments", methods=["GET", "POST"])
+@admin.route("/admin/flats", methods=["GET", "POST"])
 # @login_required
-def apartment_overview():
-    apartments = Apartment.filter()
+def flat_overview():
+    flats = db_service.get_all_flats()
     return render_template(
-        "admin/apartment_overview.html",
+        "admin/flat_overview.html",
         base_data=app.config["BASE_DATA"],
-        apartments=apartments,
+        flats=flats,
     )
 
 
-@admin.route("/admin/apartments/form", methods=["GET", "POST"], defaults={"name": None})
-@admin.route("/admin/apartments/form/<string:name>", methods=["GET", "POST"])
+@admin.route("/admin/flats/form", methods=["GET", "POST"], defaults={"id": None})
+@admin.route("/admin/flats/form/<int:id>", methods=["GET", "POST"])
 # @login_required
-def apartment_form(name=None):
+def flat_form(id=None):
+    flat = db_service.get_flat_by_id(id) if id is not None else None
 
-    apartment = Apartment.filter(name=name).first()
     if request.method == "POST":
         data = {
-            "displayname": request.form.get("displayname"),
+            "name": request.form.get("name"),
             "description": request.form.get("description"),
-            "house": int(request.form.get("house"))
+            "house_id": request.form.get("house")
             if request.form.get("house")
             else None,
-            "tags": list(map(int, request.form.getlist("tags"))),
-            "thumbnail": int(request.form.get("thumbnail"))
-            if request.form.get("thumbnail")
-            else None,
+            "tags": [
+                db_service.get_tag_by_id(int(t)) for t in request.form.getlist("tags")
+            ],
         }
-        if apartment:
-            apartment = db_service.update_apartment(apartment.id, **data)
+        if flat is not None:
+            flat = db_service.update_flat(flat.id, **data)
         else:
-            apartment = db_service.add_apartment(**data)
+            flat = db_service.create_flat(**data)
 
-        if apartment:
+        if flat:
             return redirect(
-                url_for("admin.apartment_overview", base_data=app.config["BASE_DATA"])
+                url_for("admin.flat_overview", base_data=app.config["BASE_DATA"])
             )
 
-    form = ApartmentForm()
-    form.tags.choices = [(tag.id, tag.name) for tag in Tag.filter()]
-    form.house.choices = [(house.id, house.displayname) for house in House.filter()]
-    form.thumbnail.choices = (
-        [(img.id, img.filepath) for img in apartment.images] if apartment.images else []
-    )
-    if apartment:
+    form = FlatForm()
+    form.tags.choices = [(tag.id, tag.name) for tag in db_service.get_all_tags()]
+    form.house.choices = [
+        (house.id, house.name) for house in db_service.get_all_houses()
+    ]
+
+    if flat is not None:
         data = {
-            "displayname": apartment.displayname,
-            "description": apartment.description,
-            "house": apartment.house.id if apartment.house else None,
-            "tags": [tag.id for tag in apartment.tags],
-            "thumbnail": apartment.thumbnail.id if apartment.thumbnail else None,
+            "name": flat.name,
+            "description": flat.description,
+            "house": flat.house.id if flat.house else None,
+            "tags": [tag.id for tag in flat.tags],
         }
         form.process(data=data)
 
     return render_template(
-        "admin/apartment_form.html", form=form, base_data=app.config["BASE_DATA"]
+        "admin/flat_form.html", form=form, base_data=app.config["BASE_DATA"]
     )
+
+
+@admin.route("/admin/flats/delete/<int:id>", methods=["GET"])
+# @login_required
+def delete_flat(id: int):
+    db_service.delete_flat(id)
+    return redirect(url_for("admin.flat_overview", base_data=app.config["BASE_DATA"]))
 
 
 @admin.route("/admin/houses", methods=["GET", "POST"])
 # @login_required
 def house_overview():
-    houses = House.filter()
+    houses = db_service.get_all_houses()
     return render_template(
         "admin/house_overview.html", base_data=app.config["BASE_DATA"], houses=houses
     )
 
 
-@admin.route("/admin/houses/form", methods=["GET", "POST"], defaults={"name": None})
-@admin.route("/admin/houses/form/<string:name>", methods=["GET", "POST"])
+@admin.route("/admin/houses/form", methods=["GET", "POST"], defaults={"id": None})
+@admin.route("/admin/houses/form/<int:id>", methods=["GET", "POST"])
 # @login_required
-def house_form(name=None):
-
-    house = House.filter(name=name).first()
+def house_form(id=None):
+    house = db_service.get_house_by_id(id) if id is not None else None
     if request.method == "POST":
         data = {
-            "displayname": request.form.get("displayname"),
+            "name": request.form.get("name"),
             "description": request.form.get("description"),
             "address": request.form.get("address"),
-            "thumbnail": int(request.form.get("thumbnail"))
-            if request.form.get("thumbnail")
-            else None,
         }
         if house:
             house = db_service.update_house(house.id, **data)
         else:
-            house = db_service.add_house(**data)
+            house = db_service.create_house(**data)
 
         if house:
             return redirect(
@@ -115,15 +114,11 @@ def house_form(name=None):
             )
 
     form = HouseForm()
-    form.thumbnail.choices = (
-        [(img.id, img.filepath) for img in house.images] if house.images else []
-    )
     if house:
         data = {
-            "displayname": house.displayname,
+            "name": house.name,
             "description": house.description,
             "address": house.address,
-            "thumbnail": house.thumbnail.id if house.thumbnail else None,
         }
         form.process(data=data)
 
@@ -131,26 +126,33 @@ def house_form(name=None):
         "admin/house_form.html", form=form, base_data=app.config["BASE_DATA"]
     )
 
+
+@admin.route("/admin/house/delete/<int:id>", methods=["GET"])
+# @login_required
+def delete_house(id: int):
+    db_service.delete_house(id)
+    return redirect(url_for("admin.house_overview", base_data=app.config["BASE_DATA"]))
+
+
 @admin.route("/admin/images", methods=["GET", "POST"])
 # @login_required
 def image_form():
     form = ImageForm()
-    print("TEST")
     if form.validate_on_submit():
-        print(form.image_file)
-        print(form.image_file.data)
-
         file = form.image_file.data
         filename = secure_filename(file.filename)
-        file.save(os.path.join(
-            app.root_path, 'static', 'img', 'uploads', filename
-        ))
-        # TODO save in db
+        target_path = Path(app.root_path, "static", "img", "uploads")
+        target_path.mkdir(exist_ok=True, parents=True)
+        file.save(target_path / filename)
+
+        db_service.create_image(
+            image_url=str(target_path / filename),
+            title=form.title.data,
+            description=form.description.data,
+        )
         return redirect(url_for("admin.admin_page", base_data=app.config["BASE_DATA"]))
-    else:
-        print("why")
     return render_template(
-        "admin/apartment_image_form.html",
+        "admin/flat_image_form.html",
         form=form,
         base_data=app.config["BASE_DATA"],
     )

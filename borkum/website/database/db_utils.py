@@ -1,3 +1,6 @@
+from typing import Type
+
+
 def cast_to_model(obj, Model):
     from borkum.website.database.models import Image
 
