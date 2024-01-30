@@ -1,5 +1,6 @@
-from sqlalchemy import Boolean, Column, Integer, String, Text, ForeignKey, Table
+from sqlalchemy import Column, Integer, String, Text, ForeignKey, Table
 from sqlalchemy.orm import relationship
+
 from . import db
 
 
@@ -8,10 +9,12 @@ class House(db.Model):
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String(100), nullable=False, unique=True)
-    address = Column(String(255), nullable=False, index=True)
+    address = Column(String(255), nullable=False)
     description = Column(Text, nullable=True)
-    flats = relationship("Flat", back_populates="house")
-    images = relationship("Image", back_populates="house")
+
+    images = relationship("HouseImage", back_populates="house", lazy=True)
+
+    flats = relationship("Flat", back_populates="house", lazy=True)
 
     def __repr__(self):
         return f"House('{self.name}', '{self.address}')"
@@ -21,40 +24,47 @@ class Flat(db.Model):
     __tablename__ = "flats"
 
     id = Column(Integer, primary_key=True, index=True)
-    name = Column(String(100), nullable=False, unique=True)
+    name = Column(String(100), nullable=False)
     description = Column(Text, nullable=True)
     tags = db.relationship("Tag", secondary="flat_tag_association", backref="flats")
-    images = relationship("Image", back_populates="flat")
 
-    house_id = Column(
-        Integer, ForeignKey("houses.id", ondelete="CASCADE"), nullable=False, index=True
-    )
+    images = relationship("FlatImage", back_populates="flat", lazy=True)
+
+    house_id = Column(Integer, ForeignKey("houses.id"), nullable=False)
     house = relationship("House", back_populates="flats")
 
     def __repr__(self):
         return f"Flat('{self.name}')"
 
 
-class Image(db.Model):
-    __tablename__ = "images"
+class FlatImage(db.Model):
+    __tablename__ = "flat_images"
 
     id = Column(Integer, primary_key=True, index=True)
     image_url = Column(String(255), nullable=False, unique=True)
     title = Column(String(100), nullable=True)
     description = Column(Text, nullable=True)
 
-    flat_id = Column(
-        Integer, ForeignKey("flats.id", ondelete="CASCADE"), nullable=True, index=True
-    )
+    flat_id = Column(Integer, ForeignKey("flats.id"), nullable=False)
     flat = relationship("Flat", back_populates="images")
 
-    house_id = Column(
-        Integer, ForeignKey("houses.id", ondelete="CASCADE"), nullable=True, index=True
-    )
+    def __repr__(self):
+        return f"FlatImage('{self.image_url}')"
+
+
+class HouseImage(db.Model):
+    __tablename__ = "house_images"
+
+    id = Column(Integer, primary_key=True, index=True)
+    image_url = Column(String(255), nullable=False, unique=True)
+    title = Column(String(100), nullable=True)
+    description = Column(Text, nullable=True)
+
+    house_id = Column(Integer, ForeignKey("houses.id"), nullable=False)
     house = relationship("House", back_populates="images")
 
     def __repr__(self):
-        return f"Image('{self.image_url}')"
+        return f"HouseImage('{self.image_url}')"
 
 
 class Tag(db.Model):
@@ -85,10 +95,14 @@ class Category(db.Model):
         return f"Category('{self.name}')"
 
 
-# many-to-many relationships
+# Many-to-many relationship
 flat_tag_association = Table(
     "flat_tag_association",
-    db.metadata,
-    Column("flat_id", Integer, ForeignKey("flats.id", ondelete="CASCADE"), index=True),
-    Column("tag_id", Integer, ForeignKey("tags.id", ondelete="CASCADE"), index=True),
+    db.Model.metadata,
+    Column(
+        "flat_id", Integer, ForeignKey("flats.id", ondelete="CASCADE"), primary_key=True
+    ),
+    Column(
+        "tag_id", Integer, ForeignKey("tags.id", ondelete="CASCADE"), primary_key=True
+    ),
 )
