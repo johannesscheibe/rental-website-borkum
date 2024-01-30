@@ -1,8 +1,12 @@
+import os
 from pathlib import Path
+from typing import Literal
+import uuid
 
 from flask import Blueprint
 from flask import current_app as app
 from flask import redirect, render_template, request, url_for
+from loguru import logger
 from werkzeug.utils import secure_filename
 
 from borkum.website.database import db_service
@@ -29,8 +33,8 @@ def flat_overview():
     )
 
 
-@admin.route("/admin/flats/form", methods=["GET", "POST"], defaults={"id": None})
-@admin.route("/admin/flats/form/<int:id>", methods=["GET", "POST"])
+@admin.route("/admin/flats/add", methods=["GET", "POST"], defaults={"id": None})
+@admin.route("/admin/flats/<int:id>/update", methods=["GET", "POST"])
 # @login_required
 def flat_form(id=None):
     flat = db_service.get_flat_by_id(id) if id is not None else None
@@ -76,7 +80,7 @@ def flat_form(id=None):
     )
 
 
-@admin.route("/admin/flats/delete/<int:id>", methods=["GET"])
+@admin.route("/admin/flats/<int:id>/delete", methods=["GET"])
 # @login_required
 def delete_flat(id: int):
     db_service.delete_flat(id)
@@ -92,8 +96,8 @@ def house_overview():
     )
 
 
-@admin.route("/admin/houses/form", methods=["GET", "POST"], defaults={"id": None})
-@admin.route("/admin/houses/form/<int:id>", methods=["GET", "POST"])
+@admin.route("/admin/houses/add", methods=["GET", "POST"], defaults={"id": None})
+@admin.route("/admin/houses/<int:id>/update", methods=["GET", "POST"])
 # @login_required
 def house_form(id=None):
     house = db_service.get_house_by_id(id) if id is not None else None
@@ -127,32 +131,65 @@ def house_form(id=None):
     )
 
 
-@admin.route("/admin/house/delete/<int:id>", methods=["GET"])
+@admin.route("/admin/houses/<int:id>/delete", methods=["GET"])
 # @login_required
 def delete_house(id: int):
     db_service.delete_house(id)
     return redirect(url_for("admin.house_overview", base_data=app.config["BASE_DATA"]))
 
 
-@admin.route("/admin/images", methods=["GET", "POST"])
+@admin.route(
+    "/admin/houses/<int:id>/add-image",
+    methods=["GET", "POST"],
+    defaults={"object_type": "house"},
+)
+@admin.route(
+    "/admin/flats/<int:id>/add-image",
+    methods=["GET", "POST"],
+    defaults={"object_type": "flat"},
+)
 # @login_required
-def image_form():
+def add_image(id: int, object_type: Literal["house", "flat"]):
     form = ImageForm()
     if form.validate_on_submit():
         file = form.image_file.data
-        filename = secure_filename(file.filename)
-        target_path = Path(app.root_path, "static", "img", "uploads")
-        target_path.mkdir(exist_ok=True, parents=True)
-        file.save(target_path / filename)
+        ext = file.filename.split(".")[-1]
 
-        db_service.create_image(
-            image_url=str(target_path / filename),
-            title=form.title.data,
-            description=form.description.data,
-        )
-        return redirect(url_for("admin.admin_page", base_data=app.config["BASE_DATA"]))
+        image_dir = Path(app.config["STORAGE_PATH"], "img")
+        sub_dir = Path("uploads")
+        filename = str(uuid.uuid4()) + "." + ext
+
+        (image_dir / sub_dir).mkdir(exist_ok=True, parents=True)
+
+        file.save(image_dir / sub_dir / filename)
+
+        if object_type == "house":
+            db_service.create_house_image(
+                image_url=str(sub_dir / filename),
+                title=form.title.data,
+                description=form.description.data,
+                house_id=id,
+            )
+            return redirect(
+                url_for("admin.admin_page", base_data=app.config["BASE_DATA"])
+            )
+        elif object_type == "flat":
+            db_service.create_flat_image(
+                image_url=str(sub_dir / filename),
+                title=form.title.data,
+                description=form.description.data,
+                flat_id=id,
+            )
+            return redirect(
+                url_for("admin.admin_page", base_data=app.config["BASE_DATA"])
+            )
+        else:
+            logger.warning(
+                f"Tried to add image for an unknown object type {object_type}"
+            )
+
     return render_template(
-        "admin/flat_image_form.html",
+        "admin/image_form.html",
         form=form,
         base_data=app.config["BASE_DATA"],
     )

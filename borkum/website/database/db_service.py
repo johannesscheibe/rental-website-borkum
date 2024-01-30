@@ -133,14 +133,13 @@ def delete_flat(flat_id) -> bool:
 
 
 ### FlatImage CRUD Functions ###
-def create_flat_image(
-    image_url, title=None, description=None, flat_id=None, house_id=None
-):
+def create_flat_image(image_url, title=None, description=None, flat_id=None):
+    flat = get_flat_by_id(flat_id)
     new_image = FlatImage(
         image_url=image_url,
         title=title,
         description=description,
-        flat_id=flat_id,
+        flat_id=flat.id,
     )
 
     add_and_commit_to_db(new_image)
@@ -177,11 +176,12 @@ def delete_flat_image(image_id) -> bool:
 
 ### HouseImage CRUD Functions ###
 def create_house_image(image_url, title=None, description=None, house_id=None):
+    house = get_house_by_id(house_id)
     new_image = HouseImage(
         image_url=image_url,
         title=title,
         description=description,
-        house_id=house_id,
+        house_id=house.id,
     )
 
     add_and_commit_to_db(new_image)

@@ -49,7 +49,7 @@ class FlatImage(db.Model):
     flat = relationship("Flat", back_populates="images")
 
     def __repr__(self):
-        return f"FlatImage('{self.image_url}')"
+        return f"FlatImage('{self.image_url}, {self.flat=}')"
 
 
 class HouseImage(db.Model):
@@ -64,7 +64,7 @@ class HouseImage(db.Model):
     house = relationship("House", back_populates="images")
 
     def __repr__(self):
-        return f"HouseImage('{self.image_url}')"
+        return f"HouseImage('{self.image_url=}, {self.house=}')"
 
 
 class Tag(db.Model):

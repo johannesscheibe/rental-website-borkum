@@ -24,18 +24,19 @@
                 <tr>
                     <th id="id" scope="row" class="col-md-2">{{ house.id }}</th>
                     <td id="name" class="col-md-6">{{ house.name }}</td>
-                    <td class="col-md-1"><a href="/admin/images"><i class="fa fa-image" style="color:#0da699;"></i></a>
+                    <td class="col-md-1"><a href="/admin/houses/{{ house.id }}/add-image"><i class="fa fa-image"
+                                style="color:#0da699;"></i></a>
                     </td>
-                    <td class="col-md-1"><a href="/admin/houses/form/{{ house.id }}"><i class="fa fa-edit"
+                    <td class="col-md-1"><a href="/admin/houses/{{ house.id }}/update"><i class="fa fa-edit"
                                 style="color:#c9cc2a;"></i></a></td>
-                    <td class="col-md-1"><a href="/admin/houses/delete/{{ house.id }}"><i class="fa fa-trash"
+                    <td class="col-md-1"><a href="/admin/houses/{{ house.id }}/delete"><i class="fa fa-trash"
                                 style="color:#7d1414;"></i></a></td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
         <div class="col-lg-8 mx-auto text-center">
-            <a class="btn btn-primary" role="button" href="/admin/houses/form"><i class="fa fa-plus"
+            <a class="btn btn-primary" role="button" href="/admin/houses/add"><i class="fa fa-plus"
                     style="color:#ffffff;"></i> Neu</a>
         </div>
     </div>
