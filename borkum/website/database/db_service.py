@@ -53,6 +53,12 @@ def update_house(house_id, **kwargs) -> House | None:
 def delete_house(house_id) -> bool:
     house = get_house_by_id(house_id)
     if house:
+        for flat in house.flats:
+            for img in flat.images:
+                db.session.delete(img)
+            db.session.delete(flat)
+        for img in house.images:
+            db.session.delete(img)
         delete_and_commit_to_db(house)
         return True
     else:
@@ -125,6 +131,8 @@ def update_flat(flat_id, **kwargs) -> Flat | None:
 def delete_flat(flat_id) -> bool:
     flat = get_flat_by_id(flat_id)
     if flat:
+        for img in flat.images:
+            db.session.delete(img)
         delete_and_commit_to_db(flat)
         return True
     else:
@@ -167,6 +175,7 @@ def update_flat_image(image_id, **kwargs):
 def delete_flat_image(image_id) -> bool:
     image = get_flat_image_by_id(image_id)
     if image:
+        image.flat.images.remove(image)
         delete_and_commit_to_db(image)
         return True
     else:
@@ -209,6 +218,7 @@ def update_house_image(image_id, **kwargs):
 def delete_house_image(image_id) -> bool:
     image = get_house_image_by_id(image_id)
     if image:
+        image.house.images.remove(image)
         delete_and_commit_to_db(image)
         return True
     else:
@@ -291,6 +301,8 @@ def update_category(category_id, **kwargs) -> Category | None:
 def delete_category(category_id) -> bool:
     category = get_category_by_id(category_id)
     if category:
+        for tag in category.tags:
+            db.session.delete(tag)
         delete_and_commit_to_db(category)
         return True
     else:
@@ -308,11 +320,11 @@ def add_and_commit_to_db(obj):
         db.session.rollback()
         logger.error(f"Failed to create database object {obj}. Error: {e}")
         raise
+    finally:
+        db.session.close()
 
 
 def update_and_commit_to_db(obj, **kwargs):
-    print(obj)
-    print(kwargs)
     try:
         for key, value in kwargs.items():
             print(key, getattr(obj, key))
@@ -325,6 +337,8 @@ def update_and_commit_to_db(obj, **kwargs):
         db.session.rollback()
         logger.error(f"Failed to update database object {obj}. Error: {e}")
         raise
+    finally:
+        db.session.close()
 
 
 def delete_and_commit_to_db(obj):
@@ -336,3 +350,5 @@ def delete_and_commit_to_db(obj):
         db.session.rollback()
         logger.error(f"Failed to delete database object {obj}. Error: {e}")
         raise
+    finally:
+        db.session.close()
