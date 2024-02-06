@@ -41,7 +41,7 @@ class HouseForm(FlaskForm):
     submit = SubmitField("Speichern")
 
 
-class ImageForm(FlaskForm):
+class NewImageForm(FlaskForm):
     image_file = FileField(
         "Bild",
         validators=[
@@ -49,6 +49,13 @@ class ImageForm(FlaskForm):
             FileAllowed(["jpg", "jpeg", "png"], "Images only!"),
         ],
     )
+    title = StringField("Titel", validators=[InputRequired()])
+    description = StringField("Beschreibung", validators=[InputRequired()])
+
+    submit = SubmitField("Speichern")
+
+
+class UpdateImageForm(FlaskForm):
     title = StringField("Titel", validators=[InputRequired()])
     description = StringField("Beschreibung", validators=[InputRequired()])
 

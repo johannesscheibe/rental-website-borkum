@@ -1,12 +1,17 @@
 {% extends "base.html" %}
-{% block title %} Wohnung bearbeiten {% endblock %}
+{% block title %} Admin - Haus bearbeiten {% endblock %}
 
 {% block description %} {% endblock %}
 
 {% block content%}
 <header class="text-center text-white d-flex masthead bg-dark">
     <div class="container my-auto">
-        <h3> Wohnung</h3>
+        <div class="row">
+            <div class="col-lg-10 mx-auto text-center">
+                <h1 class="text"><strong>Haus bearbeiten/hinzufügen</strong></h1>
+                <hr>
+            </div>
+        </div>
         <form method="POST">
             {{ form.hidden_tag() }}
             <div class="form-group">

@@ -1,0 +1,42 @@
+{% extends "./base.html" %}
+{% block title %} Admin - Bilder bearbeiten {% endblock %}
+
+{% block description %} {% endblock %}
+
+{% block content%}
+<section class="text-white d-flex bg-dark">
+    <div class="container my-auto">
+        <div class="row">
+            <div class="col-lg-10 mx-auto text-center">
+                <h1 class="text-uppercase"><strong>Bilder von {{ obj.name}}</strong></h1>
+                <hr>
+            </div>
+        </div>
+        <table class="table text-left text-white">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Bild</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for image in images %}
+                <tr>
+                    <th id="id" scope="row" class="col-md-2">{{ image.id }}</th>
+                    <td id="name" class="col-md-6">{{ image.title }}</td>
+                    <td class="col-md-1"><a href="/admin/{{ object_type }}/{{ obj.id }}/image/{{ image.id }}/update"><i
+                                class="fa fa-edit" style="color:#c9cc2a;"></i></a></td>
+                    <td class="col-md-1"><a href="/admin/{{ object_type }}/{{ obj.id }}/image/{{ image.id }}/delete"><i
+                                class="fa fa-trash" style="color:#7d1414;"></i></a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="col-lg-8 mx-auto text-center">
+            <a class="btn btn-primary" role="button" href="/admin/{{ object_type }}/{{ obj.id }}/images/add"><i
+                    class="fa fa-plus" style="color:#ffffff;"></i> Neu</a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

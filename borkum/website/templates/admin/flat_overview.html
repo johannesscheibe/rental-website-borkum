@@ -1,5 +1,5 @@
 {% extends "./base.html" %}
-{% block title %} Wohnung bearbeiten {% endblock %}
+{% block title %} Admin - Wohnung bearbeiten {% endblock %}
 
 {% block description %} {% endblock %}
 
@@ -26,12 +26,12 @@
                     <th id="id" scope="row" class="col-md-2">{{ flat.id }}</th>
                     <td id="name" class="col-md-6">{{ flat.name }}</td>
                     <td id="house" class="col-md-6">{{ flat.house.name }}</td>
-                    <td class="col-md-1"><a href="/admin/flats/{{ flat.id }}/add-image"><i class="fa fa-image"
+                    <td class="col-md-1"><a href="/admin/flat/{{ flat.id }}/images"><i class="fa fa-image"
                                 style="color:#0da699;"></i></a>
                     </td>
-                    <td class="col-md-1"><a href="/admin/flats/{{ flat.id }}/update"><i class="fa fa-edit"
+                    <td class="col-md-1"><a href="/admin/flat/{{ flat.id }}/update"><i class="fa fa-edit"
                                 style="color:#c9cc2a;"></i></a></td>
-                    <td class="col-md-1"><a href="/admin/flats/{{ flat.id }}/delete"><i class="fa fa-trash"
+                    <td class="col-md-1"><a href="/admin/flat/{{ flat.id }}/delete"><i class="fa fa-trash"
                                 style="color:#7d1414;"></i></a></td>
                 </tr>
                 {% endfor %}

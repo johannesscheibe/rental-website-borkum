@@ -1,5 +1,5 @@
 {% extends "./base.html" %}
-{% block title %} Wohnung bearbeiten {% endblock %}
+{% block title %} Admin - Wohnung bearbeiten {% endblock %}
 
 {% block description %} {% endblock %}
 
@@ -8,7 +8,7 @@
     <div class="container my-auto">
         <div class="row">
             <div class="col-lg-10 mx-auto text-center">
-                <h1 class="text-uppercase"><strong>Wohnungen</strong></h1>
+                <h1 class="text-uppercase"><strong>Häuser</strong></h1>
                 <hr>
             </div>
         </div>
@@ -16,7 +16,7 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Wohnung</th>
+                    <th scope="col">Haus</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,12 +24,12 @@
                 <tr>
                     <th id="id" scope="row" class="col-md-2">{{ house.id }}</th>
                     <td id="name" class="col-md-6">{{ house.name }}</td>
-                    <td class="col-md-1"><a href="/admin/houses/{{ house.id }}/add-image"><i class="fa fa-image"
+                    <td class="col-md-1"><a href="/admin/house/{{ house.id }}/images"><i class="fa fa-image"
                                 style="color:#0da699;"></i></a>
                     </td>
-                    <td class="col-md-1"><a href="/admin/houses/{{ house.id }}/update"><i class="fa fa-edit"
+                    <td class="col-md-1"><a href="/admin/house/{{ house.id }}/update"><i class="fa fa-edit"
                                 style="color:#c9cc2a;"></i></a></td>
-                    <td class="col-md-1"><a href="/admin/houses/{{ house.id }}/delete"><i class="fa fa-trash"
+                    <td class="col-md-1"><a href="/admin/house/{{ house.id }}/delete"><i class="fa fa-trash"
                                 style="color:#7d1414;"></i></a></td>
                 </tr>
                 {% endfor %}
