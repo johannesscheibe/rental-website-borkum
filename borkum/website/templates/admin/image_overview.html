@@ -16,17 +16,24 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
+                    <th scope="col"></th>
                     <th scope="col">Bild</th>
                 </tr>
             </thead>
             <tbody>
                 {% for image in images %}
                 <tr>
-                    <th id="id" scope="row" class="col-md-2">{{ image.id }}</th>
-                    <td id="name" class="col-md-6">{{ image.title }}</td>
-                    <td class="col-md-1"><a href="/admin/{{ object_type }}/{{ obj.id }}/image/{{ image.id }}/update"><i
+                    <th id="id" scope="row" class="col-md-1">
+                        <img class="img-fluid border rounded" realsrc="/picture/{{ image.image_url }}"
+                            style="object-fit: cover; height: 100%; width: 100%;">
+                    </th>
+                    <td class="col-md-1"></td>
+                    <td id="name" class="col-md-6 align-middle">{{ image.title }}</td>
+                    <td class="col-md-1 align-middle text-center"><a
+                            href="/admin/{{ object_type }}/{{ obj.id }}/image/{{ image.id }}/update"><i
                                 class="fa fa-edit" style="color:#c9cc2a;"></i></a></td>
-                    <td class="col-md-1"><a href="/admin/{{ object_type }}/{{ obj.id }}/image/{{ image.id }}/delete"><i
+                    <td class="col-md-1 align-middle text-center"><a
+                            href="/admin/{{ object_type }}/{{ obj.id }}/image/{{ image.id }}/delete"><i
                                 class="fa fa-trash" style="color:#7d1414;"></i></a></td>
                 </tr>
                 {% endfor %}
