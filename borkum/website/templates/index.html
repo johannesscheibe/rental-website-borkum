@@ -8,7 +8,7 @@ Hochseeklima, am Puls der Gezeiten . . . Demut, Freiheit . . . Insel {% endblock
 {% block css %}{% endblock %}
 
 {% block content%}
-<header class="text-center text-white d-flex masthead" realsrc="/picture/header.png" style="background-image:url();">
+<header class="text-center text-white d-flex masthead" realsrc="/images/header.png" style="background-image:url();">
     <div class="container my-auto">
         <div class="row">
             <div class="col-lg-10 mx-auto">
@@ -78,7 +78,8 @@ Hochseeklima, am Puls der Gezeiten . . . Demut, Freiheit . . . Insel {% endblock
             {% for flat in flats %}
             <div class="col-sm-6 col-lg-4">
                 <a class="portfolio-box" href="/flat/{{ flat.name }}"><img class="img-fluid"
-                        realsrc="/picture/{{ flat.images[0].image_url if flat.images else None }}" realscaling="0.5">
+                        realsrc={% if flat.images | length > 0 %}"/images/objects/{{ flat.id }}/{{ flat.images[0].id}}.webp"
+                    {% else %}"/images/placeholder.png" {% endif %} realscaling="0.5">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
                             <div class="project-category text-faded"><span>Ferienwohnung</span></div>
@@ -104,11 +105,11 @@ Hochseeklima, am Puls der Gezeiten . . . Demut, Freiheit . . . Insel {% endblock
         <div class="row">
             <div class="col-lg-4 text-center ms-auto"><i class="fa fa-envelope-o fa-3x mb-3 sr-contact"
                     data-aos="zoom-in" data-aos-duration="300" data-aos-delay="150" data-aos-once="true"></i>
-                <p><a href="mailto:{{ base_data.contact.email }}">{{ base_data.contact.email }}</a></p>
+                <p><a href="mailto:{{ base_data.email }}">{{ base_data.email }}</a></p>
             </div>
             <div class="col-lg-4 text-center me-auto"><i class="fa fa-phone fa-3x mb-3 sr-contact" data-aos="zoom-in"
                     data-aos-duration="300" data-aos-delay="150" data-aos-once="true"></i>
-                <p>{{ base_data.contact.phone }}</p>
+                <p>{{ base_data.phone }}</p>
             </div>
         </div>
     </div>

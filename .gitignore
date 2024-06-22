@@ -134,5 +134,5 @@ cache/
 
 .vscode/
 *.db
+borkum/website/static/images/*
 borkum/website/static/img/*
-scripts/*

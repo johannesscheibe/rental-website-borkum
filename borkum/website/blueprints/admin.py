@@ -1,33 +1,36 @@
 import os
+import uuid
 from pathlib import Path
 from typing import Literal
-import uuid
 
 from flask import (
     Blueprint,
-    current_app as app,
     redirect,
     render_template,
     request,
     url_for,
+)
+from flask import (
+    current_app as app,
 )
 from loguru import logger
 from werkzeug.utils import secure_filename
 
 from borkum.website.database import db_service
 
+from .utils import get_rental_objects
 from .utils.forms import FlatForm, HouseForm, NewImageForm, UpdateImageForm
 
 admin = Blueprint("admin", __name__)
 
 
-def get_base_data():
-    return app.config["BASE_DATA"]
-
-
 @admin.route("/admin", methods=["GET"])
 def admin_page():
-    return render_template("admin/index.html", base_data=get_base_data())
+    return render_template(
+        "admin/index.html",
+        rental_objects=get_rental_objects(),
+        base_data=db_service.get_contact_information(),
+    )
 
 
 @admin.route("/admin/flats", methods=["GET"])
@@ -35,7 +38,8 @@ def flat_overview():
     flats = db_service.get_all_flats()
     return render_template(
         "admin/flat_overview.html",
-        base_data=get_base_data(),
+        rental_objects=get_rental_objects(),
+        base_data=db_service.get_contact_information(),
         flats=flats,
     )
 
@@ -80,7 +84,11 @@ def flat_form(flat_id: int | None = None):
         form.process(data=data)
 
     return render_template(
-        "admin/flat_form.html", form=form, base_data=get_base_data(), flat=flat
+        "admin/flat_form.html",
+        form=form,
+        rental_objects=get_rental_objects(),
+        base_data=db_service.get_contact_information(),
+        flat=flat,
     )
 
 
@@ -94,7 +102,10 @@ def delete_flat(flat_id: int):
 def house_overview():
     houses = db_service.get_all_houses()
     return render_template(
-        "admin/house_overview.html", base_data=get_base_data(), houses=houses
+        "admin/house_overview.html",
+        rental_objects=get_rental_objects(),
+        base_data=db_service.get_contact_information(),
+        houses=houses,
     )
 
 
@@ -125,7 +136,11 @@ def house_form(house_id: int | None = None):
         form.process(data=data)
 
     return render_template(
-        "admin/house_form.html", form=form, base_data=get_base_data(), house=house
+        "admin/house_form.html",
+        form=form,
+        rental_objects=get_rental_objects(),
+        base_data=db_service.get_contact_information(),
+        house=house,
     )
 
 
@@ -145,7 +160,8 @@ def image_overview(object_type: Literal["house", "flat"], obj_id: int):
     images = obj.images
     return render_template(
         "admin/image_overview.html",
-        base_data=get_base_data(),
+        rental_objects=get_rental_objects(),
+        base_data=db_service.get_contact_information(),
         images=images,
         obj=obj,
         object_type=object_type,
@@ -186,7 +202,10 @@ def add_image(object_type: Literal["house", "flat"], obj_id: int):
         )
 
     return render_template(
-        "admin/image_form_add.html", form=form, base_data=get_base_data()
+        "admin/image_form_add.html",
+        form=form,
+        rental_objects=get_rental_objects(),
+        base_data=db_service.get_contact_information(),
     )
 
 
@@ -222,7 +241,8 @@ def update_image(object_type: Literal["house", "flat"], obj_id: int, img_id: int
     return render_template(
         "admin/image_form_update.html",
         form=form,
-        base_data=get_base_data(),
+        rental_objects=get_rental_objects(),
+        base_data=db_service.get_contact_information(),
         image=image,
     )
 

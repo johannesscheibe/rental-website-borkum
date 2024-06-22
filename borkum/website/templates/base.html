@@ -33,7 +33,7 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
 
-                    {% for house in base_data.rental_objects %}
+                    {% for house in rental_objects %}
 
 
                     <li class="nav-item dropdown">
@@ -109,11 +109,11 @@
                     <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                         <!-- Content -->
                         <h6 class="text-uppercase fw-bold mb-4">
-                            {{ base_data.contact.name }}
+                            {{ base_data.name }}
                         </h6>
                         <p>
                             Vermietunung aus Leidenschaft seit über 15 Jahren. <br> Weitere Informationen finden Sie
-                            auf: <a href="{{ base_data.contact.traumfewo_link }}"> {{base_data.contact.traumfewo_name
+                            auf: <a href="{{ base_data.url }}"> {{base_data.url_name
                                 }}</a>
                         </p>
                     </div>
@@ -144,10 +144,10 @@
                         <h6 class="text-uppercase fw-bold mb-4">
                             Kontakt
                         </h6>
-                        <p><i class="fa fa-home me-3"></i> {{ base_data.contact.street }}, {{ base_data.contact.city }}
+                        <p><i class="fa fa-home me-3"></i> {{ base_data.street }}, {{ base_data.city }}
                         </p>
-                        <p><i class="fa fa-envelope me-3"></i>{{ base_data.contact.email }}</p>
-                        <p><i class="fa fa-phone me-3"></i>{{ base_data.contact.phone }}</p>
+                        <p><i class="fa fa-envelope me-3"></i>{{ base_data.email }}</p>
+                        <p><i class="fa fa-phone me-3"></i>{{ base_data.phone }}</p>
                     </div>
                     <!-- Grid column -->
                 </div>

@@ -1,13 +1,15 @@
-from sqlalchemy import Column, Integer, String, Text, ForeignKey, Table
+from sqlalchemy import Column, ForeignKey, Integer, String, Table, Text
+
 from sqlalchemy.orm import relationship
 
 from . import db
 
+# Define the models#
 
 class House(db.Model):
     __tablename__ = "houses"
 
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(String(100), primary_key=True, index=True)
     name = Column(String(100), nullable=False, unique=True)
     address = Column(String(255), nullable=False)
     description = Column(Text, nullable=True)
@@ -23,14 +25,14 @@ class House(db.Model):
 class Flat(db.Model):
     __tablename__ = "flats"
 
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(String(100), primary_key=True, index=True)
     name = Column(String(100), nullable=False)
     description = Column(Text, nullable=True)
     tags = db.relationship("Tag", secondary="flat_tag_association", backref="flats")
 
     images = relationship("FlatImage", back_populates="flat", lazy=True)
 
-    house_id = Column(Integer, ForeignKey("houses.id"), nullable=False)
+    house_id = Column(String(100), ForeignKey("houses.id"), nullable=False)
     house = relationship("House", back_populates="flats")
 
     def __repr__(self):
@@ -40,27 +42,25 @@ class Flat(db.Model):
 class FlatImage(db.Model):
     __tablename__ = "flat_images"
 
-    id = Column(Integer, primary_key=True, index=True)
-    image_url = Column(String(255), nullable=False, unique=True)
+    id = Column(String(100), primary_key=True, index=True)
     title = Column(String(100), nullable=True)
     description = Column(Text, nullable=True)
 
-    flat_id = Column(Integer, ForeignKey("flats.id"), nullable=False)
+    flat_id = Column(String(100), ForeignKey("flats.id"), nullable=False)
     flat = relationship("Flat", back_populates="images")
 
     def __repr__(self):
-        return f"FlatImage('{self.image_url}, {self.flat=}')"
+        return f"FlatImage('{self.path}, {self.flat=}')"
 
 
 class HouseImage(db.Model):
     __tablename__ = "house_images"
 
-    id = Column(Integer, primary_key=True, index=True)
-    image_url = Column(String(255), nullable=False, unique=True)
+    id = Column(String(100), primary_key=True, index=True)
     title = Column(String(100), nullable=True)
     description = Column(Text, nullable=True)
 
-    house_id = Column(Integer, ForeignKey("houses.id"), nullable=False)
+    house_id = Column(String(100), ForeignKey("houses.id"), nullable=False)
     house = relationship("House", back_populates="images")
 
     def __repr__(self):
@@ -70,7 +70,7 @@ class HouseImage(db.Model):
 class Tag(db.Model):
     __tablename__ = "tags"
 
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(String(100), primary_key=True, index=True)
     name = Column(String(50), nullable=False, unique=True)
     category_id = Column(
         Integer,
@@ -87,7 +87,7 @@ class Tag(db.Model):
 class Category(db.Model):
     __tablename__ = "categories"
 
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(String(100), primary_key=True, index=True)
     name = Column(String(50), nullable=False, unique=True)
     tags = relationship("Tag", back_populates="category")
 
@@ -106,3 +106,23 @@ flat_tag_association = Table(
         "tag_id", Integer, ForeignKey("tags.id", ondelete="CASCADE"), primary_key=True
     ),
 )
+
+class Contact(db.Model):
+    __tablename__ = "contact_information"
+    id = Column(String(100), primary_key=True, index=True)
+    name = Column(String(100), nullable=False, unique=True)
+    street = Column(String(255), nullable=False)
+    city = Column(String(100), nullable=False)
+    phone = Column(String(20), nullable=False)
+    email = Column(String(100), nullable=False)
+    url_name = Column(String(100), nullable=True)
+    url = Column(String(255), nullable=True)
+    _instance = None
+
+    def __new__(cls, *args, **kwargs):
+        if not cls._instance:
+            cls._instance = super().__new__(cls)
+        return cls._instance
+
+    def __repr__(self):
+        return f"Contact('{self.name}', '{self.city}')"

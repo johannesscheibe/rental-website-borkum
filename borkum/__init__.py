@@ -21,12 +21,3 @@ def get_rental_objects():
         }
         for house in db_service.get_all_houses()
     ]
-    app.config["BASE_DATA"]["contact"] = {
-        "name": "Ferienwohnungen Scheibe",
-        "street": "Rüschenweg 46",
-        "city": "26188 Edewecht",
-        "phone": "04486 / 920167",
-        "email": "vermietung.scheibe@gmail.com",
-        "traumfewo_name": "traum-ferienwohnungen.de",
-        "traumfewo_link": "https://www.traum-ferienwohnungen.de/objektuebersicht/scheibe/",
-    }

@@ -1,4 +1,4 @@
-from .models import House, Flat, FlatImage, HouseImage, Tag, Category
+from .models import Contact, House, Flat, FlatImage, HouseImage, Tag, Category
 from . import db
 from loguru import logger
 
@@ -308,6 +308,41 @@ def delete_category(category_id) -> bool:
     else:
         logger.warning(f"No category found with ID {category_id} for deletion")
     return False
+
+
+### Contact CRUD Functions ###
+def create_contact_information(name, street, city, phone, email, url_name, url) -> Contact:
+    new_contact = Contact(
+        name=name,
+        street=street,
+        city=city,
+        phone=phone,
+        email=email,
+        url_name=url_name,
+        url=url,
+    )
+    add_and_commit_to_db(new_contact)
+    return new_contact
+
+
+def get_contact_information() -> dict:
+    contact = db.session.query(Contact).first()
+    if contact:
+        return contact
+    else:
+        logger.warning("No contact information found")
+    return {}
+
+
+def update_contact_information(**kwargs) -> Contact | None:
+    contact = db.session.query(Contact).first()
+    if contact:
+        update_and_commit_to_db(contact, **kwargs)
+        return contact
+    else:
+        logger.warning("No contact information found for update")
+    return None
+
 
 
 # Helper Functions
