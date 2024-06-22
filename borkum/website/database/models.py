@@ -9,7 +9,7 @@ from . import db
 class House(db.Model):
     __tablename__ = "houses"
 
-    id = Column(String(100), primary_key=True, index=True)
+    id = Column(String(100), primary_key=True)
     name = Column(String(100), nullable=False, unique=True)
     address = Column(String(255), nullable=False)
     description = Column(Text, nullable=True)
@@ -25,7 +25,7 @@ class House(db.Model):
 class Flat(db.Model):
     __tablename__ = "flats"
 
-    id = Column(String(100), primary_key=True, index=True)
+    id = Column(String(100), primary_key=True)
     name = Column(String(100), nullable=False)
     description = Column(Text, nullable=True)
     tags = db.relationship("Tag", secondary="flat_tag_association", backref="flats")
@@ -42,7 +42,7 @@ class Flat(db.Model):
 class FlatImage(db.Model):
     __tablename__ = "flat_images"
 
-    id = Column(String(100), primary_key=True, index=True)
+    id = Column(String(100), primary_key=True)
     title = Column(String(100), nullable=True)
     description = Column(Text, nullable=True)
 
@@ -56,7 +56,7 @@ class FlatImage(db.Model):
 class HouseImage(db.Model):
     __tablename__ = "house_images"
 
-    id = Column(String(100), primary_key=True, index=True)
+    id = Column(String(100), primary_key=True)
     title = Column(String(100), nullable=True)
     description = Column(Text, nullable=True)
 
@@ -70,7 +70,7 @@ class HouseImage(db.Model):
 class Tag(db.Model):
     __tablename__ = "tags"
 
-    id = Column(String(100), primary_key=True, index=True)
+    id = Column(String(100), primary_key=True)
     name = Column(String(50), nullable=False, unique=True)
     category_id = Column(
         Integer,
@@ -87,7 +87,7 @@ class Tag(db.Model):
 class Category(db.Model):
     __tablename__ = "categories"
 
-    id = Column(String(100), primary_key=True, index=True)
+    id = Column(String(100), primary_key=True)
     name = Column(String(50), nullable=False, unique=True)
     tags = relationship("Tag", back_populates="category")
 
@@ -109,7 +109,7 @@ flat_tag_association = Table(
 
 class Contact(db.Model):
     __tablename__ = "contact_information"
-    id = Column(String(100), primary_key=True, index=True)
+    id = Column(String(100), primary_key=True)
     name = Column(String(100), nullable=False, unique=True)
     street = Column(String(255), nullable=False)
     city = Column(String(100), nullable=False)

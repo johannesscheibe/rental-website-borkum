@@ -1,3 +1,4 @@
+import uuid
 from .models import Contact, House, Flat, FlatImage, HouseImage, Tag, Category
 from . import db
 from loguru import logger
@@ -5,7 +6,8 @@ from loguru import logger
 
 ### House CRUD Functions ###
 def create_house(name, address, description=None) -> House:
-    new_house = House(name=name, address=address, description=description)
+    id = name.replace(" ", "-").lower()
+    new_house = House(id=id, name=name, address=address, description=description)
     add_and_commit_to_db(new_house)
     return new_house
 
@@ -74,7 +76,8 @@ def create_flat(
     tags=[],
     tag_names=[],
 ) -> Flat:
-    new_flat = Flat(name=name, description=description, house_id=house_id, tags=tags)
+    id = name.replace(" ", "-").lower()
+    new_flat = Flat(id=id, name=name, description=description, house_id=house_id, tags=tags)
 
     # Add tags to the flat
     for tag_name in tag_names:
@@ -143,7 +146,10 @@ def delete_flat(flat_id) -> bool:
 ### FlatImage CRUD Functions ###
 def create_flat_image(image_url, title=None, description=None, flat_id=None):
     flat = get_flat_by_id(flat_id)
+    
+    id=str(uuid.uuid4()) 
     new_image = FlatImage(
+        id=id,
         image_url=image_url,
         title=title,
         description=description,
@@ -186,7 +192,10 @@ def delete_flat_image(image_id) -> bool:
 ### HouseImage CRUD Functions ###
 def create_house_image(image_url, title=None, description=None, house_id=None):
     house = get_house_by_id(house_id)
+
+    id=str(uuid.uuid4())
     new_image = HouseImage(
+        id=id,
         image_url=image_url,
         title=title,
         description=description,
@@ -234,7 +243,8 @@ def create_tag(name, category_id) -> Tag:
         logger.warning(f"Tag with name {name} already exists. Ignoring that.")
         return existing_tag
 
-    new_tag = Tag(name=name, category_id=category_id)
+    id = name.replace(" ", "-").lower()
+    new_tag = Tag(id=id,name=name, category_id=category_id)
     add_and_commit_to_db(new_tag)
     return new_tag
 
@@ -275,7 +285,8 @@ def create_category(name) -> Category:
         logger.warning(f"Category with name {name} already exists. Ignoring that.")
         return existing_category
 
-    new_category = Category(name=name)
+    id = name.replace(" ", "-").lower()
+    new_category = Category(id=id, name=name)
     add_and_commit_to_db(new_category)
     return new_category
 
@@ -311,8 +322,12 @@ def delete_category(category_id) -> bool:
 
 
 ### Contact CRUD Functions ###
-def create_contact_information(name, street, city, phone, email, url_name, url) -> Contact:
+def create_contact_information(
+    name, street, city, phone, email, url_name, url
+) -> Contact:
+    id = name.replace(" ", "-").lower()
     new_contact = Contact(
+        id=id,
         name=name,
         street=street,
         city=city,
@@ -342,7 +357,6 @@ def update_contact_information(**kwargs) -> Contact | None:
     else:
         logger.warning("No contact information found for update")
     return None
-
 
 
 # Helper Functions
