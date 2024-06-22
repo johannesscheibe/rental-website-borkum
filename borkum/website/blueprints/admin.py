@@ -45,8 +45,8 @@ def flat_overview():
 
 
 @admin.route("/admin/flats/add", methods=["GET", "POST"])
-@admin.route("/admin/flat/<int:flat_id>/update", methods=["GET", "POST"])
-def flat_form(flat_id: int | None = None):
+@admin.route("/admin/flat/<string:flat_id>/update", methods=["GET", "POST"])
+def flat_form(flat_id: str | None = None):
     form = FlatForm()
 
     flat = db_service.get_flat_by_id(flat_id) if flat_id is not None else None
@@ -92,8 +92,8 @@ def flat_form(flat_id: int | None = None):
     )
 
 
-@admin.route("/admin/flat/<int:flat_id>/delete", methods=["GET"])
-def delete_flat(flat_id: int):
+@admin.route("/admin/flat/<string:flat_id>/delete", methods=["GET"])
+def delete_flat(flat_id: str):
     db_service.delete_flat(flat_id)
     return redirect(url_for("admin.flat_overview"))
 
@@ -110,8 +110,8 @@ def house_overview():
 
 
 @admin.route("/admin/houses/add", methods=["GET", "POST"])
-@admin.route("/admin/house/<int:house_id>/update", methods=["GET", "POST"])
-def house_form(house_id: int | None = None):
+@admin.route("/admin/house/<string:house_id>/update", methods=["GET", "POST"])
+def house_form(house_id: str | None = None):
     form = HouseForm()
     house = db_service.get_house_by_id(house_id) if house_id is not None else None
     if request.method == "POST" and form.validate_on_submit():
@@ -144,14 +144,14 @@ def house_form(house_id: int | None = None):
     )
 
 
-@admin.route("/admin/house/<int:house_id>/delete", methods=["GET"])
-def delete_house(house_id: int):
+@admin.route("/admin/house/<string:house_id>/delete", methods=["GET"])
+def delete_house(house_id: str):
     db_service.delete_house(house_id)
     return redirect(url_for("admin.house_overview"))
 
 
-@admin.route("/admin/<object_type>/<int:obj_id>/images", methods=["GET"])
-def image_overview(object_type: Literal["house", "flat"], obj_id: int):
+@admin.route("/admin/<object_type>/<string:obj_id>/images", methods=["GET"])
+def image_overview(object_type: Literal["house", "flat"], obj_id: str):
     obj_getter = getattr(db_service, f"get_{object_type}_by_id")
     obj = obj_getter(obj_id)
 
@@ -168,8 +168,8 @@ def image_overview(object_type: Literal["house", "flat"], obj_id: int):
     )
 
 
-@admin.route("/admin/<object_type>/<int:obj_id>/images/add", methods=["GET", "POST"])
-def add_image(object_type: Literal["house", "flat"], obj_id: int):
+@admin.route("/admin/<object_type>/<string:obj_id>/images/add", methods=["GET", "POST"])
+def add_image(object_type: Literal["house", "flat"], obj_id: str):
     form = NewImageForm()
     if request.method == "POST" and form.validate_on_submit():
         file = form.image_file.data
@@ -210,10 +210,10 @@ def add_image(object_type: Literal["house", "flat"], obj_id: int):
 
 
 @admin.route(
-    "/admin/<object_type>/<int:obj_id>/image/<int:img_id>/update",
+    "/admin/<object_type>/<string:obj_id>/image/<string:img_id>/update",
     methods=["GET", "POST"],
 )
-def update_image(object_type: Literal["house", "flat"], obj_id: int, img_id: int):
+def update_image(object_type: Literal["house", "flat"], obj_id: str, img_id: str):
     form = UpdateImageForm()
     image_getter = getattr(db_service, f"get_{object_type}_image_by_id")
     image = image_getter(img_id)
@@ -248,11 +248,11 @@ def update_image(object_type: Literal["house", "flat"], obj_id: int, img_id: int
 
 
 @admin.route(
-    "/admin/<object_type>/<int:obj_id>/image/<int:img_id>/delete",
+    "/admin/<object_type>/<string:obj_id>/image/<string:img_id>/delete",
     methods=["GET", "POST"],
 )
-@admin.route("/admin/house/<int:house_id>/delete", methods=["GET"])
-def delete_image(object_type: Literal["house", "flat"], obj_id: int, img_id: int):
+@admin.route("/admin/house/<string:house_id>/delete", methods=["GET"])
+def delete_image(object_type: Literal["house", "flat"], obj_id: str, img_id: str):
     image_deleter = getattr(db_service, f"delete_{object_type}_image")
     image_deleter(img_id)
 
