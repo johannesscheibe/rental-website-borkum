@@ -14,7 +14,7 @@
         </div>
         <div class="row">
             <div class="col-md-6 mx-auto text-center">
-                <img class="img-fluid border rounded" realsrc="/picture/{{ image.image_url }}"
+                <img class="img-fluid border rounded" realsrc="/images/objects/{{ image.flat_id if image.flat_id is defined else image.house_id }}/{{ image.id }}.webp"
                     style="object-fit: cover; height: 100%; width: 100%;">
             </div>
         </div>
