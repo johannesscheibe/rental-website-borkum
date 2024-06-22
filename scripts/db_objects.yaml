@@ -1,0 +1,361 @@
+categories:
+- id: 5e743d7e-a71a-42a1-a73e-1bc084cd642b
+  name: Ausstattung
+- id: 5bd38f7a-28e6-4e57-a7cb-399374c2d418
+  name: "R\xE4umlichkeiten"
+- id: 845d2ff8-5b24-498d-8254-af60ef35648e
+  name: Eigenschaften
+contact_information:
+- city: 26188 Edewecht
+  email: vermietung.scheibe@gmail.com
+  id: 36d04eb9-d41f-4188-8f45-84ff80f32ced
+  name: Ferienwohnungen Scheibe
+  phone: 04486 / 920167
+  street: "R\xFCschenweg 46"
+  url: https://www.traum-ferienwohnungen.de/objektuebersicht/scheibe/
+  url_name: traum-ferienwohnungen.de
+flat_images:
+- description: null
+  flat_id: 2b191c7f-8951-4476-9067-7bd33e3097aa
+  id: 17ae00c1-2011-424e-9ca1-f9dc267c2916
+  title: Wohnzimmer
+- description: null
+  flat_id: 2b191c7f-8951-4476-9067-7bd33e3097aa
+  id: c92a0d57-97e7-4643-8b10-f8fc074c2ce0
+  title: Wohnzimmer
+- description: null
+  flat_id: 2b191c7f-8951-4476-9067-7bd33e3097aa
+  id: d5f9554e-87da-4466-ab22-77f68457198d
+  title: Schlafzimmer
+- description: null
+  flat_id: 2b191c7f-8951-4476-9067-7bd33e3097aa
+  id: 91e5d2cf-fcb0-4c34-b59e-e8d2a5971ae5
+  title: Schlafzimmer
+- description: null
+  flat_id: 2b191c7f-8951-4476-9067-7bd33e3097aa
+  id: 824a1e34-4f14-4a95-a15c-8c778508967e
+  title: "K\xFCche"
+- description: null
+  flat_id: 2b191c7f-8951-4476-9067-7bd33e3097aa
+  id: d663240b-5582-4dda-b2bd-047451ea1a86
+  title: Balkon
+- description: null
+  flat_id: 0c247606-f3b0-40d6-a4cd-d3d928a7c643
+  id: e019deec-e524-4408-9625-e5b7be6d4b4b
+  title: Wohnzimmer
+- description: null
+  flat_id: 0c247606-f3b0-40d6-a4cd-d3d928a7c643
+  id: 3449fde8-59e9-4657-a3e6-77d4f2c7165a
+  title: Wohnzimmer
+- description: null
+  flat_id: 0c247606-f3b0-40d6-a4cd-d3d928a7c643
+  id: fb241af1-d71f-4ec2-943b-50f326e2123c
+  title: Schlafzimmer
+- description: null
+  flat_id: 0c247606-f3b0-40d6-a4cd-d3d928a7c643
+  id: 90a6ae0f-1a3c-467f-b08b-6dc729f68125
+  title: Bad
+- description: null
+  flat_id: 0c247606-f3b0-40d6-a4cd-d3d928a7c643
+  id: 7fe09a82-554e-42cf-aad4-feb29b819d3d
+  title: Bad
+- description: null
+  flat_id: 0c247606-f3b0-40d6-a4cd-d3d928a7c643
+  id: 1413171a-65b6-4887-b7eb-5591d0729788
+  title: "K\xFCche"
+- description: null
+  flat_id: 1293ebe0-2008-4ca7-9b4b-89862768b08f
+  id: 5dbdc5f4-73ea-4f2f-b476-80d5dc832ebb
+  title: Wohnzimmer
+- description: null
+  flat_id: 1293ebe0-2008-4ca7-9b4b-89862768b08f
+  id: 2aafabbb-750b-4b37-a8df-8ce02ff84eb0
+  title: Wohnzimmer
+- description: null
+  flat_id: 1293ebe0-2008-4ca7-9b4b-89862768b08f
+  id: 20525fee-9c29-4724-b844-1cf575e5dbbe
+  title: Bad
+- description: null
+  flat_id: 1293ebe0-2008-4ca7-9b4b-89862768b08f
+  id: 9c405dff-d429-4f25-a4b7-4e60473abb43
+  title: Wohnzimmer
+- description: null
+  flat_id: 1293ebe0-2008-4ca7-9b4b-89862768b08f
+  id: dcf1c2c8-6437-4f30-8b68-15ad957cc318
+  title: Wohnzimmer
+- description: null
+  flat_id: 1293ebe0-2008-4ca7-9b4b-89862768b08f
+  id: ba560a4e-0f3c-4f42-90b0-e9656cb01016
+  title: Wohnzimmer
+- description: null
+  flat_id: cec9a18b-9346-4b81-9ac6-a8565bde8ff5
+  id: 0771a4d2-96ef-4929-80b5-0aa90fe8d938
+  title: Wohnzimmer
+- description: null
+  flat_id: cec9a18b-9346-4b81-9ac6-a8565bde8ff5
+  id: 8874a979-c0ca-44b2-aacb-88f382ab6751
+  title: Schlafzimmer
+- description: null
+  flat_id: cec9a18b-9346-4b81-9ac6-a8565bde8ff5
+  id: 009f06fc-bef3-4654-ab78-1a0d373f72d3
+  title: "K\xFCche"
+- description: null
+  flat_id: cec9a18b-9346-4b81-9ac6-a8565bde8ff5
+  id: cf5f6a8c-70e7-4782-9520-df7ca2c72c08
+  title: Ausblick
+- description: null
+  flat_id: cec9a18b-9346-4b81-9ac6-a8565bde8ff5
+  id: 84699df6-c588-406a-9584-bb0b72230b2f
+  title: "K\xFCche"
+- description: null
+  flat_id: cec9a18b-9346-4b81-9ac6-a8565bde8ff5
+  id: 396b93c3-5379-4de1-ac60-2dcbf71f9111
+  title: Wohnzimmer
+- description: null
+  flat_id: cec9a18b-9346-4b81-9ac6-a8565bde8ff5
+  id: 5d0d2d6b-83e3-4e8b-8d43-3b745cd9955b
+  title: Schlafzimmer
+- description: null
+  flat_id: cec9a18b-9346-4b81-9ac6-a8565bde8ff5
+  id: dd85a1fd-9ae4-468f-981e-35908c459c0c
+  title: Wohnzimmer
+- description: null
+  flat_id: cec9a18b-9346-4b81-9ac6-a8565bde8ff5
+  id: 59a3c0c8-38f5-4580-9dff-b3fff760b50f
+  title: Bad
+- description: null
+  flat_id: cec9a18b-9346-4b81-9ac6-a8565bde8ff5
+  id: dcbe6443-1035-4e42-8cb8-a0b27c03817e
+  title: Bad
+- description: null
+  flat_id: d1cab4a4-42c6-4504-8b43-363c4c8e149b
+  id: 649075c0-01ec-427a-b56d-63890d265e77
+  title: Wohnzimmer
+- description: null
+  flat_id: d1cab4a4-42c6-4504-8b43-363c4c8e149b
+  id: 73ac426d-346d-4287-8877-a8d3c1d175eb
+  title: Wohnzimmer
+- description: null
+  flat_id: d1cab4a4-42c6-4504-8b43-363c4c8e149b
+  id: bb452124-5327-486a-b0f9-89b1eee25407
+  title: Wohnzimmer
+- description: null
+  flat_id: d1cab4a4-42c6-4504-8b43-363c4c8e149b
+  id: 70db5362-17b6-43b2-8c47-6afe2befd78e
+  title: Wohnzimmer
+- description: null
+  flat_id: d1cab4a4-42c6-4504-8b43-363c4c8e149b
+  id: 881cf95c-54b0-49c6-b798-18ece749a6b3
+  title: Wohnzimmer
+- description: null
+  flat_id: d1cab4a4-42c6-4504-8b43-363c4c8e149b
+  id: 149ee1b2-85ac-406f-939c-f18a9240166d
+  title: Schlafzimmer
+- description: null
+  flat_id: d1cab4a4-42c6-4504-8b43-363c4c8e149b
+  id: 0e9386e9-6c31-40d2-a297-e44b0fd66f08
+  title: Schlafzimmer
+- description: null
+  flat_id: d1cab4a4-42c6-4504-8b43-363c4c8e149b
+  id: 55a95a3e-bee5-4ed6-b0b3-b3eabe34eacf
+  title: "K\xFCche"
+- description: null
+  flat_id: c66f0640-3199-4289-82a2-ae03a22ae05c
+  id: 72bb661f-8a03-4a0e-a4fc-ae07472b73b0
+  title: Balkon
+- description: null
+  flat_id: c66f0640-3199-4289-82a2-ae03a22ae05c
+  id: e1e20bf6-b386-4399-b935-cfc4ce2f7043
+  title: Balkon
+- description: null
+  flat_id: c66f0640-3199-4289-82a2-ae03a22ae05c
+  id: 82310004-fb6d-4f73-9dd9-7fa301b1666d
+  title: "K\xFCche"
+- description: null
+  flat_id: c66f0640-3199-4289-82a2-ae03a22ae05c
+  id: 5b7dc021-520f-4f88-bece-1b1014cdc325
+  title: Bad1
+- description: null
+  flat_id: c66f0640-3199-4289-82a2-ae03a22ae05c
+  id: 53b54899-7756-4dc5-9510-0a6a574e04bb
+  title: Schlafzimmer
+- description: null
+  flat_id: c66f0640-3199-4289-82a2-ae03a22ae05c
+  id: 655ff568-8865-450c-ad6a-6f59f4097b2b
+  title: "K\xFCche"
+- description: null
+  flat_id: c66f0640-3199-4289-82a2-ae03a22ae05c
+  id: 2d13a376-4ffa-408b-aac6-4989f3ae0f41
+  title: Wohnzimmer
+- description: null
+  flat_id: c66f0640-3199-4289-82a2-ae03a22ae05c
+  id: 77749f34-a15c-4ad2-ad4e-9def510691b2
+  title: Bad2
+- description: null
+  flat_id: c66f0640-3199-4289-82a2-ae03a22ae05c
+  id: 192c27c5-91b2-4313-bd07-8407a9516866
+  title: Wohnzimmer
+- description: null
+  flat_id: c66f0640-3199-4289-82a2-ae03a22ae05c
+  id: f0075188-9e93-452b-a1e7-cff110cb6997
+  title: Schlafzimmer
+- description: null
+  flat_id: c66f0640-3199-4289-82a2-ae03a22ae05c
+  id: 991f7b89-7a1a-4004-bddd-14fc1722e745
+  title: Wohnzimmer
+- description: null
+  flat_id: b4a4749f-316a-4804-a344-f44555af11a8
+  id: 06d0df05-d288-4f4f-93af-bc81bae6f3b6
+  title: Wohnzimmer
+- description: null
+  flat_id: b4a4749f-316a-4804-a344-f44555af11a8
+  id: d4fc04b1-0a96-4658-908c-27b6eb9ce82b
+  title: "K\xFCche"
+- description: null
+  flat_id: b4a4749f-316a-4804-a344-f44555af11a8
+  id: c66389b6-3764-4cca-87d2-f34a1d1daef1
+  title: Balkon
+- description: null
+  flat_id: b4a4749f-316a-4804-a344-f44555af11a8
+  id: 9c721a35-c203-439c-8bae-cb576e56c980
+  title: Wohnzimmer
+- description: null
+  flat_id: b4a4749f-316a-4804-a344-f44555af11a8
+  id: 4650835f-15a8-4ed6-8d32-281ae4ba174c
+  title: Schlafzimmer
+- description: null
+  flat_id: b4a4749f-316a-4804-a344-f44555af11a8
+  id: 6c96dc4b-a5b2-4265-bbba-edb140ad8170
+  title: Bad
+flat_tag_association:
+- flat_id: 2b191c7f-8951-4476-9067-7bd33e3097aa
+  tag_id: b206102c-0871-4aed-a496-9fa7031234f1
+- flat_id: 0c247606-f3b0-40d6-a4cd-d3d928a7c643
+  tag_id: b206102c-0871-4aed-a496-9fa7031234f1
+- flat_id: 1293ebe0-2008-4ca7-9b4b-89862768b08f
+  tag_id: b206102c-0871-4aed-a496-9fa7031234f1
+- flat_id: cec9a18b-9346-4b81-9ac6-a8565bde8ff5
+  tag_id: b206102c-0871-4aed-a496-9fa7031234f1
+- flat_id: d1cab4a4-42c6-4504-8b43-363c4c8e149b
+  tag_id: b206102c-0871-4aed-a496-9fa7031234f1
+- flat_id: c66f0640-3199-4289-82a2-ae03a22ae05c
+  tag_id: b206102c-0871-4aed-a496-9fa7031234f1
+- flat_id: b4a4749f-316a-4804-a344-f44555af11a8
+  tag_id: b206102c-0871-4aed-a496-9fa7031234f1
+flats:
+- description: "Die Ferienwohnung Baltrum befindet sich im 1. Stock im Ferienhaus\
+    \ Hertha auf Borkum. Es erwarten Sie auf ca. 53 m\xB2 eine komfortabel ausgestattete\
+    \ Ferienwohnung mit Schlafzimmer, Wohnzimmer, K\xFCche und Duschbad. \nDas Schlafsofa\
+    \ im Wohnraum bietet einer dritten Person eine \xDCbernachtungsm\xF6glichkeit.\
+    \ Beide R\xE4ume verf\xFCgen \xFCber einen Ost- bzw. Westbalkon mit Blick in die\
+    \ D\xFCnen."
+  house_id: 5e727725-97cc-44d8-8d1b-6a7f6bab4efa
+  id: 2b191c7f-8951-4476-9067-7bd33e3097aa
+  name: Baltrum
+- description: "Die Suite Borkum befindet sich im 1. Stock im Ferienhaus Hertha auf\
+    \ Borkum. Es erwarten Sie auf ca. 47 m\xB2 ein f\xFCr 2 Personen komfortabel ausgestattetes\
+    \ Feriendomizil mit Schlafzimmer, Wohnzimmer, K\xFCche und Duschbad. \nDas Schlafsofa\
+    \ im Wohnraum bietet einer weiteren Person eine \xDCbernachtungsm\xF6glichkeit.\
+    \ Beide R\xE4ume verf\xFCgen \xFCber einen S\xFCdbalkon mit Blick in die D\xFC\
+    nen."
+  house_id: 5e727725-97cc-44d8-8d1b-6a7f6bab4efa
+  id: 0c247606-f3b0-40d6-a4cd-d3d928a7c643
+  name: Borkum
+- description: "Die Ferienwohnung Kajo (Greune-Stee-Weg 87) bietet ihnen sonnige und\
+    \ gem\xFCtliche Ferienwohnung in kurzer Entfernung zum Borkumer S\xFCdstrand und\
+    \ unmittelbar an den D\xFCnen der Greune Stee mit einem herrlichen Inselwald zum\
+    \ Wandern. Sie blicken von den Balkonen / Terrassen oder aus den Zimmern direkt\
+    \ auf die D\xFCnenlandschaft. \nVon der Haltestelle Jakob-Van-Dieken-Weg ist das\
+    \ Haus Hertha ca. 5-10 Gehminuten entfernt, den S\xFCdstrand erreichen sie direkt\
+    \ gegen\xFCber nach 800 m Fu\xDFweg durch die D\xFCnenlandschaft."
+  house_id: 9ba33f30-096b-45c9-9041-91aa9ea726e5
+  id: 1293ebe0-2008-4ca7-9b4b-89862768b08f
+  name: Kajo
+- description: " Die Ferienwohnung Langeoog befindet sich im 2. Stock im Ferienhaus\
+    \ Hertha auf Borkum. Es erwarten Sie auf ca. 48 m\xB2 eine f\xFCr 2 Personen komfortabel\
+    \ ausgestattete Ferienwohnung mit Schlafzimmer, Wohnzimmer, K\xFCche und Duschbad.\
+    \ \nDas Wohnzimmer bietet einen jerrlichen Blick \xFCber die D\xFCnen bishinzum\
+    \ Meer und verf\xFCgt \xFCber ein Schlafsofa f\xFCr eine dritte Person."
+  house_id: 5e727725-97cc-44d8-8d1b-6a7f6bab4efa
+  id: cec9a18b-9346-4b81-9ac6-a8565bde8ff5
+  name: Langeoog
+- description: "Die Ferienwohnung Memmert befindet sich im Erdgescho\xDF im Ferienhaus\
+    \ Hertha auf Borkum. Es erwarten Sie eine f\xFCr 4 bis 5 Personen komfortabel\
+    \ ausgestattete Ferienwohnung mit zwei Schlafzimmern, einem Wohnzimmer, sowie\
+    \ einer K\xFCche und ein Duschbad. \nDas Schlafsofa im ger\xE4umigen Wohnraum\
+    \ bietet einer weiteren Person eine \xDCbernachtungsm\xF6glichkeit. Zus\xE4tzlich\
+    \ verf\xFCgt die Wohnung \xFCber eine eigene Terasse sowie einen kleinen Garten."
+  house_id: 5e727725-97cc-44d8-8d1b-6a7f6bab4efa
+  id: d1cab4a4-42c6-4504-8b43-363c4c8e149b
+  name: Memmert
+- description: " Die Ferienwohnung Studio 1 befindet sich im 1. Stock im Ferienhaus\
+    \ Hertha auf Borkum. Es erwarten Sie eine f\xFCr 2 Personen komfortabel ausgestattete\
+    \ Ferienwohnung mit Wohnzimmer, Schalfzimmer, K\xFCche und Duschbad. \nDie Wohnung\
+    \ verf\xFCgt \xFCber eine gro\xDFe West-Dachterrasse mit eigenem Strandkorb."
+  house_id: 5e727725-97cc-44d8-8d1b-6a7f6bab4efa
+  id: c66f0640-3199-4289-82a2-ae03a22ae05c
+  name: Studio 1
+- description: "Die Ferienwohnung Studio 2 befindet sich im 1. Stock im Ferienhaus\
+    \ Hertha auf Borkum. Es erwarten Sie eine f\xFCr 2 Personen komfortabel ausgestattete\
+    \ Ferienwohnung mit Wohnzimmer, Schlafzimmer, Pantryk\xFCche und Duschbad. \n\
+    Die Wohnung verf\xFCgt \xFCber eine West-Dachterrasse mit eigenem Strandkorb und\
+    \ Blick in die D\xFCnen des S\xFCdstrandes."
+  house_id: 5e727725-97cc-44d8-8d1b-6a7f6bab4efa
+  id: b4a4749f-316a-4804-a344-f44555af11a8
+  name: Studio 2
+house_images: []
+houses:
+- address: Greune-Stee-Weg 43, 26757 Borkum
+  description: ''
+  id: 5e727725-97cc-44d8-8d1b-6a7f6bab4efa
+  name: Haus Hertha
+- address: Greune-Stee-Weg 87, 26757 Borkum
+  description: ''
+  id: 9ba33f30-096b-45c9-9041-91aa9ea726e5
+  name: Kajo
+tags:
+- category_id: 5e743d7e-a71a-42a1-a73e-1bc084cd642b
+  id: b206102c-0871-4aed-a496-9fa7031234f1
+  name: WiFi
+- category_id: 5e743d7e-a71a-42a1-a73e-1bc084cd642b
+  id: 52fa822d-5ca4-4de7-9b87-bc9a50e8fa09
+  name: TV
+- category_id: 5e743d7e-a71a-42a1-a73e-1bc084cd642b
+  id: 9a5f1133-ab33-489b-b5b0-39fb9628b87a
+  name: Strandkorb
+- category_id: 845d2ff8-5b24-498d-8254-af60ef35648e
+  id: 8cb28305-7bdb-4099-887b-b0ebfd5b9973
+  name: Nichtraucher
+- category_id: 845d2ff8-5b24-498d-8254-af60ef35648e
+  id: b14d79b2-28d4-48c7-bd35-59d1442cebd3
+  name: Allergiker freundlich
+- category_id: 845d2ff8-5b24-498d-8254-af60ef35648e
+  id: 3eb66a90-7ce2-4bb9-bd4e-e7cfff87e5c6
+  name: Hunde erlaubt
+- category_id: 845d2ff8-5b24-498d-8254-af60ef35648e
+  id: c89b5eca-5d5f-4235-9a66-fd335bc824c9
+  name: Strandnah
+- category_id: 5bd38f7a-28e6-4e57-a7cb-399374c2d418
+  id: dadc7743-0a57-49b1-bb20-7a396287c2f2
+  name: Balkon
+- category_id: 5bd38f7a-28e6-4e57-a7cb-399374c2d418
+  id: 0edf53d6-9c31-4dbf-9ef4-36ff0dcb6c84
+  name: "D\xFCnenblick"
+- category_id: 5bd38f7a-28e6-4e57-a7cb-399374c2d418
+  id: e9cd30b2-538c-4d7c-a123-1196bf791d42
+  name: Terasse
+- category_id: 5bd38f7a-28e6-4e57-a7cb-399374c2d418
+  id: 9e187b83-a4fc-4756-800d-17c4d08eb48e
+  name: "K\xFCche"
+- category_id: 5bd38f7a-28e6-4e57-a7cb-399374c2d418
+  id: a7d1cd44-b2cd-414a-83d7-af076dd45374
+  name: Waschraum
+- category_id: 5bd38f7a-28e6-4e57-a7cb-399374c2d418
+  id: bc77a48f-9329-4ec1-9a7d-d9d12cbcb345
+  name: Gemeinscahftsraum
+- category_id: 5bd38f7a-28e6-4e57-a7cb-399374c2d418
+  id: 6ca653a1-1b1e-4201-9087-b00a96824218
+  name: Fitnessraum
+- category_id: 5bd38f7a-28e6-4e57-a7cb-399374c2d418
+  id: 14a9864a-a38e-481f-889f-b637087ce1eb
+  name: Parkplatz
