@@ -24,4 +24,4 @@ if __name__ == "__main__":
                 obj[table_name].append(dict(zip(cols, row)))
 
     with open("scripts/db_objects.yaml", "w+") as f:
-        yaml.dump(obj, f)
+        yaml.dump(obj, f, encoding="utf-8", allow_unicode=True, sort_keys=False)
