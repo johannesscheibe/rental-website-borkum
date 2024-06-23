@@ -1,4 +1,5 @@
 import os
+from tempfile import TemporaryDirectory
 import uuid
 from pathlib import Path
 from typing import Literal
@@ -13,13 +14,12 @@ from flask import (
 from flask import (
     current_app as app,
 )
-from loguru import logger
-from werkzeug.utils import secure_filename
 
 from borkum.website.database import db_service
 
 from .utils import get_rental_objects
 from .utils.forms import FlatForm, HouseForm, NewImageForm, UpdateImageForm
+from PIL import Image
 
 admin = Blueprint("admin", __name__)
 
@@ -150,10 +150,14 @@ def delete_house(house_id: str):
     return redirect(url_for("admin.house_overview"))
 
 
-@admin.route("/admin/<object_type>/<string:obj_id>/images", methods=["GET"])
-def image_overview(object_type: Literal["house", "flat"], obj_id: str):
-    obj_getter = getattr(db_service, f"get_{object_type}_by_id")
-    obj = obj_getter(obj_id)
+@admin.route("/admin/<string:object_type>/<string:obj_id>/images", methods=["GET"])
+def image_overview(object_type: str, obj_id: str):
+    if object_type == "flats":
+        obj = db_service.get_flat_by_id(obj_id)
+    elif object_type == "houses":
+        obj = db_service.get_house_by_id(obj_id)
+    else:
+        raise ValueError(f"Unknown object type {object_type}")
 
     assert obj is not None, f"Could not find {object_type} with id {obj_id}. "
 
@@ -164,41 +168,48 @@ def image_overview(object_type: Literal["house", "flat"], obj_id: str):
         base_data=db_service.get_contact_information(),
         images=images,
         obj=obj,
-        object_type=object_type,
     )
 
 
-@admin.route("/admin/<object_type>/<string:obj_id>/images/add", methods=["GET", "POST"])
-def add_image(object_type: Literal["house", "flat"], obj_id: str):
+@admin.route("/admin/<string:object_type>/<string:obj_id>/images/add", methods=["GET", "POST"])
+def add_image(object_type: str, obj_id: str):
     form = NewImageForm()
     if request.method == "POST" and form.validate_on_submit():
         file = form.image_file.data
-        ext = file.filename.split(".")[-1]
 
-        image_dir = Path(app.config["STORAGE_PATH"], "img")
-        sub_dir = Path("uploads")
-        filename = str(uuid.uuid4()) + "." + ext
+        img_id =str(uuid.uuid4())
+        image_dir = Path(app.config["STORAGE_PATH"], "images")
+        sub_dir = Path(object_type )/ obj_id
+        filename = f"{img_id}.webp"
 
-        (image_dir / sub_dir).mkdir(exist_ok=True, parents=True)
+        with TemporaryDirectory() as temp_dir:
+            file.save(Path(temp_dir) / file.filename)
 
-        file.save(image_dir / sub_dir / filename)
+            img = Image.open(Path(temp_dir) / file.filename)
+            img.convert("RGB")
 
-        if object_type == "house":
+            (image_dir / sub_dir).mkdir(exist_ok=True, parents=True)
+            img.save(image_dir / sub_dir / filename, "webp")
+        
+        if object_type == "houses":
             db_service.create_house_image(
-                image_url=str(sub_dir / filename),
+                id=img_id,
                 title=form.title.data,
                 description=form.description.data,
                 house_id=obj_id,
             )
-        else:
+        elif object_type == "flats":
             db_service.create_flat_image(
-                image_url=str(sub_dir / filename),
+                id=img_id,
                 title=form.title.data,
                 description=form.description.data,
                 flat_id=obj_id,
             )
+        else:
+            raise ValueError(f"Unknown object type {object_type}")
+        
         return redirect(
-            url_for("admin.image_overview", obj_id=obj_id, object_type=object_type)
+            url_for("admin.image_overview", object_type=object_type, obj_id=obj_id)
         )
 
     return render_template(
@@ -215,8 +226,14 @@ def add_image(object_type: Literal["house", "flat"], obj_id: str):
 )
 def update_image(object_type: Literal["house", "flat"], obj_id: str, img_id: str):
     form = UpdateImageForm()
-    image_getter = getattr(db_service, f"get_{object_type}_image_by_id")
-    image = image_getter(img_id)
+
+    if object_type == "flats":
+        image = db_service.get_flat_image_by_id(img_id)
+    elif object_type == "houses":
+        image = db_service.get_house_image_by_id(img_id)
+    else:
+        raise ValueError(f"Unknown object type {object_type}")
+
 
     if request.method == "POST" and form.validate_on_submit():
         if object_type == "house":
@@ -233,7 +250,7 @@ def update_image(object_type: Literal["house", "flat"], obj_id: str, img_id: str
             )
 
         return redirect(
-            url_for("admin.image_overview", obj_id=obj_id, object_type=object_type)
+            url_for("admin.image_overview", object_type=object_type, obj_id=obj_id)
         )
 
     data = {"title": image.title, "description": image.description}
@@ -253,9 +270,20 @@ def update_image(object_type: Literal["house", "flat"], obj_id: str, img_id: str
 )
 @admin.route("/admin/house/<string:house_id>/delete", methods=["GET"])
 def delete_image(object_type: Literal["house", "flat"], obj_id: str, img_id: str):
-    image_deleter = getattr(db_service, f"delete_{object_type}_image")
-    image_deleter(img_id)
+
+    if object_type == "flats":
+        db_service.delete_flat_image(img_id)
+    elif object_type == "houses":
+        db_service.delete_house_image(img_id)
+    else:
+        raise ValueError(f"Unknown object type {object_type}")
+
+    image_dir = Path(app.config["STORAGE_PATH"], "images")
+    sub_dir = Path(object_type)/ obj_id
+    filename = f"{img_id}.webp"
+
+    (image_dir / sub_dir / filename).unlink()
 
     return redirect(
-        url_for("admin.image_overview", obj_id=obj_id, object_type=object_type)
+        url_for("admin.image_overview", object_type=object_type, obj_id=obj_id)
     )

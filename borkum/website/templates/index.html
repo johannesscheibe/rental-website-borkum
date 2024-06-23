@@ -78,7 +78,7 @@ Hochseeklima, am Puls der Gezeiten . . . Demut, Freiheit . . . Insel {% endblock
             {% for flat in flats %}
             <div class="col-sm-6 col-lg-4">
                 <a class="portfolio-box" href="/flat/{{ flat.name }}"><img class="img-fluid"
-                        realsrc={% if flat.images | length > 0 %}"/images/objects/{{ flat.id }}/{{ flat.images[0].id}}.webp"
+                        realsrc={% if flat.images | length > 0 %}"/images/{{ flat.__tablename__ }}/{{ flat.id }}/{{ flat.images[0].id}}.webp"
                     {% else %}"/images/placeholder.png" {% endif %} realscaling="0.5">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">

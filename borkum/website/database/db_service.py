@@ -1,4 +1,3 @@
-import uuid
 from .models import Contact, House, Flat, FlatImage, HouseImage, Tag, Category
 from . import db
 from loguru import logger
@@ -77,7 +76,9 @@ def create_flat(
     tag_names=[],
 ) -> Flat:
     id = name.replace(" ", "-").lower()
-    new_flat = Flat(id=id, name=name, description=description, house_id=house_id, tags=tags)
+    new_flat = Flat(
+        id=id, name=name, description=description, house_id=house_id, tags=tags
+    )
 
     # Add tags to the flat
     for tag_name in tag_names:
@@ -144,13 +145,11 @@ def delete_flat(flat_id) -> bool:
 
 
 ### FlatImage CRUD Functions ###
-def create_flat_image(image_url, title=None, description=None, flat_id=None):
+def create_flat_image(id: str, title=None, description=None, flat_id=None):
     flat = get_flat_by_id(flat_id)
-    
-    id=str(uuid.uuid4()) 
+
     new_image = FlatImage(
         id=id,
-        image_url=image_url,
         title=title,
         description=description,
         flat_id=flat.id,
@@ -190,13 +189,11 @@ def delete_flat_image(image_id) -> bool:
 
 
 ### HouseImage CRUD Functions ###
-def create_house_image(image_url, title=None, description=None, house_id=None):
+def create_house_image(id: str, title=None, description=None, house_id=None):
     house = get_house_by_id(house_id)
 
-    id=str(uuid.uuid4())
     new_image = HouseImage(
         id=id,
-        image_url=image_url,
         title=title,
         description=description,
         house_id=house.id,
@@ -244,7 +241,7 @@ def create_tag(name, category_id) -> Tag:
         return existing_tag
 
     id = name.replace(" ", "-").lower()
-    new_tag = Tag(id=id,name=name, category_id=category_id)
+    new_tag = Tag(id=id, name=name, category_id=category_id)
     add_and_commit_to_db(new_tag)
     return new_tag
 

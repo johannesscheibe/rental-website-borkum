@@ -17,6 +17,9 @@
             <div class="form-group">
                 {{ form.image_file.label }}
                 {{ form.image_file(class="form-control", placeholder="Datei hochladen") }}
+                {% for error in form.image_file.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
             </div>
             <br />
             <fieldset class="form-group">

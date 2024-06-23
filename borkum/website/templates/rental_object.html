@@ -15,7 +15,7 @@ Hochseeklima, am Puls der Gezeiten . . . Demut, Freiheit . . . Insel {% endblock
     <div class="container my-auto">
         <div class="row">
             <div class="col-md-6"><img class="img-fluid border rounded"
-                    realsrc={% if rental_object.images | length > 0 %}"/images/objects/{{ rental_object.id }}/{{ rental_object.images[0].id}}.webp"
+                    realsrc={% if rental_object.images | length > 0 %}"/images/{{ rental_object.__tablename__}}/{{ rental_object.id }}/{{ rental_object.images[0].id}}.webp"
                     {% else %}"/images/placeholder.png" {% endif %}
                     style="object-fit: cover; height: 100%; width: 100%;" data-aos="zoom-out-right"
                     data-aos-duration="400" data-aos-delay="200" data-aos-once="true"></div>
@@ -59,7 +59,7 @@ Hochseeklima, am Puls der Gezeiten . . . Demut, Freiheit . . . Insel {% endblock
             <div class="carousel-inner">
                 {% for i in range(rental_object.images|length)%}
                 <div class={% if i==0 %} "carousel-item active" {% else %} "carousel-item" {% endif %}>
-                    <img class="d-block w-100" realsrc="/images/objects/{{ rental_object.id }}/{{ rental_object.images[i].id}}.webp">
+                    <img class="d-block w-100" realsrc="/images/{{rental_object.__tablename__}}/{{ rental_object.id }}/{{ rental_object.images[i].id}}.webp">
                     <div class="carousel-caption d-none d-md-block foreground">
                         <h5 class="overlay-text">{{ rental_object.images[i].title }}</h5>
                         <p>{{ rental_object.images[i].description }}</p>

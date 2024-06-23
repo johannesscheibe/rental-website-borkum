@@ -46,17 +46,17 @@ class NewImageForm(FlaskForm):
         "Bild",
         validators=[
             FileRequired(),
-            FileAllowed(["jpg", "jpeg", "png"], "Images only!"),
+            FileAllowed(["jpg", "jpeg", "png", "webp"], "Unsupported file type!"),
         ],
     )
-    title = StringField("Titel", validators=[InputRequired()])
-    description = StringField("Beschreibung", validators=[InputRequired()])
+    title = StringField("Titel")
+    description = StringField("Beschreibung")
 
     submit = SubmitField("Speichern")
 
 
 class UpdateImageForm(FlaskForm):
-    title = StringField("Titel", validators=[InputRequired()])
-    description = StringField("Beschreibung", validators=[InputRequired()])
+    title = StringField("Titel")
+    description = StringField("Beschreibung")
 
     submit = SubmitField("Speichern")
