@@ -30,11 +30,12 @@ def generateImage(pathToOrig, scaleX, scaleY, encoding):
     CACHE_DIR = os.path.join(app.config["STORAGE_PATH"], "images", "cache")
     IMAGES_DIR = os.path.join(app.config["STORAGE_PATH"], "images")
 
-    # create a cache dir if it doesn't already exist #
+    # create a cache dir if it doesn't already exist #    
     if os.path.isfile(CACHE_DIR):
-        raise OSError("Image cache dir name is occupied by a file!")
+        raise OSError("Picture cache dir name is occupied by a file!")
     if not os.path.isdir(CACHE_DIR):
-        os.mkdir(CACHE_DIR)
+        os.makedirs(CACHE_DIR, exist_ok=True)
+
 
     filename, extension = os.path.splitext(os.path.basename(pathToOrig))
     flat = os.path.basename(os.path.dirname(os.path.dirname(pathToOrig)))
