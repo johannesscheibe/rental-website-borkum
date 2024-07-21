@@ -2,7 +2,7 @@ from sqlalchemy import Column, ForeignKey, Integer, String, Table, Text
 
 from sqlalchemy.orm import relationship
 
-from . import db
+from .. import db
 
 # Define the models#
 

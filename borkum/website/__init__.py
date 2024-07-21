@@ -1,14 +1,18 @@
 import json
 import os
+from pathlib import Path
 from flask import Flask
 from flask.cli import with_appcontext
-from .database import db, db_service
+
+from flask_sqlalchemy import SQLAlchemy
+from config import Config
+
+db = SQLAlchemy()
 
 def create_app():
     app = Flask(__name__)
+    app.config.from_object(Config)
 
-    # load config 
-    app.config.from_object("config.Config")
     db.init_app(app)
     
     from borkum.website.blueprints import admin
@@ -27,12 +31,11 @@ def create_app():
     app.register_blueprint(image_service, url_prefix='/')
     app.register_blueprint(legal_information, url_prefix='/')
 
-    create_database(app)
+    with app.app_context():
+        (Path(app.config["STORAGE_PATH"]) / "database").mkdir(parents=True, exist_ok=True)
+        db.create_all()
+        print('Created Database!')
 
     return app
 
-def create_database(app):
-    with app.app_context():
-        db.create_all()
-        print('Created Database!')
 

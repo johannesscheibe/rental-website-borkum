@@ -1,5 +1,5 @@
 from .models import Contact, House, Flat, FlatImage, HouseImage, Tag, Category
-from . import db
+from .. import db
 from loguru import logger
 
 
