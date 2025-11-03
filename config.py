@@ -7,8 +7,8 @@ class Config(object):
 
     CONTACT = {
         "name": "Ferienwohnungen Scheibe",
-        "street": "Rüschenweg 46",
-        "city": "26188 Edewecht",
+        "street": "Greune-Stee-Weg 43",
+        "city": "26757 Borkum",
         "phone": "04486 / 920167",
         "email": "vermietung.scheibe@gmail.com",
         "traumfewo_name": "traum-ferienwohnungen.de",
