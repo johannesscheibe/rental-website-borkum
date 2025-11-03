@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, Response, url_for, current_app as app, request
+from flask import Blueprint, render_template, Response, url_for, current_app, request
 from datetime import datetime
 import json
 import os
@@ -13,7 +13,7 @@ def sitemap():
         base_url = base_url.replace('http://', 'https://')
     
     # Get all apartment pages
-    res_path = app.config['STORAGE_PATH']
+    res_path = current_app.config['STORAGE_PATH']
     apartments_json = os.path.join(res_path, 'content', 'apartments.json')
     apartments = []
     if os.path.exists(apartments_json):

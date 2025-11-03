@@ -3,6 +3,11 @@
 
 {% block description %}{{ info['name'] }} - Ferienwohnung auf Borkum. {{ info['describtion'][:150] }}...{% endblock %}
 
+{% block og_title %}{{ self.title() }}{% endblock %}
+{% block og_description %}{{ self.description() }}{% endblock %}
+{% block twitter_title %}{{ self.title() }}{% endblock %}
+{% block twitter_description %}{{ self.description() }}{% endblock %}
+
 {% block css %}
 <link rel="stylesheet" href="../../assets/css/apparment-gallery.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">

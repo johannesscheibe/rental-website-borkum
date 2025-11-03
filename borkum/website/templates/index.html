@@ -3,6 +3,11 @@
 
 {% block description %}Ferienwohnungen auf Borkum - Schöne Ferienwohnungen für 2 bis 6 Personen direkt an den Dünen der Nordseeinsel Borkum. Meeresrauschen, Sommerflirren, Sturmgetöse, Kinderlachen, Winterklirren. Hochseeklima, am Puls der Gezeiten.{% endblock %}
 
+{% block og_title %}{{ self.title() }}{% endblock %}
+{% block og_description %}{{ self.description() }}{% endblock %}
+{% block twitter_title %}{{ self.title() }}{% endblock %}
+{% block twitter_description %}{{ self.description() }}{% endblock %}
+
 {% block structured_data %}
 <script type="application/ld+json">
 {

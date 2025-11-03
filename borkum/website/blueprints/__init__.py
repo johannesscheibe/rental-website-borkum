@@ -3,4 +3,5 @@ from .gallery import gallery
 from .home import home
 from .location import location
 from .picture_service import picture_service
-from.legal_information import legal_information
+from .legal_information import legal_information
+from .seo import seo
