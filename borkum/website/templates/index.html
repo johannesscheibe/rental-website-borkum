@@ -1,8 +1,33 @@
 {% extends "base.html" %} 
-{% block title %} Home - Ferienwohnungen Borkum {% endblock %} 
+{% block title %} Ferienwohnungen Borkum - Ferienwohnungen Scheibe {% endblock %} 
 
-{% block describtion %} Meeresrauschen, Sommerflirren . . . Sturmgetöse . . . Mövenmeckern, Kinderlachen . . . Winterklirren . . .
-Hochseeklima, am Puls der Gezeiten . . . Demut, Freiheit . . . Insel {% endblock %}
+{% block description %}Ferienwohnungen auf Borkum - Schöne Ferienwohnungen für 2 bis 6 Personen direkt an den Dünen der Nordseeinsel Borkum. Meeresrauschen, Sommerflirren, Sturmgetöse, Kinderlachen, Winterklirren. Hochseeklima, am Puls der Gezeiten.{% endblock %}
+
+{% block structured_data %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Ferienwohnungen Scheibe",
+  "description": "Ferienwohnungen für 2 bis 6 Personen direkt an den Dünen der Nordseeinsel Borkum",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "{{ contact.street }}",
+    "addressLocality": "Borkum",
+    "postalCode": "26757",
+    "addressCountry": "DE"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "53.5897",
+    "longitude": "6.7422"
+  },
+  "telephone": "{{ contact.phone }}",
+  "email": "{{ contact.email }}",
+  "url": "https://www.ferienwohnungen-insel-borkum.de"
+}
+</script>
+{% endblock %}
 
 {% block css %}{% endblock %}
 

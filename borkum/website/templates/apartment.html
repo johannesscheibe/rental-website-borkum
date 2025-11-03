@@ -1,20 +1,49 @@
 {% extends "base.html" %}
-{% block title %} Lage - Ferienwohnungen Borkum {% endblock %}
+{% block title %}{{ info['name'] }} - Ferienwohnung Borkum {% endblock %}
 
-{% block describtion %} Meeresrauschen, Sommerflirren . . . Sturmgetöse . . . Mövenmeckern, Kinderlachen . . .
-Winterklirren . . .
-Hochseeklima, am Puls der Gezeiten . . . Demut, Freiheit . . . Insel {% endblock %}
+{% block description %}{{ info['name'] }} - Ferienwohnung auf Borkum. {{ info['describtion'][:150] }}...{% endblock %}
 
 {% block css %}
 <link rel="stylesheet" href="../../assets/css/apparment-gallery.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
 {% endblock %}
 
+{% block structured_data %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Accommodation",
+  "name": "{{ info['name'] }}",
+  "description": "{{ info['describtion']|replace('"', '\\"')|replace('\n', ' ') }}",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "{{ contact.street }}",
+    "addressLocality": "Borkum",
+    "postalCode": "26757",
+    "addressCountry": "DE"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "53.5897",
+    "longitude": "6.7422"
+  },
+  "amenityFeature": [
+    {% for prop in info['properties'] %}
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "{{ prop }}"
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ]
+}
+</script>
+{% endblock %}
+
 {% block content%}
 <section id="describtion" class="text-white bg-dark">
     <div class="container my-auto">
         <div class="row">
-            <div class="col-md-6"><img class="img-fluid border rounded" realsrc="/picture/{{ thumbnail }}" style="object-fit: cover; height: 100%; width: 100%;" data-aos="zoom-out-right"
+            <div class="col-md-6"><img class="img-fluid border rounded" realsrc="/picture/{{ thumbnail }}" alt="{{ info['name'] }} Ferienwohnung Borkum" style="object-fit: cover; height: 100%; width: 100%;" data-aos="zoom-out-right"
                     data-aos-duration="400" data-aos-delay="200" data-aos-once="true"></div>
             <div class="col-md-6 text-start">
                 <h1 class="text-uppercase text-center">{{ info['name'] }}</h1>
