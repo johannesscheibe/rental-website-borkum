@@ -10,7 +10,7 @@ Hochseeklima, am Puls der Gezeiten . . . Demut, Freiheit . . . Insel {% endblock
 {% endblock %}
 
 {% block content%}
-<header class="text-center text-white d-flex masthead" style="background-image:url({{ thumbnail }});">
+<header class="text-center text-white d-flex masthead" style="background-image:url({{ url_for('static', filename='img/' ~ thumbnail) if thumbnail else '' }});">
     <div class="container my-auto">
         <div class="row">
             <div class="col-lg-10 mx-auto">
@@ -28,7 +28,7 @@ Hochseeklima, am Puls der Gezeiten . . . Demut, Freiheit . . . Insel {% endblock
         <div class="row" data-masonry="{&quot;percentPosition&quot;: true }"> 
             {% for filename in images%}
                 <div class="col-sm-6 col-lg-4 mb-4">
-                    <img class="card-img-top p-3" src="{{ filename }}" alt="" style="border-radius: 24px; object-fit: cover">
+                    <img class="card-img-top p-3" src="{{ url_for('static', filename='img/' ~ filename) }}" alt="Borkum Gallery Image" style="border-radius: 24px; object-fit: cover">
                 </div>
             {% endfor%}    
         </div>
