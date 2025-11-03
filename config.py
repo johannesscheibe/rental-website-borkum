@@ -2,7 +2,9 @@ import os
 
 
 class Config(object):
-    SECRET_KEY ='j4td#+s3dHtzX'
+    SECRET_KEY = os.getenv('SECRET_KEY')
+    DEBUG = os.getenv('FLASK_DEBUG', 'False').lower() in ('true', '1', 'yes')
+    
     STORAGE_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "borkum", "website", "static")
 
     CONTACT = {
@@ -13,5 +15,4 @@ class Config(object):
         "email": "vermietung.scheibe@gmail.com",
         "traumfewo_name": "traum-ferienwohnungen.de",
         "traumfewo_link": "https://www.traum-ferienwohnungen.de/objektuebersicht/scheibe/",
-
     }
